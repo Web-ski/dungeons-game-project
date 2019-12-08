@@ -80,4 +80,12 @@ table {
   background-position: center;
   background-size: cover;
 }
+
+.game-board .stone-walls:nth-of-type(odd) {
+  transform: rotateZ(180deg);
+  -webkit-transform: rotateZ(180deg);
+  -moz-transform: rotateZ(180deg);
+  -ms-transform: rotateZ(180deg);
+  -o-transform: rotateZ(180deg);
+}
 /*# sourceMappingURL=style.css.map */

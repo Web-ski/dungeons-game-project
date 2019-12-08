@@ -23,5 +23,13 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
+
+        &:nth-of-type(odd) {
+            transform: rotateZ(180deg);
+            -webkit-transform: rotateZ(180deg);
+            -moz-transform: rotateZ(180deg);
+            -ms-transform: rotateZ(180deg);
+            -o-transform: rotateZ(180deg);
+}
     }
 }
