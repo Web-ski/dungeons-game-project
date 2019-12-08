@@ -1,6 +1,17 @@
 .game-board {
+    position: relative;
     width: 450px;
     height: 450px;
     margin: 0 auto;
-    background-color: white;
+    background-color: $game-walls-color;
+
+    .field {
+        position: absolute;
+        top: 50px;
+        left: 50px;
+        width: 350px;
+        height: 350px;
+        background-color: $game-board-color;
+        box-shadow: inset 0px 0px 10px rgba(0, 0, 0, .1);
+    }
 }
