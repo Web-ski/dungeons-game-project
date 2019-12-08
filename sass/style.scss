@@ -1,6 +1,6 @@
-@import "reset.scss";
-@import "variables.scss";
+@import "_reset.scss";
+@import "_variables.scss";
 
 //sections
-@import "sections/game.scss";
-@import "sections/game-board.scss";
+@import "sections/_game.scss";
+@import "sections/_game-board.scss";
