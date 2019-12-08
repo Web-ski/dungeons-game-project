@@ -16,9 +16,10 @@
     }
 
     .stone-walls {
+        position: absolute;
         width: 50px;
         height: 50px;
-        background-image: url("../images/stones.vga");
+        background-image: url("../images/stones.svg");
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
