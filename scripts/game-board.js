@@ -4,23 +4,23 @@ const createRooms = () => {
 	//list of rooms
 
 	const roomStart = {
-		doors: 1111
+		doors: '1111'
 	};
 
 	const roomLeft0001 = {
-		doors: 0001
+		doors: '0001'
 	};
 
 	const roomRight0001 = {
-		doors: 0100
+		doors: '0100'
 	};
 
 	const roomTop0001 = {
-		doors: 1000
+		doors: '1000'
 	};
 
 	const roomBottom0001 = {
-		doors: 0010
+		doors: '0010'
 	};
 
 	const roomsArr = [roomStart, roomTop0001, roomRight0001, roomBottom0001, roomLeft0001];
@@ -33,6 +33,9 @@ const createRooms = () => {
 		const gameBoard = game.getElementsByClassName('game-board')[index];
 		gameBoard.appendChild(addGameField);
 		gameBoard.firstChild.setAttribute('class', 'field');
+
+		let roomKind = item;
+		//console.log(roomKind);
 
 		const wallsArr = [];
 		for (let i = 0; i < 33; i++) {
