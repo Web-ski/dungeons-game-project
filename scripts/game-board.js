@@ -55,22 +55,21 @@ const createRooms = () => {
 		const addWallPositions = (item, index) => {
 
 			if (index < 9) {
-
 				let nmbr = index * 50;
 				item.style.top = '0px';
 				item.style.left = nmbr + 'px';
-			} else if (index > 8 && index < 17) {
 
+			} else if (index > 8 && index < 17) {
 				let nmbr = (index - 8) * 50;
 				item.style.top = nmbr + 'px';
 				item.style.left = 8 * 50 + 'px';
-			} else if (index > 16 && index < 25) {
 
+			} else if (index > 16 && index < 25) {
 				let nmbr = (index - 8 * 2) * 50;
 				item.style.top = 8 * 50 + 'px';
 				item.style.left = nmbr + 'px';
-			} else if (index > 14 && index < 33) {
 
+			} else if (index > 14 && index < 33) {
 				let nmbr = (index - 8 * 3) * 50;
 				item.style.top = nmbr + 'px';
 				item.style.left = '0px';
@@ -80,10 +79,32 @@ const createRooms = () => {
 		[].forEach.call(wallBlocksArr, addWallPositions);
 
 		const createDoors = () => {
+			let choosenRoom = game.getElementsByClassName('game-board');
+			let wallForDoor = choosenRoom[index].getElementsByClassName('stone-walls');
 
-
+			switch (roomKind.doors) {
+				case '1111':
+					wallForDoor[4].setAttribute('class', 'door-top');
+					wallForDoor[11].setAttribute('class', 'door-right');
+					wallForDoor[18].setAttribute('class', 'door-bottom');
+					wallForDoor[25].setAttribute('class', 'door-left');
+					break;
+				case '1000':
+					wallForDoor[4].setAttribute('class', 'door-top');
+					break;
+				case '0100':
+					wallForDoor[12].setAttribute('class', 'door-right');
+					break;
+				case '0010':
+					wallForDoor[20].setAttribute('class', 'door-bottom');
+					break;
+				case '0001':
+					wallForDoor[28].setAttribute('class', 'door-left');
+					break;
+			}
 		};
 
+		createDoors();
 	};
 
 	//createWalls();

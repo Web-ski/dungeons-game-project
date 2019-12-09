@@ -30,6 +30,31 @@
             -moz-transform: rotateZ(90deg);
             -ms-transform: rotateZ(90deg);
             -o-transform: rotateZ(90deg);
-}
+        }
+    }
+
+    .door-top {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        background-image: url("../images/door.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+
+    .door-right {
+        @extend .door-top;
+        transform: rotateZ(90deg);
+    }
+
+    .door-bottom {
+        @extend .door-top;
+        transform: rotateZ(180deg);
+    }
+
+    .door-left {
+        @extend .door-top;
+        transform: rotateZ(-90deg);
     }
 }
