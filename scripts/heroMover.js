@@ -37,19 +37,27 @@ const heroMover = () => {
 		};
 
 		/* Door chacker */
-		const roomCheck = () => {
+		const roomCheck = (stepDirection) => {
 			//which room is active []
 			let activeRoom  = activeBoard;
-
 			//check specifity of room
+			let roomName = activeRoom.getAttribute('data-room');
+			console.log(stepDirection);
+			//door position
+			/*switch (stepDirection) {
+				case 'left': //Left
+					return '10px';
+					break;
+			}*/
 		}
 
 		const doStep = function (direction) {
 			const distance = 50;
 			if (direction === 65) {
-				let position = hero.style.left;
-				if (position !== '50px') {
-					let positionNmbr = converter(position);
+				let positionX = hero.style.left;
+				let positionY = hero.style.top;
+				if (positionX !== '50px') {
+					let positionNmbr = converter(positionX);
 					let step = positionNmbr - distance;
 					hero.style.left = step + "px";
 				}

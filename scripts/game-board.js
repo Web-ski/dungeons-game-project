@@ -4,26 +4,31 @@ const createRooms = () => {
 	//list of rooms
 
 	const roomStart = {
+		name: '1234',
 		doors: '1111'
 	};
 
-	const roomLeft0001 = {
-		doors: '0001'
-	};
-
-	const roomRight0001 = {
-		doors: '0100'
-	};
-
 	const roomTop0001 = {
-		doors: '1000'
-	};
-
-	const roomBottom0001 = {
+		name: '0090',
 		doors: '0010'
 	};
 
-	const roomsArr = [roomStart, roomTop0001, roomRight0001, roomBottom0001, roomLeft0001];
+	const roomRight0001 = {
+		name: '0009',
+		doors: '0001'
+	};
+
+	const roomBottom0001 = {
+		name: '9000',
+		doors: '1000'
+	};
+
+	const roomLeft0001 = {
+		name: '0900',
+		doors: '0100'
+	};
+
+	const roomsArr = [roomStart, roomBottom0001, roomLeft0001, roomTop0001, roomRight0001];
 
 	const createWalls = (item, index) => {
 		const addGameBoard = document.createElement('section');
@@ -32,6 +37,7 @@ const createRooms = () => {
 		game.children[index].setAttribute('class', 'game-board');
 		game.children[0].classList.add('active');
 		const gameBoard = game.getElementsByClassName('game-board')[index];
+		gameBoard.setAttribute('data-room', item.name);
 		gameBoard.appendChild(addGameField);
 		gameBoard.firstChild.setAttribute('class', 'field');
 
