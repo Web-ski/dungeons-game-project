@@ -75,6 +75,15 @@ table {
   background-color: #6e7b8a;
 }
 
+.hero {
+  position: absolute;
+  height: 50px;
+  width: 50px;
+  background-color: transparent;
+  background-image: url("../images/hero.svg");
+  background-size: cover;
+}
+
 .game-board {
   position: relative;
   width: 450px;
