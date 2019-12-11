@@ -58,6 +58,7 @@ table {
   height: 450px;
   margin: 0 auto;
   background-color: #6e7b8a;
+  display: none;
 }
 
 .game-board .field {
@@ -112,5 +113,9 @@ table {
 .game-board .door-left {
   -webkit-transform: rotateZ(-90deg);
           transform: rotateZ(-90deg);
+}
+
+.active {
+  display: block;
 }
 /*# sourceMappingURL=style.css.map */

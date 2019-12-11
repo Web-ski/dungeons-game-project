@@ -4,6 +4,7 @@
     height: 450px;
     margin: 0 auto;
     background-color: $game-walls-color;
+    display: none;
 
     .field {
         position: absolute;
@@ -57,4 +58,8 @@
         @extend .door-top;
         transform: rotateZ(-90deg);
     }
+}
+
+.active {
+    display: block;
 }

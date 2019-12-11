@@ -30,6 +30,7 @@ const createRooms = () => {
 		const addGameField = document.createElement('div');
 		game.appendChild(addGameBoard);
 		game.children[index].setAttribute('class', 'game-board');
+		game.children[0].classList.add('active');
 		const gameBoard = game.getElementsByClassName('game-board')[index];
 		gameBoard.appendChild(addGameField);
 		gameBoard.firstChild.setAttribute('class', 'field');
