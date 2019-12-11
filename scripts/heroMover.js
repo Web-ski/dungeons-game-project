@@ -13,6 +13,12 @@ const heroMover = () => {
     const styleHero = () => {
         const hero = game.getElementsByTagName('figure')[0];
         hero.setAttribute('class', 'hero');
+        hero.style.top = '200px';
+        hero.style.left = '200px';
+    }
+
+    const moveHero = () => {
+
     }
 
     createHero();
