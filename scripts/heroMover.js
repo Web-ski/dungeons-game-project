@@ -36,6 +36,14 @@ const heroMover = () => {
 			};
 		};
 
+		/* Door chacker */
+		const roomCheck = () => {
+			//which room is active []
+			let activeRoom  = activeBoard;
+
+			//check specifity of room
+		}
+
 		const doStep = function (direction) {
 			const distance = 50;
 			if (direction === 65) {
