@@ -7,40 +7,37 @@ const interactions = () => {
   /* Door chacker */
   const roomCheck = (doorNmbr) => {
     //which room is active []
-    let activeRoom = activeBoard;
+    let activeRoom = game.getElementsByClassName('active')[0];
 
     //check specifity of room
     let roomName = activeRoom.getAttribute('data-room');
     //console.log(roomName + ' ' + doorNmbr);
     let room = gameBoard[doorNmbr].getAttribute('data-room');
 
-    //switch room
+    //switch room - ROOM'S ACTIVATION ERROR !!!!
+
+    const switchRoom = (x, y) => {
+      x.classList.toggle('active');
+      y.classList.toggle('active');
+      console.log(room);
+    }
+
     switch (doorNmbr) {
       case 1: //Top
         //console.log(roomName);
-        activeRoom.classList.toggle('active');
-        gameBoard[doorNmbr].classList.toggle('active');
-        console.log(room);
-        hero.style.display = 'block';
-
+        switchRoom(activeRoom, gameBoard[doorNmbr]);
         break;
       case 2: //Right
         //console.log(roomName);
-
-        console.log(room);
-
+        switchRoom(activeRoom, gameBoard[doorNmbr]);
         break;
       case 3: //Bottom
         //console.log(roomName);
-
-        console.log(room);
-
+        switchRoom(activeRoom, gameBoard[doorNmbr]);
         break;
       case 4: //Left
         //console.log(roomName);
-
-        console.log(room);
-
+        switchRoom(activeRoom, gameBoard[doorNmbr]);
         break;
     }
   }
