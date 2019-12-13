@@ -39,27 +39,44 @@ const heroMover = () => {
 		/* Door chacker */
 		const roomCheck = (stepDirection) => {
 			//which room is active []
-			let activeRoom  = activeBoard;
+			let activeRoom = activeBoard;
+
 			//check specifity of room
 			let roomName = activeRoom.getAttribute('data-room');
-			console.log(stepDirection);
+
 			//door position
-			/*switch (stepDirection) {
+			switch (stepDirection) {
 				case 'left': //Left
-					return '10px';
+					console.log(roomName);
+					if (roomName.indexOf(3) === 0) {
+						return false;
+					} else {
+						return true;
+					}
 					break;
-			}*/
+			}
 		}
 
 		const doStep = function (direction) {
 			const distance = 50;
+
+			const doStep = (positionX) => {
+				let positionNmbr = converter(positionX);
+				let step = positionNmbr - distance;
+				hero.style.left = step + "px";
+			}
+
 			if (direction === 65) {
 				let positionX = hero.style.left;
 				let positionY = hero.style.top;
-				if (positionX !== '50px') {
-					let positionNmbr = converter(positionX);
-					let step = positionNmbr - distance;
-					hero.style.left = step + "px";
+				if (roomCheck('left') === false) {
+					if (positionX !== '50px') {
+						doStep(positionX);
+					}
+				} else if (roomCheck('left') === true) {
+					if (positionX !== '50px') {
+						doStep(positionX);
+					}  //add heare condition of coming into
 				}
 			} else if (direction === 87) {
 				let position = hero.style.top;
