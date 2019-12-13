@@ -46,9 +46,33 @@ const heroMover = () => {
 
 			//door position
 			switch (stepDirection) {
-				case 'left': //Left
+				case 'top': //Top
 					console.log(roomName);
-					if (roomName.indexOf(3) === 0) {
+					if (roomName[0] === 0) {
+						return false;
+					} else {
+						return true;
+					}
+					break;
+				case 'right': //Left
+					//console.log(roomName);
+					if (roomName[1] === 0) {
+						return false;
+					} else {
+						return true;
+					}
+					break;
+				case 'bottom': //Left
+					//console.log(roomName);
+					if (roomName[2] === 0) {
+						return false;
+					} else {
+						return true;
+					}
+					break;
+				case 'left': //Left
+					//console.log(roomName);
+					if (roomName[3] === 0) {
 						return false;
 					} else {
 						return true;
@@ -60,51 +84,111 @@ const heroMover = () => {
 		const doStep = function (direction) {
 			const distance = 50;
 
-			const doStep = (positionX) => {
-				let positionNmbr = converter(positionX);
-				let step = positionNmbr - distance;
-				hero.style.left = step + "px";
+			const step = (position, XY) => {
+				let positionNmbr = converter(position);
+
+				switch (XY) {
+					case 'XL': //Left
+						let stepL = positionNmbr - distance;
+						hero.style.left = stepL + "px";
+						break;
+					case 'YT': //Left
+						let stepT = positionNmbr - distance;
+						hero.style.top = stepT + "px";
+						break;
+					case 'XR': //Left
+						let stepR = positionNmbr + distance;
+						hero.style.left = stepR + "px";
+						break;
+					case 'YB': //Left
+						let stepB = positionNmbr + distance;
+						hero.style.top = stepB + "px";
+						break;
+				}
 			}
 
 			if (direction === 65) {
+				//STEP LEFT
 				let positionX = hero.style.left;
 				let positionY = hero.style.top;
 				if (roomCheck('left') === false) {
 					if (positionX !== '50px') {
-						doStep(positionX);
+						step(positionX, 'XL');
 					}
 				} else if (roomCheck('left') === true) {
-					if (positionX !== '50px') {
-						doStep(positionX);
-					}  //add heare condition of coming into
+					if (positionY !== '200px') {
+						if (positionX !== '50px') {
+							step(positionX, 'XL');
+						}
+					} else if (positionY === '200px') {
+						if (positionX !== '0px') {
+							step(positionX, 'XL');
+						}
+					}
 				}
 			} else if (direction === 87) {
-				let position = hero.style.top;
-				if (position !== '50px') {
-					let positionNmbr = converter(position);
-					let step = positionNmbr - distance;
-					hero.style.top = step + "px"
+				//STEP TOP
+				let positionX = hero.style.left;
+				let positionY = hero.style.top;
+				if (roomCheck('top') === false) {
+					if (positionY !== '50px') {
+						step(positionY, 'YT');
+					}
+				} else if (roomCheck('top') === true) {
+					if (positionX !== '200px') {
+						if (positionY !== '50px') {
+							step(positionY, 'YT');
+						}
+					} else if (positionX === '200px') {
+						if (positionY !== '0px') {
+							step(positionY, 'YT');
+						}
+					}
 				}
 			} else if (direction === 68) {
-				let position = hero.style.left;
-				if (position !== '350px') {
-					let positionNmbr = converter(position);
-					let step = positionNmbr + distance;
-					hero.style.left = step + "px"
+				//STEP RIGHT
+				let positionX = hero.style.left;
+				let positionY = hero.style.top;
+				if (roomCheck('right') === false) {
+					if (positionX !== '350px') {
+						step(positionX, 'XR');
+					}
+				} else if (roomCheck('right') === true) {
+					if (positionY !== '200px') {
+						if (positionX !== '300px') {
+							step(positionX, 'XR');
+						}
+					} else if (positionY === '200px') {
+						if (positionX !== '400px') {
+							step(positionX, 'XR');
+						}
+					}
 				}
 			} else if (direction === 83) {
-				let position = hero.style.top;
-				if (position !== '350px') {
-					let positionNmbr = converter(position);
-					let step = positionNmbr + distance;
-					hero.style.top = step + "px"
+				//STEP BOTTOM
+				let positionX = hero.style.left;
+				let positionY = hero.style.top;
+				if (roomCheck('bottom') === false) {
+					if (positionY !== '350px') {
+						step(positionY, 'YB');
+					}
+				} else if (roomCheck('bottom') === true) {
+					if (positionX !== '200px') {
+						if (positionY !== '350px') {
+							step(positionY, 'YB');
+						}
+					} else if (positionX === '200px') {
+						if (positionY !== '400px') {
+							step(positionY, 'YB');
+						}
+					}
 				}
 			};
 		};
 
 		const move = function () {
 			let key = event.keyCode;
-			console.log(key);
+			//console.log(key);
 			switch (key) {
 				case 65: //Left
 					doStep(key)
