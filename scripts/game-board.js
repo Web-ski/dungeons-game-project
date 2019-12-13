@@ -28,7 +28,7 @@ const createRooms = () => {
 		doors: '0100'
 	};
 
-	const roomsArr = [roomStart, roomBottom0001, roomLeft0001, roomTop0001, roomRight0001];
+	const roomsArr = [roomStart, roomTop0001, roomLeft0001, roomBottom0001, roomRight0001];
 
 	const createWalls = (item, index) => {
 		const addGameBoard = document.createElement('section');

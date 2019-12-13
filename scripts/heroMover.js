@@ -47,7 +47,7 @@ const heroMover = () => {
 			//door position
 			switch (stepDirection) {
 				case 'top': //Top
-					console.log(roomName);
+					//console.log(roomName);
 					if (roomName[0] === 0) {
 						return false;
 					} else {
