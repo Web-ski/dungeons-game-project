@@ -155,7 +155,7 @@ const heroMover = () => {
 					}
 				} else if (roomCheck('right') === true) {
 					if (positionY !== '200px') {
-						if (positionX !== '300px') {
+						if (positionX !== '350px') {
 							step(positionX, 'XR');
 						}
 					} else if (positionY === '200px') {
