@@ -1,6 +1,7 @@
 const createRooms = () => {
 	const game = document.getElementsByClassName('game')[0];
 
+	const roomsArr = [];
 	//list of rooms
 	function Room(name, doors) {
 		this.name = name;
@@ -13,8 +14,6 @@ const createRooms = () => {
 	const roomRight0001 = new Room('0009', '0001');
 	const roomBottom0001 = new Room('9000', '1000');
 	const roomLeft0001 = new Room('0900', '0100');
-
-	const roomsArr = [];
 
 	const createWalls = (item, index) => {
 		const addGameBoard = document.createElement('section');

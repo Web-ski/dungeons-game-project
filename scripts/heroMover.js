@@ -2,9 +2,14 @@ const heroMover = () => {
 
 	const game = document.getElementsByClassName('game')[0];
 	const activeBoard = game.getElementsByClassName('active')[0];
-
+	//container for hero
+	const addHeroContainer = document.createElement('aside');
+	game.appendChild(addHeroContainer);
+	game.lastElementChild.setAttribute('class', 'action-field');
+	const actionField = game.getElementsByClassName('action-field')[0]; 
 
 	const createHero = () => {
+
 		//hero
 		const addHero = document.createElement('figure');
 		activeBoard.appendChild(addHero);
