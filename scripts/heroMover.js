@@ -9,7 +9,6 @@ const heroMover = () => {
 	const actionField = game.getElementsByClassName('action-field')[0]; 
 
 	const createHero = () => {
-
 		//hero
 		const addHero = document.createElement('figure');
 		activeBoard.appendChild(addHero);

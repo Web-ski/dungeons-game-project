@@ -3,6 +3,22 @@
     width: 100%;
     // padding: 5vh 0;
     background-color: $game-bg-color;
+    position: relative;
+
+    .action-field {
+        position: absolute;
+        top: 0px;
+        left: 50%;
+        width: 450px;
+        height: 450px;
+        margin: 0 auto;
+        background-color: transparent;
+        transform: translateX(-50%);
+        -webkit-transform: translateX(-50%);
+        -moz-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+        -o-transform: translateX(-50%);
+    }
 }
 
 .hero {
