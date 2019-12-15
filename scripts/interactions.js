@@ -17,14 +17,15 @@ const interactions = () => {
     //switch room - ROOM'S ACTIVATION ERROR !!!!
 
     const switchRoom = (x, y) => {
-      x.classList.toggle('active');
-      y.classList.toggle('active');
+      x.classList.remove('active');
+      y.classList.add('active');
       console.log(room);
     }
 
     switch (doorNmbr) {
       case 1: //Top
         //console.log(roomName);
+        //if(activeRoom)
         switchRoom(activeRoom, gameBoard[doorNmbr]);
         break;
       case 2: //Right

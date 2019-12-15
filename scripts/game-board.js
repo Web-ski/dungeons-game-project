@@ -2,33 +2,19 @@ const createRooms = () => {
 	const game = document.getElementsByClassName('game')[0];
 
 	//list of rooms
+	function Room(name, doors) {
+		this.name = name;
+		this.doors = doors;
+		roomsArr.push(this);
+	}
 
-	const roomStart = {
-		name: '1234',
-		doors: '1111'
-	};
+	const roomStart = new Room('1234', '1111');
+	const roomTop0001 = new Room('0090', '0010');
+	const roomRight0001 = new Room('0009', '0001');
+	const roomBottom0001 = new Room('9000', '1000');
+	const roomLeft0001 = new Room('0900', '0100');
 
-	const roomTop0001 = {
-		name: '0090',
-		doors: '0010'
-	};
-
-	const roomRight0001 = {
-		name: '0009',
-		doors: '0001'
-	};
-
-	const roomBottom0001 = {
-		name: '9000',
-		doors: '1000'
-	};
-
-	const roomLeft0001 = {
-		name: '0900',
-		doors: '0100'
-	};
-
-	const roomsArr = [roomStart, roomTop0001, roomLeft0001, roomBottom0001, roomRight0001];
+	const roomsArr = [];
 
 	const createWalls = (item, index) => {
 		const addGameBoard = document.createElement('section');
