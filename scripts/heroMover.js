@@ -11,7 +11,7 @@ const heroMover = () => {
 	const createHero = () => {
 		//hero
 		const addHero = document.createElement('figure');
-		activeBoard.appendChild(addHero);
+		actionField.appendChild(addHero);
 	}
 
 	const styleHero = () => {
