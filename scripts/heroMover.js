@@ -48,6 +48,8 @@ const heroMover = () => {
 			//check specifity of room
 			let roomName = activeRoom.getAttribute('data-room');
 
+			//HERO CAN MOVE INTO WALL !!! ERROR
+
 			//door position
 			switch (stepDirection) {
 				case 'top': //Top

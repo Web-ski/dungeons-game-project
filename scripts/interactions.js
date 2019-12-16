@@ -12,33 +12,41 @@ const interactions = () => {
     //check specifity of room
     let roomName = activeRoom.getAttribute('data-room');
     //console.log(roomName + ' ' + doorNmbr);
-    let room = gameBoard[doorNmbr].getAttribute('data-room');
-
-    //switch room - ROOM'S ACTIVATION ERROR !!!!
 
     const switchRoom = (x, y) => {
       x.classList.remove('active');
       y.classList.add('active');
-      console.log(room);
     }
 
     switch (doorNmbr) {
       case 1: //Top
         //console.log(roomName);
-        //if(activeRoom)
-        switchRoom(activeRoom, gameBoard[doorNmbr]);
+        if (roomName === '1234') {
+          switchRoom(activeRoom, gameBoard[1]);
+        } else if (roomName === '9000') {
+          switchRoom(activeRoom, gameBoard[0]);
+        }
         break;
       case 2: //Right
-        //console.log(roomName);
-        switchRoom(activeRoom, gameBoard[doorNmbr]);
+        if (roomName === '1234') {
+          switchRoom(activeRoom, gameBoard[2]);
+        } else if (roomName === '0900') {
+          switchRoom(activeRoom, gameBoard[0]);
+        }
         break;
       case 3: //Bottom
-        //console.log(roomName);
-        switchRoom(activeRoom, gameBoard[doorNmbr]);
+        if (roomName === '1234') {
+          switchRoom(activeRoom, gameBoard[3]);
+        } else if (roomName === '0090') {
+          switchRoom(activeRoom, gameBoard[0]);
+        }
         break;
       case 4: //Left
-        //console.log(roomName);
-        switchRoom(activeRoom, gameBoard[doorNmbr]);
+        if (roomName === '1234') {
+          switchRoom(activeRoom, gameBoard[4]);
+        } else if (roomName === '0009') {
+          switchRoom(activeRoom, gameBoard[0]);
+        }
         break;
     }
   }
@@ -63,11 +71,8 @@ const interactions = () => {
         roomCheck(4);
         hero.style.left = '350px';
       }
-
-
     }, 100);
   }
-
 
   heroPositionListener();
 }
