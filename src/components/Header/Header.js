@@ -26,7 +26,6 @@ const Header = () => {
   return (
     <Section className="header">
       <StyledLink to="/">Home</StyledLink>
-      <StyledLink to="/game">Game</StyledLink>
       <StyledLink to="/about">About</StyledLink>
     </Section>
   );
