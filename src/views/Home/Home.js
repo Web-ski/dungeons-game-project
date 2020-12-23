@@ -24,15 +24,16 @@ const Home = () => {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
   `;
 
   return (
     <>
       <Header />
       <Section className="home">
+        <h1>Dungeon's Ghosts!</h1>
         <Article>
-          <h1>Witaj w grze</h1>
-          <h1>Dangeon's Ghosts!</h1>
+          <h1>Masz ochotę na przygodę?</h1>
           <NavLink to="/game">
             <Button>Graj</Button>
           </NavLink>

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import RoomTile from "./RoomTile";
 
 const Room = ({ collection }) => {
   const [roomId, setRoomId] = useState("001");
-  const [room, setRoom] = useState([]);
+  const [room, setRoom] = useState();
 
   useEffect(() => {
     collection !== undefined && chooseRoom(collection);
@@ -15,6 +16,9 @@ const Room = ({ collection }) => {
     height: 450px;
     margin: 0 auto;
     background-color: grey;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
   `;
 
   const chooseRoom = (arr) => {
@@ -25,7 +29,22 @@ const Room = ({ collection }) => {
     });
   };
 
-  return <RoomBoard className="room">{console.log(room)}</RoomBoard>;
+  const addTiles = (elem) => {
+    return elem.map((item) => {
+      console.log(item);
+
+      return item.map((item, index) => {
+        console.log(item);
+        return <RoomTile data={item} />;
+      });
+    });
+  };
+
+  return (
+    <RoomBoard className="room">
+      {room !== undefined && addTiles(room.field)}
+    </RoomBoard>
+  );
 };
 
 export default Room;
