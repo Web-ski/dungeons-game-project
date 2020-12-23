@@ -9,7 +9,7 @@ const Header = () => {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color: grey;
+    background-color: rosybrown;
   `;
 
   const StyledLink = styled(NavLink)`
