@@ -4,16 +4,16 @@ import styled from "styled-components";
 import RoomTile from "./RoomTile";
 
 const Room = (props) => {
-  const [roomId, setRoomId] = useState("000");
   const [room, setRoom] = useState();
-  console.log(props.game);
 
   useEffect(() => {
-    props.activeRoom !== undefined && setRoomId(props.activeRoom);
-  }, [props.activeRoom]);
-
-  useEffect(() => {
-    props.rooms !== undefined && chooseRoom(props.rooms);
+    console.log(props.rooms);
+    props.rooms !== undefined &&
+      props.rooms.map((item) => {
+        item.room.map((item) => {
+          item.id === props.activeRoom && setRoom(item.field);
+        });
+      });
   }, [props.rooms]);
 
   const RoomBoard = styled.section`
@@ -27,38 +27,22 @@ const Room = (props) => {
     flex-wrap: wrap;
   `;
 
-  const chooseRoom = (elems) => {
-    console.log(elems);
-    // setRoomId(elems.startRoomId);
-    elems.map((item) => {
-      item.room.map((item) => {
-        item.id === roomId && setRoom(item);
-      });
-    });
+  const addChildren = (elems) => {
+    return (
+      elems !== undefined &&
+      elems.map((item) => {
+        return item.map((item) => <RoomTile data={item} />);
+      })
+    );
   };
 
-  const addTiles = (elem) => {
-    return elem.map((item) => {
-      //console.log(item);
-
-      return item.map((item, index) => {
-        //console.log(item);
-        return <RoomTile data={item} />;
-      });
-    });
-  };
-
-  return (
-    <RoomBoard className="room">
-      {room !== undefined && addTiles(room.field)}
-    </RoomBoard>
-  );
+  return <RoomBoard className="room">{addChildren(room)}</RoomBoard>;
 };
 
 const mapStateToProps = (state) => ({
   game1: console.log(state.roomsCollection),
-  rooms: state.roomsCollection,
   activeRoom: state.activeRoom,
+  rooms: state.roomsCollection,
 });
 
 export default connect(mapStateToProps)(Room);
