@@ -1,9 +1,10 @@
 import styled, { css } from "styled-components";
 
 const Button = styled.button`
-  background-color: #000000;
+  background-color: blueviolet;
   color: white;
   padding: 15px 25px;
+  margin: 20px;
   letter-spacing: 2px;
   font-size: 14px;
   width: ${({ width }) => width || "max-content"};

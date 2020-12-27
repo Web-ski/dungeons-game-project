@@ -9,24 +9,23 @@ const Header = () => {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color: grey;
+    background-color: #111111;
   `;
 
   const StyledLink = styled(NavLink)`
-    color: white;
+    color: violet;
     font-weight: bold;
     text-decoration: none;
     padding: 10px;
 
     &:hover {
-      color: black;
+      color: white;
     }
   `;
 
   return (
     <Section className="header">
       <StyledLink to="/">Home</StyledLink>
-      <StyledLink to="/game">Game</StyledLink>
       <StyledLink to="/about">About</StyledLink>
     </Section>
   );
