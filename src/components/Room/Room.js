@@ -4,7 +4,7 @@ import styled from "styled-components";
 import RoomTile from "./RoomTile";
 
 const Room = (props) => {
-  const [roomId, setRoomId] = useState("001");
+  const [roomId, setRoomId] = useState("000");
   const [room, setRoom] = useState();
   console.log(props.game);
 

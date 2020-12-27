@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 const WALL = "/gameData/images/freepik-wall.jpg";
 const FLOOR = "/gameData/images/freepik-floor.jpg";
+const DOOR = "/gameData/images/freepik-door.png";
 
 const RoomTile = ({ data }) => {
   const addImg = (name) => {
@@ -11,6 +12,9 @@ const RoomTile = ({ data }) => {
         break;
       case "floor":
         return `url('${FLOOR}')`;
+        break;
+      case "door":
+        return `url('${DOOR}')`;
         break;
       default:
         break;
@@ -23,7 +27,8 @@ const RoomTile = ({ data }) => {
     margin: 0 auto;
     background-color: transparent;
     background-image: ${addImg(data)};
-    background-size: contain;
+    background-size: cover;
+    background-repeat: no-repeat;
   `;
 
   return <Tile className="room"></Tile>;
