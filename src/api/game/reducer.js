@@ -9,6 +9,7 @@ const gameReducer = (state = initialState, { type, payload }) => {
         ...state,
         roomsCollection: payload.collection.data.rooms,
         activeRoom: payload.collection.data.startRoomId,
+        hero: payload.collection.data.hero,
       };
     }
     default:

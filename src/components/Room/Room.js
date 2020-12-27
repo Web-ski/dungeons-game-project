@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import RoomTile from "./RoomTile";
+import GameHero from "../UI/Mobs/GameHero";
 
 const Room = (props) => {
   const [room, setRoom] = useState();
@@ -36,13 +37,19 @@ const Room = (props) => {
     );
   };
 
-  return <RoomBoard className="room">{addChildren(room)}</RoomBoard>;
+  return (
+    <RoomBoard className="room">
+      {addChildren(room)}
+      <GameHero top={"150px"} left={"150px"} />
+    </RoomBoard>
+  );
 };
 
 const mapStateToProps = (state) => ({
   game1: console.log(state.roomsCollection),
   activeRoom: state.activeRoom,
   rooms: state.roomsCollection,
+  hero: state.hero,
 });
 
 export default connect(mapStateToProps)(Room);

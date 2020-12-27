@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const GameHero = styled.div`
   position: absolute;
@@ -6,6 +6,8 @@ const GameHero = styled.div`
   width: 50px;
   height: 50px;
   border-radius: 50%;
+  top: ${({ top }) => top};
+  left: ${({ left }) => left};
 `;
 
 export default GameHero;
