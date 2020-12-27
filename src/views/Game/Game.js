@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { addGameAction } from "../../api/game/action";
-import Header from "../../components/Header/Header";
+import GameHeader from "../../components/Header/GameHeader";
 import Room from "../../components/Room/Room";
 import styled from "styled-components";
 const URL = "/gameData/gameboard.json";
@@ -24,7 +24,7 @@ const Game = (props) => {
 
   return (
     <>
-      <Header />
+      <GameHeader />
       <Section className="game">
         <Room />
       </Section>
