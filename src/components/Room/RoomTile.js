@@ -5,7 +5,7 @@ const FLOOR = "/gameData/images/freepik-floor.jpg";
 const DOOR = "/gameData/images/freepik-door.png";
 
 const RoomTile = ({ data }) => {
-  console.log(data);
+  //console.log(data);
   const addImg = (name) => {
     switch (name) {
       case "wall":

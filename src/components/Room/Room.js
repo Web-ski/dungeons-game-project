@@ -6,9 +6,10 @@ import GameHero from "../UI/Mobs/GameHero";
 
 const Room = (props) => {
   const [room, setRoom] = useState();
+  const [posX, setPosX] = useState();
+  const [posY, setPosY] = useState();
 
   useEffect(() => {
-    console.log(props.rooms);
     props.rooms !== undefined &&
       props.rooms.map((item) => {
         item.room.map((item) => {
@@ -16,6 +17,11 @@ const Room = (props) => {
         });
       });
   }, [props.rooms]);
+
+  useEffect(() => {
+    props.hero !== undefined && setPosX(props.hero[0].positionX);
+    props.hero !== undefined && setPosY(props.hero[0].positionY);
+  }, [props.hero]);
 
   const RoomBoard = styled.section`
     position: relative;
@@ -40,16 +46,17 @@ const Room = (props) => {
   return (
     <RoomBoard className="room">
       {addChildren(room)}
-      <GameHero top={"150px"} left={"150px"} />
+      <GameHero top={posX + "px"} left={posY + "px"} />
     </RoomBoard>
   );
 };
 
 const mapStateToProps = (state) => ({
-  game1: console.log(state.roomsCollection),
+  game1: console.log(state.hero),
   activeRoom: state.activeRoom,
   rooms: state.roomsCollection,
   hero: state.hero,
+  //heroX: state.hero.positionX,
 });
 
 export default connect(mapStateToProps)(Room);

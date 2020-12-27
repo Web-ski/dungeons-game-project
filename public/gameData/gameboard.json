@@ -220,8 +220,8 @@
   "startRoomId": "001",
   "hero": [
     {
-      "positionX": "4",
-      "positionY": "4",
+      "positionX": "200",
+      "positionY": "200",
       "life": "3",
       "pocket": []
     }
