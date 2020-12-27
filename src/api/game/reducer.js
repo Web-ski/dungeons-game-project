@@ -7,7 +7,8 @@ const gameReducer = (state = initialState, { type, payload }) => {
     case "ADD_GAME_DATA": {
       return {
         ...state,
-        collection: payload.collection,
+        roomsCollection: payload.collection.data.rooms,
+        activeRoom: payload.collection.data.startRoomId,
       };
     }
     default:
