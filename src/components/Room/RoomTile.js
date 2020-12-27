@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-const WALL = "/gameData/images/stones-multicolors.svg";
-const FLOOR = "/gameData/images/floor.svg";
+const WALL = "/gameData/images/freepik-wall.jpg";
+const FLOOR = "/gameData/images/freepik-floor.jpg";
 
 const RoomTile = ({ data }) => {
   const addImg = (name) => {
