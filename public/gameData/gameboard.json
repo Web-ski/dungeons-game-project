@@ -158,7 +158,7 @@
               "wall"
             ],
             [
-              "wall",
+              "door",
               "floor",
               "floor",
               "floor",
@@ -217,5 +217,13 @@
       ]
     }
   ],
-  "startRoomId": "001"
+  "startRoomId": "001",
+  "hero": [
+    {
+      "positionX": "0",
+      "positionY": "0",
+      "life": "3",
+      "pocket": []
+    }
+  ]
 }
