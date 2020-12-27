@@ -15,7 +15,7 @@ const Room = ({ collection }) => {
     width: 450px;
     height: 450px;
     margin: 0 auto;
-    background-color: grey;
+    background-color: #111111;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;

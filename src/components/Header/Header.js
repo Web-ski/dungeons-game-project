@@ -9,17 +9,17 @@ const Header = () => {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color: rosybrown;
+    background-color: #111111;
   `;
 
   const StyledLink = styled(NavLink)`
-    color: white;
+    color: violet;
     font-weight: bold;
     text-decoration: none;
     padding: 10px;
 
     &:hover {
-      color: black;
+      color: white;
     }
   `;
 

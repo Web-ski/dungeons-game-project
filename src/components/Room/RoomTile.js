@@ -21,7 +21,7 @@ const RoomTile = ({ data }) => {
     width: 50px;
     height: 50px;
     margin: 0 auto;
-    background-color: #c4c4c4;
+    background-color: transparent;
     background-image: ${addImg(data)};
     background-size: contain;
   `;
