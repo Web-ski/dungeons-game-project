@@ -9,6 +9,8 @@ const Room = (props) => {
   const [posX, setPosX] = useState();
   const [posY, setPosY] = useState();
 
+  //oneKeyDown use with Hook
+
   useEffect(() => {
     props.rooms !== undefined &&
       props.rooms.map((item) => {
@@ -52,10 +54,10 @@ const Room = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  game1: console.log(state.hero),
-  activeRoom: state.activeRoom,
-  rooms: state.roomsCollection,
-  hero: state.hero,
+  game1: console.log(state.game.hero),
+  activeRoom: state.game.activeRoom,
+  rooms: state.game.roomsCollection,
+  hero: state.game.hero,
   //heroX: state.hero.positionX,
 });
 
