@@ -3,27 +3,34 @@ import { connect } from "react-redux";
 import styled from "styled-components";
 import RoomTile from "./RoomTile";
 import GameHero from "../UI/Mobs/GameHero";
+import { isBrowser } from '../../accessors/player';
 
 const Room = (props) => {
   const [room, setRoom] = useState();
   const [posX, setPosX] = useState();
   const [posY, setPosY] = useState();
 
-  //oneKeyDown use with Hook
-
+  
   useEffect(() => {
     props.rooms !== undefined &&
-      props.rooms.map((item) => {
-        item.room.map((item) => {
-          item.id === props.activeRoom && setRoom(item.field);
-        });
+    props.rooms.map((item) => {
+      item.room.map((item) => {
+        item.id === props.activeRoom && setRoom(item.field);
       });
+    });
   }, [props.rooms]);
-
+  
   useEffect(() => {
     props.hero !== undefined && setPosX(props.hero[0].positionX);
     props.hero !== undefined && setPosY(props.hero[0].positionY);
   }, [props.hero]);
+  
+  //oneKeyDown use with Hook
+  useEffect(() => {
+    isBrowser() && window.addEventListener('keydown', (event) => {
+      console.log(event.keyCode)
+    });
+  });
 
   const RoomBoard = styled.section`
     position: relative;
