@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { addGameAction } from "../../api/game/action";
+import { addHeroAction } from "../../api/player/action";
 import GameHeader from "../../components/Header/GameHeader";
 import Room from "../../components/Room/Room";
 import styled from "styled-components";
@@ -34,7 +35,7 @@ const Game = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addGame: (data) => dispatch(addGameAction(data)),
+    addGame: (data) => {dispatch(addGameAction(data)); dispatch(addHeroAction(data))},
   };
 };
 

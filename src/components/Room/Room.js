@@ -21,15 +21,17 @@ const Room = (props) => {
   }, [props.rooms]);
 
   useEffect(() => {
-    props.hero !== undefined && setPosX(props.hero[0].positionX);
-    props.hero !== undefined && setPosY(props.hero[0].positionY);
-  }, [props.hero]);
+    props.positionX !== undefined && setPosX(props.positionX);
+    props.positionY !== undefined && setPosY(props.positionY);
+  }, [props.positionX, props.positionY]);
 
   //oneKeyDown use with Hook
   useEffect(() => {
     isBrowser() && window.addEventListener('keydown', (event) => {
       //console.log(event.keyCode);
-      playerMove(event.keyCode);
+      //playerMove(event.keyCode);
+      props.move("100", "100");
+      console.log(props.positionX, props.positionY);
     });
   });
 
@@ -64,7 +66,9 @@ const Room = (props) => {
 const mapStateToProps = (state) => ({
   activeRoom: state.game.activeRoom,
   rooms: state.game.roomsCollection,
-  hero: state.game.hero,
+  hero: state.player.hero,
+  positionX: state.player.positionX,
+  positionY: state.player.positionY,
   game1: state.game.hero !== undefined && state.game.hero[0].positionX,
   //heroX: state.hero.positionX,
 });

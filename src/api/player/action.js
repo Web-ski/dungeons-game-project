@@ -8,13 +8,13 @@ const changePositionAction = (dataX, dataY) => {
   };
 };
 
-const changePositionYAction = (data) => {
+const addHeroAction = (data) => {
   return {
-    type: "CHANGE_POS_Y",
+    type: "ADD_HERO_DATA",
     payload: {
-      positionY: data,
+      collection: data,
     },
   };
 };
 
-export { changePositionAction, changePositionYAction };
+export { changePositionAction, addHeroAction };
