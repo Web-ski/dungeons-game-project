@@ -14,7 +14,7 @@ const Game = (props) => {
       .then((response) => response.json())
       .then((json) => props.addGame({ data: json }));
   }, [URL]);
-
+    
   const Section = styled.section`
     min-height: 80vh;
     display: flex;

@@ -1,34 +1,35 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
+import { changePositionAction } from "../../api/player/action";
 import styled from "styled-components";
 import RoomTile from "./RoomTile";
 import GameHero from "../UI/Mobs/GameHero";
-import { isBrowser } from '../../accessors/player';
+import { isBrowser, playerMove } from '../../accessors/player';
 
 const Room = (props) => {
   const [room, setRoom] = useState();
   const [posX, setPosX] = useState();
   const [posY, setPosY] = useState();
 
-  
   useEffect(() => {
     props.rooms !== undefined &&
-    props.rooms.map((item) => {
-      item.room.map((item) => {
-        item.id === props.activeRoom && setRoom(item.field);
+      props.rooms.map((item) => {
+        item.room.map((item) => {
+          item.id === props.activeRoom && setRoom(item.field);
+        });
       });
-    });
   }, [props.rooms]);
-  
+
   useEffect(() => {
     props.hero !== undefined && setPosX(props.hero[0].positionX);
     props.hero !== undefined && setPosY(props.hero[0].positionY);
   }, [props.hero]);
-  
+
   //oneKeyDown use with Hook
   useEffect(() => {
     isBrowser() && window.addEventListener('keydown', (event) => {
-      console.log(event.keyCode)
+      //console.log(event.keyCode);
+      playerMove(event.keyCode);
     });
   });
 
@@ -61,11 +62,17 @@ const Room = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  game1: console.log(state.game.hero),
   activeRoom: state.game.activeRoom,
   rooms: state.game.roomsCollection,
   hero: state.game.hero,
+  game1: state.game.hero !== undefined && state.game.hero[0].positionX,
   //heroX: state.hero.positionX,
 });
 
-export default connect(mapStateToProps)(Room);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    move: (dataX, dataY) => dispatch(changePositionAction(dataX, dataY)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Room);

@@ -1,8 +1,9 @@
-const changePositionXAction = (data) => {
+const changePositionAction = (dataX, dataY) => {
   return {
-    type: "CHANGE_POS_X",
+    type: "CHANGE_POS",
     payload: {
-      positionX: data,
+      positionX: dataX,
+      positionY: dataY,
     },
   };
 };
@@ -16,4 +17,4 @@ const changePositionYAction = (data) => {
   };
 };
 
-export { changePositionXAction, changePositionYAction };
+export { changePositionAction, changePositionYAction };
