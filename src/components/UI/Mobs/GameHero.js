@@ -31,8 +31,8 @@ const GameHero = (props) => {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  top: ${({ top }) => top};
-  left: ${({ left }) => left};
+  top: ${({ top }) => top || "200px"};
+  left: ${({ left }) => left || "200px"};
   background-color: transparent;
   background-image: ${`url('${HERO}')`};
   background-size: cover;
