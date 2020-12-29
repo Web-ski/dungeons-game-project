@@ -4,19 +4,19 @@ export const playerMove = (type) => {
   switch (type) {
     case 38:
     case 87:
-      console.log('Move top.');
+      return {x: 0, y: -50};
       break;
     case 40:
     case 83:
-      console.log('Move down.');
+      return {x: 0, y: 50};
       break;
     case 37:
     case 65:
-      console.log('Move left.');
+      return {x: -50, y: 0};
       break;
     case 39:
     case 68:
-      console.log('Move right.');
+      return {x: 50, y: 0};
       break;
     default:
       console.log(`Sorry, we are out of ${type}.`);

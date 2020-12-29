@@ -19,14 +19,22 @@ const GameHero = (props) => {
   //oneKeyDown use with Hook
   useEffect(() => {
     isBrowser() && window.addEventListener('keydown', (event) => {
-      //console.log(event.keyCode);
-      //playerMove(event.keyCode);
-      props.move("100", "100");
-      console.log(props.positionX, props.positionY);
+
+      const heroMove = () => {
+        //console.log(event.keyCode);
+        let m = playerMove(event.keyCode);
+        let x = parseInt(posX);
+        let y = parseInt(posY);
+        x = x + m.x;
+        y = y + m.y;
+        console.log(x, y)
+        props.move(x, y);
+      }
+      posX !== undefined && heroMove();
     });
   });
 
-  const Hero = styled.div`
+  const HeroElem = styled.div`
   position: absolute;
   width: 50px;
   height: 50px;
@@ -40,7 +48,7 @@ const GameHero = (props) => {
 `;
 
   return (
-      <Hero top={posX + "px"} left={posY + "px"} />
+    <HeroElem top={posY + "px"} left={posX + "px"} />
   );
 }
 
