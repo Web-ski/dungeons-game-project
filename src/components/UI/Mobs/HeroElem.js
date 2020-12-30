@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 // const HERO = "/gameData/images/gnome.svg";
 const HERO = "/gameData/images/chemist-svgrepo-com.svg";
 

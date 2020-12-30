@@ -1,11 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { connect } from "react-redux";
 import { isBrowser, playerMove } from '../../../accessors/player';
 import { changePositionAction } from "../../../api/player/action";
-
-import styled, { css } from "styled-components";
-// const HERO = "/gameData/images/gnome.svg";
-const HERO = "/gameData/images/chemist-svgrepo-com.svg";
+import HeroElem from './HeroElem';
 
 const GameHero = (props) => {
   const [posX, setPosX] = useState();
@@ -17,35 +14,23 @@ const GameHero = (props) => {
   }, [props.positionX, props.positionY]);
 
   //oneKeyDown use with Hook
+  const heroMove = event => {
+    let m = playerMove(event.keyCode);
+    //console.log(posX, posY);
+    let x = parseInt(posX);
+    let y = parseInt(posY);
+    x = x + m.x;
+    y = y + m.y;
+    //console.log(x, y)
+    props.move(x, y);
+  };
+
   useEffect(() => {
-    isBrowser() && window.addEventListener('keydown', (event) => {
-
-      const heroMove = () => {
-        //console.log(event.keyCode);
-        let m = playerMove(event.keyCode);
-        let x = parseInt(posX);
-        let y = parseInt(posY);
-        x = x + m.x;
-        y = y + m.y;
-        console.log(x, y)
-        props.move(x, y);
-      }
-      posX !== undefined && heroMove();
-    });
-  });
-
-  const HeroElem = styled.div`
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  top: ${({ top }) => top || "200px"};
-  left: ${({ left }) => left || "200px"};
-  background-color: transparent;
-  background-image: ${`url('${HERO}')`};
-  background-size: cover;
-  background-repeat: no-repeat;
-`;
+    isBrowser() && window.addEventListener('keydown', heroMove);
+    return () => {
+      window.removeEventListener('keydown', heroMove)
+    }
+  }, [heroMove]);
 
   return (
     <HeroElem top={posY + "px"} left={posX + "px"} />
