@@ -41,9 +41,9 @@ const Home = () => {
       <Section className="home">
         <Title>Dungeon's Ghosts!</Title>
         <Article>
-          <h1>Masz ochotę na przygodę?</h1>
+          <h1>Start the adventure!</h1>
           <NavLink to="/game">
-            <Button>Graj</Button>
+            <Button>Play</Button>
           </NavLink>
         </Article>
       </Section>

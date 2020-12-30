@@ -25,7 +25,7 @@ const GameHeader = () => {
 
   return (
     <Section className="header">
-      <StyledLink to="/">Wyjdź</StyledLink>
+      <StyledLink to="/">Exit</StyledLink>
     </Section>
   );
 };
