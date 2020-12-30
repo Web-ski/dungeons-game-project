@@ -14,7 +14,7 @@ const GameHero = (props) => {
   }, [props.positionX, props.positionY]);
 
   //oneKeyDown use with Hook
-  const heroMove = event => {
+  const heroMove = useCallback(event => {
     let m = playerMove(event.keyCode);
     //console.log(posX, posY);
     let x = parseInt(posX);
@@ -23,7 +23,7 @@ const GameHero = (props) => {
     y = y + m.y;
     //console.log(x, y)
     props.move(x, y);
-  };
+  }, [props, posX, posY]);
 
   useEffect(() => {
     isBrowser() && window.addEventListener('keydown', heroMove);
