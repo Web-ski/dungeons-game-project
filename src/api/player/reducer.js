@@ -1,19 +1,22 @@
 const initialState = {
-  data: [],
+  collection: [],
 };
 
-const playerPositionReducer = (state = initialState, { type, payload }) => {
+const playerReducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case "CHANGE_POS_X": {
+    case "ADD_HERO_DATA": {
+      return {
+        ...state,
+        hero: payload.collection.data.hero,
+        positionX: payload.collection.data.hero[0].positionX,
+        positionY: payload.collection.data.hero[0].positionY
+      };
+    }
+    case "CHANGE_POS": {
       return {
         ...state,
         positionX: payload.positionX,
-      };
-    }
-    case "CHANGE_POS_Y": {
-      return {
-        ...state,
-        positionY: payload.positionY,
+        positionY: payload.positionY
       };
     }
     default:
@@ -21,4 +24,4 @@ const playerPositionReducer = (state = initialState, { type, payload }) => {
   }
 };
 
-export default playerPositionReducer;
+export default playerReducer;

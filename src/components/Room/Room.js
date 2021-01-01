@@ -4,43 +4,34 @@ import styled from "styled-components";
 import RoomTile from "./RoomTile";
 import GameHero from "../UI/Mobs/GameHero";
 
+const RoomBoard = styled.section`
+  position: relative;
+  width: 450px;
+  height: 450px;
+  margin: 0 auto;
+  background-color: #111111;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+`;
+
 const Room = (props) => {
   const [room, setRoom] = useState();
-  const [posX, setPosX] = useState();
-  const [posY, setPosY] = useState();
-
-  //oneKeyDown use with Hook
 
   useEffect(() => {
     props.rooms !== undefined &&
       props.rooms.map((item) => {
-        item.room.map((item) => {
-          item.id === props.activeRoom && setRoom(item.field);
+        return item.room.map((item) => {
+          return item.id === props.activeRoom && setRoom(item.field);
         });
       });
-  }, [props.rooms]);
-
-  useEffect(() => {
-    props.hero !== undefined && setPosX(props.hero[0].positionX);
-    props.hero !== undefined && setPosY(props.hero[0].positionY);
-  }, [props.hero]);
-
-  const RoomBoard = styled.section`
-    position: relative;
-    width: 450px;
-    height: 450px;
-    margin: 0 auto;
-    background-color: #111111;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-  `;
+  }, [props.rooms, props.activeRoom]);
 
   const addChildren = (elems) => {
     return (
       elems !== undefined &&
       elems.map((item) => {
-        return item.map((item) => <RoomTile data={item} />);
+        return item.map((item, index) => <RoomTile key={index + item.toString()} data={item} />);
       })
     );
   };
@@ -48,17 +39,15 @@ const Room = (props) => {
   return (
     <RoomBoard className="room">
       {addChildren(room)}
-      <GameHero top={posX + "px"} left={posY + "px"} />
+      <GameHero />
     </RoomBoard>
   );
 };
 
 const mapStateToProps = (state) => ({
-  game1: console.log(state.game.hero),
   activeRoom: state.game.activeRoom,
   rooms: state.game.roomsCollection,
-  hero: state.game.hero,
-  //heroX: state.hero.positionX,
+  hero: state.player.hero,
 });
 
 export default connect(mapStateToProps)(Room);
