@@ -1,18 +1,21 @@
 import React from "react";
 import styled from "styled-components";
+import { addPosY, addPosX } from "../../accessors/room"; //dodać plik i funkcję
 const WALL = "/gameData/images/freepik-wall.jpg";
 const FLOOR = "/gameData/images/freepik-floor.jpg";
 const DOOR = "/gameData/images/freepik-door.png";
 
 const Tile = styled.div`
-position: relative;
-width: 50px;
-height: 50px;
-margin: 0 auto;
-background-color: transparent;
-background-image: ${({data}) => data};
-background-size: cover;
-background-repeat: no-repeat;
+  position: absolute;
+  top: ${({ top }) => top};
+  left: ${({ left }) => left};
+  width: 50px;
+  height: 50px;
+  margin: 0;
+  background-color: transparent;
+  background-image: ${({ kind }) => kind};
+  background-size: cover;
+  background-repeat: no-repeat;
 `;
 const addImg = (name) => {
   switch (name) {
@@ -27,10 +30,17 @@ const addImg = (name) => {
   }
 };
 
-const RoomTile = ({ data }) => {
-  //console.log(data);
+const RoomTile = ({ kind, fieldId }) => {
+  //console.log(fieldId);
 
-  return <Tile className="room" data={addImg(data)}></Tile>;
+  return (
+    <Tile
+      className="room"
+      kind={addImg(kind)}
+      top={addPosY(fieldId) + "px"}
+      left={addPosX(fieldId) + "px"}
+    ></Tile>
+  );
 };
 
 export default RoomTile;

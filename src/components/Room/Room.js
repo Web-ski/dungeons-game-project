@@ -27,18 +27,21 @@ const Room = (props) => {
       });
   }, [props.rooms, props.activeRoom]);
 
-  const addChildren = (elems) => {
-    return (
-      elems !== undefined &&
-      elems.map((item) => {
-        return item.map((item, index) => <RoomTile key={index + item.toString()} data={item} />);
-      })
-    );
+  const addRoomElems = (elems, name) => {
+    if (elems !== undefined) {
+      return elems.map((item, index) => (
+        // console.log(item)
+        <RoomTile key={index + item.toString()} kind={name} fieldId={item} />
+      ));
+    }
+    // return item.map((item, index) => <RoomTile key={index + item.toString()} data={item} />);
   };
 
   return (
     <RoomBoard className="room">
-      {addChildren(room)}
+      {room !== undefined && addRoomElems(room[0].wall, "wall")}
+      {room !== undefined && addRoomElems(room[0].floor, "floor")}
+      {room !== undefined && addRoomElems(room[0].door, "door")}
       <GameHero />
     </RoomBoard>
   );
