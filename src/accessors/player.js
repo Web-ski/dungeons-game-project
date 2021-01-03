@@ -235,10 +235,14 @@ const fieldIdChecking = (x, y) => {
 
 export const playerBackground = (x, y, field) => {
   const roomElems = field;
-  console.log(roomElems);
+  //console.log(roomElems);
   //x,y === filedId
   const fieldId = fieldIdChecking(x, y);
-  const found = roomElems.floor.find((item) => item === fieldId);
+  let floorFound = roomElems.floor.find((item) => item === fieldId);
+  floorFound = floorFound ? true : false;
+  let doorFound = roomElems.door.find((item) => item === fieldId);
+  doorFound = doorFound ? true : false;
+  let found = doorFound || floorFound;
   return found;
   //if fieldId === wall
 };

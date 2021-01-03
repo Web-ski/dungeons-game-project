@@ -31,8 +31,10 @@ const GameHero = (props) => {
       let y = parseInt(posY);
       x = x + m.x;
       y = y + m.y;
-      console.log(activeRoom);
+      //console.log(activeRoom);
       //checking room-background
+      //let z = playerBackground(x, y, activeRoom.field[0]);
+      //console.log(z)
       playerBackground(x, y, activeRoom.field[0]) && props.move(x, y);
     },
     [props, posX, posY]
