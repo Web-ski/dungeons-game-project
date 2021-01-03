@@ -7,4 +7,13 @@ const addGameAction = (data) => {
   };
 };
 
+const switchRoomAction = (data) => {
+  return {
+    type: "SWITCH_ROOM_ID",
+    payload: {
+      roomId: data,
+    },
+  };
+};
+
 export { addGameAction };

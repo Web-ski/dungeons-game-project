@@ -239,9 +239,9 @@ export const playerBackground = (x, y, field) => {
   //x,y === filedId
   const fieldId = fieldIdChecking(x, y);
   let floorFound = roomElems.floor.find((item) => item === fieldId);
-  floorFound = floorFound ? true : false;
+  floorFound = floorFound ? {"floor": fieldId} : false;
   let doorFound = roomElems.door.find((item) => item === fieldId);
-  doorFound = doorFound ? true : false;
+  doorFound = doorFound ? {"door": fieldId} : false;
   let found = doorFound || floorFound;
   return found;
   //if fieldId === wall
