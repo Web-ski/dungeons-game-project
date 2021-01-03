@@ -6,7 +6,7 @@ import {
   playerBackground,
 } from "../../../accessors/player";
 import { changePositionAction } from "../../../api/player/action";
-import { addGameAction } from "../../../api/game/action";
+import { switchRoomAction } from "../../../api/game/action";
 import HeroElem from "./HeroElem";
 
 const GameHero = (props) => {
@@ -45,9 +45,15 @@ const GameHero = (props) => {
             y = 200;
             newRoom = (parseInt(props.room) + 1).toString();
           }
+          if(checkingObj.door === "36") {
+            x = 350;
+            y = 200;
+            newRoom = (parseInt(props.room) - 1).toString();
+          }
+          console.log(checkingObj)
           newRoom.length < 2 && (newRoom = 0 + newRoom);
           newRoom.length < 3 && (newRoom = 0 + newRoom);
-          console.log(newRoom)
+          props.switchRoom(newRoom)
           props.move(x, y)
         }
       };
@@ -77,7 +83,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
   return {
     move: (dataX, dataY) => dispatch(changePositionAction(dataX, dataY)),
-    //switchRoom: 
+    switchRoom: data => dispatch(switchRoomAction(data))
   };
 };
 

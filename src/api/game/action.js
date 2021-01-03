@@ -16,4 +16,4 @@ const switchRoomAction = (data) => {
   };
 };
 
-export { addGameAction };
+export { addGameAction, switchRoomAction };
