@@ -9,8 +9,14 @@ const gameReducer = (state = initialState, { type, payload }) => {
         ...state,
         roomsCollection: payload.collection.data.rooms,
         activeRoom: payload.collection.data.startRoomId,
-        hero: payload.collection.data.hero,
-      };
+        //hero: payload.collection.data.hero,
+      }
+    }
+    case "SWITCH_ROOM_ID": {
+      return {
+        ...state,
+        activeRoom: payload.roomId,
+      }
     }
     default:
       return state;

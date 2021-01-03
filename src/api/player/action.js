@@ -1,19 +1,20 @@
-const changePositionXAction = (data) => {
+const changePositionAction = (dataX, dataY) => {
   return {
-    type: "CHANGE_POS_X",
+    type: "CHANGE_POS",
     payload: {
-      positionX: data,
+      positionX: dataX,
+      positionY: dataY,
     },
   };
 };
 
-const changePositionYAction = (data) => {
+const addHeroAction = (data) => {
   return {
-    type: "CHANGE_POS_Y",
+    type: "ADD_HERO_DATA",
     payload: {
-      positionY: data,
+      collection: data,
     },
   };
 };
 
-export { changePositionXAction, changePositionYAction };
+export { changePositionAction, addHeroAction };

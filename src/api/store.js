@@ -1,10 +1,10 @@
 import { createStore, combineReducers } from "redux";
 import gameReducer from "./game/reducer";
-import playerPositionReducer from "./player/reducer";
+import playerReducer from "./player/reducer";
 
 const reducer = combineReducers({
   game: gameReducer,
-  position: playerPositionReducer,
+  player: playerReducer,
 });
 
 const store = createStore(
