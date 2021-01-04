@@ -50,6 +50,16 @@ const GameHero = (props) => {
             y = 200;
             newRoom = (parseInt(props.room) - 1).toString();
           }
+          if(checkingObj.door === "76") {
+            x = 200;
+            y = 50;
+            newRoom = (parseInt(props.room) + 10).toString();
+          }
+          if(checkingObj.door === "04") {
+            x = 200;
+            y = 350;
+            newRoom = (parseInt(props.room) - 10).toString();
+          }
           console.log(checkingObj)
           newRoom.length < 2 && (newRoom = 0 + newRoom);
           newRoom.length < 3 && (newRoom = 0 + newRoom);
