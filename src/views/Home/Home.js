@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import Header from "../../components/Header/Header";
 import Button from "../../components/UI/Button/Button";
+import Title from "../../components/UI/Titles/Title";
 import { NavLink } from "react-router-dom";
-
 
 const Article = styled.article`
   height: 100%;
@@ -27,19 +27,13 @@ const Section = styled.section`
   flex-direction: column;
 `;
 
-const Title = styled.h1`
-  color: violet;
-  font-size: 30px;
-  margin: 30px 0;
-`;
-
 const Home = () => {
 
   return (
     <>
       <Header />
       <Section className="home">
-        <Title>Dungeon's Ghosts!</Title>
+        <Title/>
         <Article>
           <h1>Start the adventure!</h1>
           <NavLink to="/game">
