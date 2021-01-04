@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { addPosY, addPosX } from "../../accessors/room"; //dodać plik i funkcję
 const WALL = "/gameData/images/freepik-wall.jpg";
-const FLOOR = "/gameData/images/freepik-floor.jpg";
+const FLOOR = "/gameData/images/stones-grey.svg";
 const DOOR = "/gameData/images/freepik-door.png";
 
 const Tile = styled.div`
