@@ -1,9 +1,19 @@
 import React from "react";
 import styled from "styled-components";
 import { addPosY, addPosX } from "../../accessors/room"; //dodać plik i funkcję
-const WALL = "/gameData/images/freepik-wall.jpg";
+const WALL = "/gameData/images/walls-grey.svg";
+const WALL_CORNER = "/gameData/images/walls-grey-corner.svg";
+const WALL_CORNER_RIGHT = "/gameData/images/walls-grey-corner-right.svg";
+const WALL_CORNER_BOTTOM = "/gameData/images/walls-grey-corner-bottom.svg";
+const WALL_CORNER_LEFT = "/gameData/images/walls-grey-corner-left.svg";
+const WALL_DOWN = "/gameData/images/walls-grey-bottom.svg";
+const WALL_LEFT = "/gameData/images/walls-grey-left.svg";
+const WALL_RIGHT = "/gameData/images/walls-grey-right.svg";
 const FLOOR = "/gameData/images/stones-grey.svg";
-const DOOR = "/gameData/images/freepik-door.png";
+const DOOR = "/gameData/images/door-grey.svg";
+const DOOR_RIGHT = "/gameData/images/door-grey-right.svg";
+const DOOR_BOTTOM = "/gameData/images/door-grey-bottom.svg";
+const DOOR_LEFT = "/gameData/images/door-grey-left.svg";
 
 const Tile = styled.div`
   position: absolute;
@@ -17,26 +27,69 @@ const Tile = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
 `;
-const addImg = (name) => {
+const addImg = (name, fieldId) => {
   switch (name) {
     case "wall":
-      return `url('${WALL}')`;
+      switch (fieldId) {
+        case "73":
+        case "74":
+        case "75":
+        case "76":
+        case "77":
+        case "78":
+        case "79":
+          return `url('${WALL_DOWN}')`;
+        case "09":
+        case "18":
+        case "27":
+        case "36":
+        case "45":
+        case "54":
+        case "63":
+          return `url('${WALL_LEFT}')`;
+        case "17":
+        case "26":
+        case "35":
+        case "44":
+        case "53":
+        case "62":
+        case "71":
+          return `url('${WALL_RIGHT}')`;
+        case "00":
+          return `url('${WALL_CORNER}')`;
+        case "08":
+          return `url('${WALL_CORNER_RIGHT}')`;
+        case "80":
+          return `url('${WALL_CORNER_BOTTOM}')`;
+        case "72":
+          return `url('${WALL_CORNER_LEFT}')`;
+        default:
+          return `url('${WALL}')`;
+      }
     case "floor":
       return `url('${FLOOR}')`;
     case "door":
-      return `url('${DOOR}')`;
+      switch (fieldId) {
+        case "44":
+          return `url('${DOOR_RIGHT}')`;
+        case "76":
+          return `url('${DOOR_BOTTOM}')`;
+        case "36":
+          return `url('${DOOR_LEFT}')`;
+        default:
+          return `url('${DOOR}')`;
+      }
     default:
       break;
   }
 };
 
 const RoomTile = ({ kind, fieldId }) => {
-  //console.log(fieldId);
 
   return (
     <Tile
       className="room"
-      kind={addImg(kind)}
+      kind={fieldId !== undefined && addImg(kind, fieldId)}
       top={addPosY(fieldId) + "px"}
       left={addPosX(fieldId) + "px"}
     ></Tile>
