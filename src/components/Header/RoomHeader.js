@@ -10,18 +10,18 @@ const Section = styled.section`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #111111;
+  background-color: #06150C;
 `;
 
 const HeroLife = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #111111;
+  background-color: #06150C;
 `;
 
 const StyledLink = styled(NavLink)`
-  color: violet;
+  color: #D9C746;
   font-weight: bold;
   text-decoration: none;
   padding: 10px;

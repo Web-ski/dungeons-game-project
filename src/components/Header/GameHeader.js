@@ -8,7 +8,7 @@ const Section = styled.section`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: #111111;
+  background-color: #06150C;
 `;
 
 const GameHeader = () => {
