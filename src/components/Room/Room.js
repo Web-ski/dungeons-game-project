@@ -37,7 +37,7 @@ const Room = (props) => {
         item.coinRoom === active && (coin = [item.coinId, item.field]);
       });
     setCoins(coin);
-    console.log(coins);
+    //console.log(coins);
   }, [props.treasures, props.activeRoom]);
 
   const addRoomElems = (elems, name) => {

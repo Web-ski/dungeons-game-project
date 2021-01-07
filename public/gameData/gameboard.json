@@ -915,17 +915,17 @@
         {
           "coinId": "01",
           "coinRoom": "003",
-          "field": "24"
+          "field": "40"
         },
         {
           "coinId": "02",
           "coinRoom": "023",
-          "field": "60"
+          "field": "40"
         },
         {
           "coinId": "03",
           "coinRoom": "011",
-          "field": "20"
+          "field": "40"
         }
       ]
     }
