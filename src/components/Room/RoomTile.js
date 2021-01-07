@@ -1,19 +1,19 @@
 import React from "react";
 import styled from "styled-components";
 import { addPosY, addPosX } from "../../accessors/room"; //dodać plik i funkcję
-const WALL = "/gameData/images/walls-grey.svg";
-const WALL_CORNER = "/gameData/images/walls-grey-corner.svg";
-const WALL_CORNER_RIGHT = "/gameData/images/walls-grey-corner-right.svg";
-const WALL_CORNER_BOTTOM = "/gameData/images/walls-grey-corner-bottom.svg";
-const WALL_CORNER_LEFT = "/gameData/images/walls-grey-corner-left.svg";
-const WALL_DOWN = "/gameData/images/walls-grey-bottom.svg";
-const WALL_LEFT = "/gameData/images/walls-grey-left.svg";
-const WALL_RIGHT = "/gameData/images/walls-grey-right.svg";
-const FLOOR = "/gameData/images/stones-grey.svg";
-const DOOR = "/gameData/images/door-grey.svg";
-const DOOR_RIGHT = "/gameData/images/door-grey-right.svg";
-const DOOR_BOTTOM = "/gameData/images/door-grey-bottom.svg";
-const DOOR_LEFT = "/gameData/images/door-grey-left.svg";
+const WALL = "/gameData/images/wall-green.png";
+const WALL_CORNER = "/gameData/images/wall-green-corner.png";
+const WALL_CORNER_RIGHT = "/gameData/images/wall-green-corner-right.png";
+const WALL_CORNER_BOTTOM = "/gameData/images/wall-green-corner-bottom.png";
+const WALL_CORNER_LEFT = "/gameData/images/wall-green-corner-left.png";
+const WALL_DOWN = "/gameData/images/wall-green-bottom.png";
+const WALL_LEFT = "/gameData/images/wall-green-left.png";
+const WALL_RIGHT = "/gameData/images/wall-green-right.png";
+const FLOOR = "/gameData/images/floor-green.png";
+const DOOR = "/gameData/images/door-green.png";
+const DOOR_RIGHT = "/gameData/images/door-green-right.png";
+const DOOR_BOTTOM = "/gameData/images/door-green-bottom.png";
+const DOOR_LEFT = "/gameData/images/door-green-left.png";
 
 const Tile = styled.div`
   position: absolute;
@@ -85,7 +85,6 @@ const addImg = (name, fieldId) => {
 };
 
 const RoomTile = ({ kind, fieldId }) => {
-
   return (
     <Tile
       className="room"
