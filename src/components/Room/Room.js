@@ -17,6 +17,7 @@ const RoomBoard = styled.section`
 
 const Room = (props) => {
   const [room, setRoom] = useState();
+  const [coins, setCoins] = useState();
 
   useEffect(() => {
     props.rooms !== undefined &&
@@ -27,10 +28,20 @@ const Room = (props) => {
       });
   }, [props.rooms, props.activeRoom]);
 
+  useEffect(() => {
+    props.treasures !== undefined &&
+      props.treasures[0].coins.map((item) => {
+        return (
+          item.coinRoom === props.activeRoom &&
+          setCoins([item.coinId, item.field])
+        );
+        //console.log(item, item.coinRoom, props.activeRoom);
+      });
+  }, [props.treasures, props.activeRoom]);
+
   const addRoomElems = (elems, name) => {
     if (elems !== undefined) {
       return elems.map((item, index) => (
-        // console.log(item)
         <RoomTile key={index + item.toString()} kind={name} fieldId={item} />
       ));
     }
@@ -51,6 +62,7 @@ const mapStateToProps = (state) => ({
   activeRoom: state.game.activeRoom,
   rooms: state.game.roomsCollection,
   hero: state.player.hero,
+  treasures: state.treasures.treasures,
 });
 
 export default connect(mapStateToProps)(Room);

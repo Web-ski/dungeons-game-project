@@ -7,7 +7,7 @@ const treasuresReducer = (state = initialState, { type, payload }) => {
     case "ADD_TREASURES_DATA": {
       return {
         ...state,
-        treasures: payload.collection,
+        treasures: payload.collection.data.treasures,
       };
     }
     default:
