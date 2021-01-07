@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 const HEART_IMG = "/gameData/images/drawn-heart-pink.svg";
+const COIN = "/gameData/images/coin-green.png";
 
 const Section = styled.section`
   width: 450px;
@@ -10,18 +11,18 @@ const Section = styled.section`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #06150C;
+  background-color: #06150c;
 `;
 
 const HeroLife = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #06150C;
+  background-color: #06150c;
 `;
 
 const StyledLink = styled(NavLink)`
-  color: #D9C746;
+  color: #d9c746;
   font-weight: bold;
   text-decoration: none;
   padding: 10px;
@@ -32,30 +33,29 @@ const StyledLink = styled(NavLink)`
 `;
 
 const Heart = styled.div`
-width: 25px;
-height: 25px;
-margin: 0;
-background-color: transparent;
-background-image: ${({ heart }) => heart};
-background-size: cover;
-background-repeat: no-repeat;
+  width: 25px;
+  height: 25px;
+  margin: 0;
+  background-color: transparent;
+  background-image: ${({ heart }) => heart};
+  background-size: cover;
+  background-repeat: no-repeat;
+`;
+
+const InfoText = styled.p`
+  width: 25px;
+  height: 25px;
+  color: white;
 `;
 
 const RoomHeader = (props) => {
-
-  const addLifeHearts = () => {
-    let hearts = [];
-    //hearts.length = props.hero[0].life;
-    for (let i = 0; i < props.hero[0].life; i++) {
-      hearts.push(i);
-    }
-    return hearts.map((item, index) => <Heart key={item + index} heart={`url('${HEART_IMG}')`} />)
-  }
-
   return (
     <Section className="RoomHeader">
       <HeroLife>
-        {props.hero && addLifeHearts()}
+        <Heart heart={`url('${HEART_IMG}')`} />
+        <InfoText>{props.hero && props.hero[0].life}</InfoText>
+        <Heart heart={`url('${COIN}')`} />
+        <InfoText>{props.hero && props.hero[0].coins}</InfoText>
       </HeroLife>
       <StyledLink to="/">Exit</StyledLink>
     </Section>
