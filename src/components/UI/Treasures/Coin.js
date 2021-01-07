@@ -14,6 +14,16 @@ const CoinElem = styled.div`
   background-image: ${`url('${COIN}')`};
   background-size: cover;
   background-repeat: no-repeat;
+  animation: coinAnim 0.6s alternate infinite;
+
+  @keyframes coinAnim {
+    from {
+      transform: translateY(5%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
 `;
 
 const Coin = () => {
