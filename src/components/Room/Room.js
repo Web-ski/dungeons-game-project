@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import styled from "styled-components";
 import RoomTile from "./RoomTile";
 import GameHero from "../UI/Mobs/GameHero";
+import Coin from "../UI/Treasures/Coin";
 
 const RoomBoard = styled.section`
   position: relative;
@@ -29,14 +30,14 @@ const Room = (props) => {
   }, [props.rooms, props.activeRoom]);
 
   useEffect(() => {
+    let active = props.activeRoom;
+    let coin;
     props.treasures !== undefined &&
       props.treasures[0].coins.map((item) => {
-        return (
-          item.coinRoom === props.activeRoom &&
-          setCoins([item.coinId, item.field])
-        );
-        //console.log(item, item.coinRoom, props.activeRoom);
+        item.coinRoom === active && (coin = [item.coinId, item.field]);
       });
+    setCoins(coin);
+    console.log(coins);
   }, [props.treasures, props.activeRoom]);
 
   const addRoomElems = (elems, name) => {
@@ -47,6 +48,9 @@ const Room = (props) => {
     }
     // return item.map((item, index) => <RoomTile key={index + item.toString()} data={item} />);
   };
+  const addCoins = (elem) => {
+    return <Coin key={"coin" + elem[0]} fieldId={elem[1]} />;
+  };
 
   return (
     <RoomBoard className="room">
@@ -54,6 +58,7 @@ const Room = (props) => {
       {room !== undefined && addRoomElems(room[0].floor, "floor")}
       {room !== undefined && addRoomElems(room[0].door, "door")}
       <GameHero />
+      {coins !== undefined && addCoins(coins)}
     </RoomBoard>
   );
 };
