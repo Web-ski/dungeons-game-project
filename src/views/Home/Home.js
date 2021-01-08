@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import Header from "../../components/Header/Header";
 import Button from "../../components/UI/Button/Button";
+import Title from "../../components/UI/Titles/Title";
 import { NavLink } from "react-router-dom";
-
 
 const Article = styled.article`
   height: 100%;
@@ -12,10 +12,11 @@ const Article = styled.article`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  background-color: white;
+  background-color: #DDDDDD;
   padding: 30px;
   margin: 0 auto;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 10px #F9D870 inset;
   border-radius: 5px;
 `;
 
@@ -27,19 +28,13 @@ const Section = styled.section`
   flex-direction: column;
 `;
 
-const Title = styled.h1`
-  color: violet;
-  font-size: 30px;
-  margin: 30px 0;
-`;
-
 const Home = () => {
 
   return (
     <>
       <Header />
       <Section className="home">
-        <Title>Dungeon's Ghosts!</Title>
+        <Title/>
         <Article>
           <h1>Start the adventure!</h1>
           <NavLink to="/game">

@@ -1,8 +1,8 @@
 import styled, { css } from "styled-components";
 
 const Button = styled.button`
-  background-color: blueviolet;
-  color: white;
+  background-color: #0D4A28;
+  color: #F9D870;
   padding: 15px 25px;
   margin: 20px;
   letter-spacing: 2px;

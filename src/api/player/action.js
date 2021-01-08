@@ -17,4 +17,13 @@ const addHeroAction = (data) => {
   };
 };
 
-export { changePositionAction, addHeroAction };
+const getCoinByHeroAction = () => {
+  return {
+    type: "GET_COIN",
+    payload: {
+      addCoin: 1,
+    },
+  };
+};
+
+export { changePositionAction, addHeroAction, getCoinByHeroAction };
