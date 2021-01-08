@@ -1,4 +1,5 @@
 import React from "react";
+import { addPosY, addPosX } from "../../../accessors/room"; //dodać plik i funkcję
 import styled from "styled-components";
 
 const COIN = "/gameData/images/coin-green.png";
@@ -26,8 +27,10 @@ const CoinElem = styled.div`
   }
 `;
 
-const Coin = () => {
-  return <CoinElem />;
+const Coin = ({ fieldId }) => {
+  return (
+    <CoinElem top={addPosY(fieldId) + "px"} left={addPosX(fieldId) + "px"} />
+  );
 };
 
 export default Coin;
