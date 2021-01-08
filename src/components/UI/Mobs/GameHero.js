@@ -7,6 +7,7 @@ import {
 } from "../../../accessors/player";
 import { changePositionAction } from "../../../api/player/action";
 import { switchRoomAction } from "../../../api/game/action";
+import { removeCoinsAction } from "../../../api/treasures/action";
 import HeroElem from "./HeroElem";
 
 const GameHero = (props) => {
@@ -72,15 +73,14 @@ const GameHero = (props) => {
       //Checking treasure
       if (checkingObj) {
         if (checkingObj.floor !== undefined) {
-          props.treasures.map((item) => {
-            item.coins &&
-              item.coins.map((item) => {
-                if (activeRoom.id === item.coinRoom) {
-                  checkingObj.floor === item.field &&
-                    console.log("I've got Money!");
-                }
-              });
+          props.coins.map((item) => {
+            if (activeRoom.id === item.coinRoom) {
+              checkingObj.floor === item.field &&
+                //props.removeCoins(item.coinId);
+                console.log("I've got Money!");
+            }
           });
+
           //console.log(checkingObj.floor, activeRoom);
         }
       }
@@ -104,7 +104,7 @@ const mapStateToProps = (state) => ({
   positionY: state.player.positionY,
   room: state.game.activeRoom,
   roomsCollection: state.game.roomsCollection,
-  treasures: state.treasures.treasures,
+  coins: state.treasures.coins,
   //heroX: state.hero.positionX,
 });
 
@@ -112,6 +112,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     move: (dataX, dataY) => dispatch(changePositionAction(dataX, dataY)),
     switchRoom: (data) => dispatch(switchRoomAction(data)),
+    removeCoins: (id) => dispatch(removeCoinsAction(id)),
   };
 };
 

@@ -909,25 +909,21 @@
       "pocket": []
     }
   ],
-  "treasures": [
+  "coins": [
     {
-      "coins": [
-        {
-          "coinId": "01",
-          "coinRoom": "003",
-          "field": "40"
-        },
-        {
-          "coinId": "02",
-          "coinRoom": "023",
-          "field": "40"
-        },
-        {
-          "coinId": "03",
-          "coinRoom": "011",
-          "field": "40"
-        }
-      ]
+      "coinId": "01",
+      "coinRoom": "003",
+      "field": "40"
+    },
+    {
+      "coinId": "02",
+      "coinRoom": "023",
+      "field": "40"
+    },
+    {
+      "coinId": "03",
+      "coinRoom": "011",
+      "field": "40"
     }
   ]
 }

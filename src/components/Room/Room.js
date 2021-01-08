@@ -32,13 +32,13 @@ const Room = (props) => {
   useEffect(() => {
     let active = props.activeRoom;
     let coin;
-    props.treasures !== undefined &&
-      props.treasures[0].coins.map((item) => {
+    props.storeCoins !== undefined &&
+      props.storeCoins.map((item) => {
         item.coinRoom === active && (coin = [item.coinId, item.field]);
       });
     setCoins(coin);
     //console.log(coins);
-  }, [props.treasures, props.activeRoom]);
+  }, [props.storeCoins, props.activeRoom]);
 
   const addRoomElems = (elems, name) => {
     if (elems !== undefined) {
@@ -67,7 +67,7 @@ const mapStateToProps = (state) => ({
   activeRoom: state.game.activeRoom,
   rooms: state.game.roomsCollection,
   hero: state.player.hero,
-  treasures: state.treasures.treasures,
+  storeCoins: state.treasures.coins,
 });
 
 export default connect(mapStateToProps)(Room);
