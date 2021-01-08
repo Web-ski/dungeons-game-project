@@ -31,64 +31,72 @@ const GameHero = (props) => {
   const heroMove = useCallback(
     (event) => {
       let m = playerMove(event.keyCode);
-      //console.log(posX, posY);
-      let x = parseInt(posX);
-      let y = parseInt(posY);
-      x = x + m.x;
-      y = y + m.y;
-      //console.log(activeRoom);
-      //checking room-background
-      let checkingObj = playerBackground(x, y, activeRoom.field[0]);
-      //console.log(checkingObj.floor);
-      if (checkingObj) {
-        if (Object.keys(checkingObj).toString() === "floor") {
-          props.move(x, y);
-        }
-        if (Object.keys(checkingObj).toString() === "door") {
-          let newRoom;
-          if (checkingObj.door === "44") {
-            x = 50;
-            y = 200;
-            newRoom = (parseInt(props.room) + 1).toString();
-          }
-          if (checkingObj.door === "36") {
-            x = 350;
-            y = 200;
-            newRoom = (parseInt(props.room) - 1).toString();
-          }
-          if (checkingObj.door === "76") {
-            x = 200;
-            y = 50;
-            newRoom = (parseInt(props.room) + 10).toString();
-          }
-          if (checkingObj.door === "04") {
-            x = 200;
-            y = 350;
-            newRoom = (parseInt(props.room) - 10).toString();
-          }
-          //console.log(checkingObj);
-          newRoom.length < 2 && (newRoom = 0 + newRoom);
-          newRoom.length < 3 && (newRoom = 0 + newRoom);
-          props.switchRoom(newRoom);
-          props.move(x, y);
-        }
-      }
-      //Checking treasure
-      if (checkingObj) {
-        if (checkingObj.floor !== undefined) {
-          props.coins.map((item) => {
-            if (activeRoom.id === item.coinRoom) {
-              if (checkingObj.floor === item.field) {
-                props.removeCoins(item.coinId);
-                console.log(props.hero);
-                props.getCoin();
-              }
-            }
-          });
 
-          //console.log(checkingObj.floor, activeRoom);
+      //console.log(posX, posY);
+      
+      const goHero = () => {
+        let x = parseInt(posX);
+        let y = parseInt(posY);
+        x = x + m.x;
+        y = y + m.y;
+        //console.log(activeRoom);
+        //checking room-background
+        let checkingObj = playerBackground(x, y, activeRoom.field[0]);
+        //console.log(checkingObj.floor);
+        if (checkingObj) {
+          if (Object.keys(checkingObj).toString() === "floor") {
+            props.move(x, y);
+          }
+          if (Object.keys(checkingObj).toString() === "door") {
+            let newRoom;
+            if (checkingObj.door === "44") {
+              x = 50;
+              y = 200;
+              newRoom = (parseInt(props.room) + 1).toString();
+            }
+            if (checkingObj.door === "36") {
+              x = 350;
+              y = 200;
+              newRoom = (parseInt(props.room) - 1).toString();
+            }
+            if (checkingObj.door === "76") {
+              x = 200;
+              y = 50;
+              newRoom = (parseInt(props.room) + 10).toString();
+            }
+            if (checkingObj.door === "04") {
+              x = 200;
+              y = 350;
+              newRoom = (parseInt(props.room) - 10).toString();
+            }
+            //console.log(checkingObj);
+            newRoom.length < 2 && (newRoom = 0 + newRoom);
+            newRoom.length < 3 && (newRoom = 0 + newRoom);
+            props.switchRoom(newRoom);
+            props.move(x, y);
+          }
+        }
+        //Checking treasure
+        if (checkingObj) {
+          if (checkingObj.floor !== undefined) {
+            props.coins.map((item) => {
+              if (activeRoom.id === item.coinRoom) {
+                if (checkingObj.floor === item.field) {
+                  props.removeCoins(item.coinId);
+                  console.log(props.hero);
+                  props.getCoin();
+                }
+              }
+            });
+  
+            //console.log(checkingObj.floor, activeRoom);
+          }
         }
       }
+      
+      m !== undefined && goHero()
+
+
     },
     [props, posX, posY]
   );
