@@ -905,6 +905,7 @@
     "positionY": "200",
     "life": "3",
     "coins": 0,
+    "keys": [],
     "pocket": []
   },
   "coins": [
