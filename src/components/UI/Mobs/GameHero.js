@@ -33,7 +33,7 @@ const GameHero = (props) => {
       let m = playerMove(event.keyCode);
 
       //console.log(posX, posY);
-      
+
       const goHero = () => {
         let x = parseInt(posX);
         let y = parseInt(posY);
@@ -45,7 +45,41 @@ const GameHero = (props) => {
         //console.log(checkingObj.floor);
         if (checkingObj) {
           if (Object.keys(checkingObj).toString() === "floor") {
-            props.move(x, y);
+            let x1 = parseInt(posX);
+            let y1 = parseInt(posY);
+
+            if (x > x1) {
+              for (let i = 0; i < 51; i++) {
+                setTimeout(function () {
+                  props.move((x1 + i), y);
+                }, 50)
+              }
+            }
+
+            if (x < x1) {
+              for (let i = 0; i < 51; i++) {
+                setTimeout(function () {
+                  props.move((x1 - i), y);
+                }, 50)
+              }
+            }
+
+            if (y > y1) {
+              for (let i = 0; i < 51; i++) {
+                setTimeout(function () {
+                  props.move(x, (y1 + i));
+                }, 50)
+              }
+            }
+
+            if (y < y1) {
+              for (let i = 0; i < 51; i++) {
+                setTimeout(function () {
+                  props.move(x, (y1 - i));
+                }, 50)
+              }
+            }
+            //props.move(x, y)
           }
           if (Object.keys(checkingObj).toString() === "door") {
             let newRoom;
@@ -88,12 +122,12 @@ const GameHero = (props) => {
                 }
               }
             });
-  
+
             //console.log(checkingObj.floor, activeRoom);
           }
         }
       }
-      
+
       m !== undefined && goHero()
 
 
