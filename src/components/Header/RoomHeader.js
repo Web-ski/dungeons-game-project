@@ -53,9 +53,9 @@ const RoomHeader = (props) => {
     <Section className="RoomHeader">
       <HeroLife>
         <Heart heart={`url('${HEART_IMG}')`} />
-        <InfoText>{props.hero && props.hero[0].life}</InfoText>
+        <InfoText>{props.hero && props.hero.life}</InfoText>
         <Heart heart={`url('${COIN}')`} />
-        <InfoText>{props.hero && props.hero[0].coins}</InfoText>
+        <InfoText>{props.hero && props.hero.coins}</InfoText>
       </HeroLife>
       <StyledLink to="/">Exit</StyledLink>
     </Section>

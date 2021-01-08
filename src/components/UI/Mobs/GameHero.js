@@ -5,7 +5,10 @@ import {
   playerMove,
   playerBackground,
 } from "../../../accessors/player";
-import { changePositionAction } from "../../../api/player/action";
+import {
+  changePositionAction,
+  getCoinByHeroAction,
+} from "../../../api/player/action";
 import { switchRoomAction } from "../../../api/game/action";
 import { removeCoinsAction } from "../../../api/treasures/action";
 import HeroElem from "./HeroElem";
@@ -75,9 +78,11 @@ const GameHero = (props) => {
         if (checkingObj.floor !== undefined) {
           props.coins.map((item) => {
             if (activeRoom.id === item.coinRoom) {
-              checkingObj.floor === item.field &&
-                //props.removeCoins(item.coinId);
-                console.log("I've got Money!");
+              if (checkingObj.floor === item.field) {
+                props.removeCoins(item.coinId);
+                console.log(props.hero);
+                props.getCoin();
+              }
             }
           });
 
@@ -113,6 +118,7 @@ const mapDispatchToProps = (dispatch) => {
     move: (dataX, dataY) => dispatch(changePositionAction(dataX, dataY)),
     switchRoom: (data) => dispatch(switchRoomAction(data)),
     removeCoins: (id) => dispatch(removeCoinsAction(id)),
+    getCoin: () => dispatch(getCoinByHeroAction()),
   };
 };
 

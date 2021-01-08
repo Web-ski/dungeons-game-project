@@ -22,7 +22,7 @@ const treasuresReducer = (state = initialState, { type, payload }) => {
       // payload.coin !== undefined && findCoinToRemove(payload.coin);
       return {
         ...state,
-        coins: state.coins.filter((item) => item.coinId === payload.coin),
+        coins: state.coins.filter((item) => item.coinId !== payload.coin),
       };
     }
     default:

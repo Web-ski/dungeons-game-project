@@ -900,15 +900,13 @@
     }
   ],
   "startRoomId": "001",
-  "hero": [
-    {
-      "positionX": "200",
-      "positionY": "200",
-      "life": "3",
-      "coins": 0,
-      "pocket": []
-    }
-  ],
+  "hero": {
+    "positionX": "200",
+    "positionY": "200",
+    "life": "3",
+    "coins": 0,
+    "pocket": []
+  },
   "coins": [
     {
       "coinId": "01",
