@@ -924,5 +924,13 @@
       "coinRoom": "023",
       "field": "60"
     }
+  ],
+  "letters": [
+    {
+      "letterId": "01",
+      "letterRoom": "001",
+      "field": "20",
+      "letterInfo": "Find the gold key."
+    }
   ]
 }
