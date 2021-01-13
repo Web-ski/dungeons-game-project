@@ -14,6 +14,11 @@ const RoomBoard = styled.section`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  animation: roomDisplay 1s;
+  @keyframes roomDisplay {
+    from {opacity: 0;}
+    to {opaciyt: 1;}
+  }
 `;
 
 const Room = (props) => {
