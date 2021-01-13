@@ -10,10 +10,10 @@ const WALL_DOWN = "/gameData/images/wall-green-bottom.png";
 const WALL_LEFT = "/gameData/images/wall-green-left.png";
 const WALL_RIGHT = "/gameData/images/wall-green-right.png";
 const FLOOR = "/gameData/images/floor-green.png";
-const DOOR = "/gameData/images/door-green.png";
-const DOOR_RIGHT = "/gameData/images/door-green-right.png";
-const DOOR_BOTTOM = "/gameData/images/door-green-bottom.png";
-const DOOR_LEFT = "/gameData/images/door-green-left.png";
+const DOOR = "/gameData/images/door-green-open.png";
+const DOOR_RIGHT = "/gameData/images/door-green-open-right.png";
+const DOOR_BOTTOM = "/gameData/images/door-green-open-bottom.png";
+const DOOR_LEFT = "/gameData/images/door-green-open-left.png";
 
 const Tile = styled.div`
   position: absolute;

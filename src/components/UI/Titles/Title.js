@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { GAME_NAME } from "../../../constants/constants";
 
 const PageTitle = styled.h1`
-  color: #91C35C;
+  color: #65ECBB;
   font-size: 40px;
   margin: 30px 0;
 `;

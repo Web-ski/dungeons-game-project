@@ -1,6 +1,6 @@
 import styled from "styled-components";
 // const HERO = "/gameData/images/gnome.svg";
-const HERO = "/gameData/images/chemist-svgrepo-com.svg";
+const HERO = "/gameData/images/hero-dev.png";
 
 const HeroElem = styled.div`
   position: absolute;
