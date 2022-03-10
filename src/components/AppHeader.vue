@@ -3,13 +3,38 @@ import { RouterLink } from "vue-router";
 </script>
 
 <template>
-  <header>
-    <div class="wrapper">
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/game">Game</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
+  <header class="app-header">
+    <nav class="app-nav">
+      <RouterLink class="nav-link" to="/">Home</RouterLink>
+      <RouterLink class="nav-link" to="/game">Game</RouterLink>
+      <RouterLink class="nav-link" to="/about">About</RouterLink>
+    </nav>
   </header>
 </template>
+
+<style>
+.app-header {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.app-nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.app-nav .nav-link {
+  text-decoration: none;
+  color: var(--dungeon-active);
+  padding: 10px 20px;
+  margin: 0 10px;
+}
+
+.app-nav .nav-link.active-link {
+  color: var(--dungeon-white);
+}
+</style>

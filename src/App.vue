@@ -10,5 +10,4 @@ import AppHeader from "@/components/AppHeader.vue";
 
 <style>
 @import "@/assets/base.css";
-@import "@/assets/scss/style.scss";
 </style>
