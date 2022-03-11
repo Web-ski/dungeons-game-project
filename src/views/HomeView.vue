@@ -1,16 +1,17 @@
 <script setup>
 import { GAME_INFO } from "../const/game-data.const";
 import { RouterLink } from "vue-router";
+import PageMain from "../templates/PageMain.vue";
 </script>
 
 <template>
-  <main class="page-main">
+  <PageMain>
     <section class="hero">
       <h1 class="app-title">{{ title }}</h1>
       <h2>Start the adventure!</h2>
       <RouterLink class="game-link" to="/game">Start</RouterLink>
     </section>
-  </main>
+  </PageMain>
 </template>
 
 <script>
@@ -24,14 +25,6 @@ export default {
 </script>
 
 <style>
-.page-main {
-  min-height: 80vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
 .hero {
   display: flex;
   justify-content: center;

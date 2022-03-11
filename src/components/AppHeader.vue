@@ -37,6 +37,6 @@ import { RouterLink } from "vue-router";
 .app-nav .nav-link.active-link {
   color: var(--dungeon-active);
   border-radius: var(--button-radius);
-  border-color: var(--dungeon-active);
+  border-color: var(--dungeon-active-dark);
 }
 </style>

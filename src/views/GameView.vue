@@ -1,5 +1,14 @@
+<script setup>
+import PageMain from "../templates/PageMain.vue";
+import GameboardHeaderView from "../components/GameboardHeader/GameboardHeaderView.vue";
+import GameboardMainView from "../components/GameboardMain/GameboardMainView.vue";
+</script>
+
 <template>
-  <div class="game">
-    <h1>This is an game page</h1>
-  </div>
+  <PageMain>
+    <section class="game">
+      <GameboardHeaderView />
+      <GameboardMainView />
+    </section>
+  </PageMain>
 </template>
