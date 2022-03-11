@@ -6,7 +6,6 @@ import { RouterLink } from "vue-router";
   <header class="app-header">
     <nav class="app-nav">
       <RouterLink class="nav-link" to="/">Home</RouterLink>
-      <RouterLink class="nav-link" to="/game">Game</RouterLink>
       <RouterLink class="nav-link" to="/about">About</RouterLink>
     </nav>
   </header>
@@ -30,11 +29,14 @@ import { RouterLink } from "vue-router";
 .app-nav .nav-link {
   text-decoration: none;
   color: var(--dungeon-active);
-  padding: 10px 20px;
-  margin: 0 10px;
+  padding: 5px 12px;
+  margin: 0 20px;
+  border: solid 2px transparent;
 }
 
 .app-nav .nav-link.active-link {
-  color: var(--dungeon-white);
+  color: var(--dungeon-active);
+  border-radius: var(--button-radius);
+  border-color: var(--dungeon-active);
 }
 </style>

@@ -2,6 +2,7 @@
   --dungeon-white: #fff;
   --dungeon-dark: #212121;
   --dungeon-active: rgb(0, 255, 170);
+  --button-radius: 6px;
 }
 
 *,
