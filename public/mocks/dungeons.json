@@ -1,0 +1,28 @@
+{
+  "rooms": [
+    {
+      "id": 1,
+      "type": "cellar",
+      "entries": [
+        {
+          "type": "door--right",
+          "position": "E8",
+          "destination": 2
+        }
+      ],
+      "structures": []
+    },
+    {
+      "id": 2,
+      "type": "cellar",
+      "entries": [
+        {
+          "type": "door--right",
+          "position": "E0",
+          "destination": 1
+        }
+      ],
+      "structures": []
+    }
+  ]
+}

@@ -5,15 +5,15 @@ export const useBoardStore = defineStore("board", {
   state: () => {
     return {
       currentRoom: 1,
-      rooms: [
-        {
-          id: 1,
-          type: "cellar",
-          entries: [{ type: "door", position: "B9", destination: 2 }],
-          structures: [],
-        },
-      ],
+      rooms: [],
     };
+  },
+  actions: {
+    getBoardFromApi() {
+      fetch("/mocks/dungeons.json")
+        .then((response) => response.json())
+        .then((data) => (this.state.rooms = data.rooms));
+    },
   },
   getters: {
     getCurrentRoom: (state) => {

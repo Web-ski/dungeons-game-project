@@ -6,7 +6,11 @@ import { useBoardStore } from "@/stores/board.js";
 
 <template>
   <div class="gameboard-main">
-    <BoardElem v-for="elem in boardElems" :key="elem.id"></BoardElem>
+    <BoardElem
+      v-for="elem in boardElems"
+      :key="elem.id"
+      :elem="elem"
+    ></BoardElem>
   </div>
 </template>
 

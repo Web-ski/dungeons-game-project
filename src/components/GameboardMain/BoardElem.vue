@@ -1,9 +1,25 @@
 <template>
-  <div class="board-elem"></div>
+  <div :id="elem.position" class="board-elem" :style="setUrl()"></div>
 </template>
+
+<script>
+export default {
+  props: ["elem"],
+  methods: {
+    setUrl() {
+      return `background-image: url("/images/game/cellar/${this.elem.type}.png")`;
+      // return "background-image: url('/images/game/cellar/floor.png";
+    },
+  },
+};
+</script>
 
 <style>
 .board-elem {
-  position: absolute;
+  height: 50px;
+  width: 50px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
 </style>
