@@ -2,6 +2,8 @@
 import { GAME_INFO } from "../const/game-data.const";
 import { RouterLink } from "vue-router";
 import PageMain from "../templates/PageMain.vue";
+import { mapActions } from "pinia";
+import { useBoardStore } from "@/stores/board.js";
 </script>
 
 <template>
@@ -9,7 +11,9 @@ import PageMain from "../templates/PageMain.vue";
     <section class="hero">
       <h1 class="app-title">{{ title }}</h1>
       <h2>Start the adventure!</h2>
-      <RouterLink class="game-link" to="/game">Start</RouterLink>
+      <RouterLink class="game-link" to="/game" @click="getGameData"
+        >Start</RouterLink
+      >
     </section>
   </PageMain>
 </template>
@@ -20,6 +24,12 @@ export default {
     return {
       title: GAME_INFO.title,
     };
+  },
+  methods: {
+    ...mapActions(useBoardStore, ["getBoardFromApi"]),
+    getGameData() {
+      this.getBoardFromApi();
+    },
   },
 };
 </script>
