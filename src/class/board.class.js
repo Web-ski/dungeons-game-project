@@ -42,6 +42,30 @@ export class BoardgameClass {
           case "A6":
           case "A7":
             return this.boardTile("wall--top", position, null);
+          case "B8":
+          case "C8":
+          case "D8":
+          case "E8":
+          case "F8":
+          case "G8":
+          case "H8":
+            return this.boardTile("wall--right", position, null);
+          case "I1":
+          case "I2":
+          case "I3":
+          case "I4":
+          case "I5":
+          case "I6":
+          case "I7":
+            return this.boardTile("wall--bottom", position, null);
+          case "B0":
+          case "C0":
+          case "D0":
+          case "E0":
+          case "F0":
+          case "G0":
+          case "H0":
+            return this.boardTile("wall--left", position, null);
           default:
             return this.boardTile("floor", position, null);
         }

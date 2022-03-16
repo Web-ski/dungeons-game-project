@@ -7,6 +7,7 @@ import { useBoardStore } from "@/stores/board.js";
 </script>
 
 <template>
+  <div v-if="isProcessing">Game loading...</div>
   <PageMain v-if="!isProcessing">
     <section class="game">
       <GameboardHeaderView />
