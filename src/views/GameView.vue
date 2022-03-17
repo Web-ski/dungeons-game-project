@@ -21,5 +21,11 @@ export default {
   computed: {
     ...mapState(useBoardStore, ["isProcessing"]),
   },
+  methods: {
+    moveHero(event) {
+      console.log(event);
+      //dodać keyup globalnie dla document
+    },
+  },
 };
 </script>

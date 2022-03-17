@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { BoardgameClass } from "../class/board.class";
+import { ToolsClass } from "../class/tools.class";
 
 export const useBoardStore = defineStore("board", {
   state: () => {
@@ -17,8 +18,11 @@ export const useBoardStore = defineStore("board", {
         .then((data) => this.setDataToStore(data.rooms));
     },
     setDataToStore(data) {
-      console.log(this.rooms, " ", data);
-      this.rooms = data;
+      this.rooms = data.map((item) => {
+        const buildStructure = BoardgameClass.makeBoard(item);
+        item.structures = buildStructure;
+        return item;
+      });
       this.isProcessing = false;
     },
   },
@@ -27,11 +31,10 @@ export const useBoardStore = defineStore("board", {
       if (!state.rooms.length > 0) {
         return;
       }
-      const room = BoardgameClass.makeBoard(
-        state.rooms.filter((room) => room.id === state.currentRoom)
+      const [choosenRoom] = state.rooms.filter(
+        (room) => room.id === state.currentRoom
       );
-      console.log(room);
-      return room;
+      return ToolsClass.makeProxyToObject(choosenRoom).structures;
     },
   },
 });

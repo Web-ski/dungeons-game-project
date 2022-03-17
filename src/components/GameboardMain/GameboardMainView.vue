@@ -1,6 +1,7 @@
 <script setup>
 import { mapState } from "pinia";
 import BoardElem from "./BoardElem.vue";
+import HeroElem from "../Hero/HeroElem.vue";
 import { useBoardStore } from "@/stores/board.js";
 </script>
 
@@ -11,6 +12,7 @@ import { useBoardStore } from "@/stores/board.js";
       :key="elem.id"
       :elem="elem"
     ></BoardElem>
+    <HeroElem />
   </div>
 </template>
 
@@ -26,9 +28,7 @@ export default {
   },
   methods: {
     getRoomElems() {
-      const elems = this.getCurrentRoom; // nie wywołuje się?
-      console.log("view ", elems);
-      this.boardElems = elems;
+      this.boardElems = this.getCurrentRoom;
     },
   },
   created() {

@@ -8,7 +8,7 @@ import { useBoardStore } from "@/stores/board.js";
 
 <template>
   <PageMain>
-    <section class="hero">
+    <section class="jumbotron">
       <h1 class="app-title">{{ title }}</h1>
       <h2>Start the adventure!</h2>
       <RouterLink class="game-link" to="/game" @click="getGameData"
@@ -35,7 +35,7 @@ export default {
 </script>
 
 <style>
-.hero {
+.jumbotron {
   display: flex;
   justify-content: center;
   align-items: center;

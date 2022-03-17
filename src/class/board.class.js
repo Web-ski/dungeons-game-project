@@ -1,7 +1,7 @@
 import { ToolsClass } from "./tools.class";
 export class BoardgameClass {
   static makeBoard(board) {
-    const [boardObj] = ToolsClass.makeProxyToObject(board);
+    const boardObj = ToolsClass.makeProxyToObject(board);
     const structure = [];
     const columnLetters = ["A", "B", "C", "D", "E", "F", "G", "H", "I"];
     const column = 9;
