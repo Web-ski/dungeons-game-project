@@ -1,13 +1,13 @@
 import { ToolsClass } from "./tools.class";
+import { COLUMN_LETTERS } from "@/const/board-data.const";
 export class BoardgameClass {
   static makeBoard(board) {
     const boardObj = ToolsClass.makeProxyToObject(board);
     const structure = [];
-    const columnLetters = ["A", "B", "C", "D", "E", "F", "G", "H", "I"];
     const column = 9;
     const row = 9;
     for (let i = 0; i < column; i++) {
-      let letter = columnLetters[i];
+      let letter = COLUMN_LETTERS[i];
       for (let i = 0; i < row; i++) {
         let specify;
         specify = this.specifyTile(boardObj.type, letter + i);

@@ -7,7 +7,7 @@ export const useHeroStore = defineStore("hero", {
     };
   },
   actions: {
-    moveHero(newPosition) {
+    setHeroPosition(newPosition) {
       this.heroPosition = newPosition;
     },
   },

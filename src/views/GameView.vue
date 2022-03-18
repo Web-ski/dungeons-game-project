@@ -1,9 +1,11 @@
 <script setup>
-import { mapState } from "pinia";
+import { mapActions, mapState } from "pinia";
 import PageMain from "../templates/PageMain.vue";
 import GameboardHeaderView from "../components/GameboardHeader/GameboardHeaderView.vue";
 import GameboardMainView from "../components/GameboardMain/GameboardMainView.vue";
 import { useBoardStore } from "@/stores/board.js";
+import { useHeroStore } from "@/stores/hero.js";
+import { MovementClass } from "@/class/movement.class.js";
 </script>
 
 <template>
@@ -20,12 +22,17 @@ import { useBoardStore } from "@/stores/board.js";
 export default {
   computed: {
     ...mapState(useBoardStore, ["isProcessing"]),
+    ...mapState(useHeroStore, ["heroPosition"]),
   },
   methods: {
+    ...mapActions(useHeroStore, ["setHeroPosition"]),
     moveHero(event) {
-      console.log(event);
       //dodać keyup globalnie dla document
+      // console.log(this.heroPosition);
       event.stopPropagation();
+      this.setHeroPosition(
+        MovementClass.getHeroMove(this.heroPosition, event.key)
+      );
     },
   },
   created() {

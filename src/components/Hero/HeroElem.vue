@@ -1,19 +1,25 @@
 <script setup>
 import { mapState } from "pinia";
 import { useHeroStore } from "@/stores/hero.js";
+import { MovementClass } from "@/class/movement.class.js";
 </script>
 
 
 <template>
-  <div id="hero" :style="setHeroPosition()"></div>
+  <div
+    id="hero"
+    :style="'left: ' + getHeroPositionX() + '; ' + 'top: ' + getHeroPositionY()"
+  ></div>
 </template>
 
 <script>
 export default {
   methods: {
-    setHeroPosition() {
-      console.log(this.heroPosition);
-      return `left: 50px; top: 50px`;
+    getHeroPositionX() {
+      return MovementClass.setHeroMove(this.heroPosition, "horizontal");
+    },
+    getHeroPositionY() {
+      return MovementClass.setHeroMove(this.heroPosition, "vertical");
     },
   },
   computed: {
