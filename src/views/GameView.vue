@@ -25,7 +25,14 @@ export default {
     moveHero(event) {
       console.log(event);
       //dodać keyup globalnie dla document
+      event.stopPropagation();
     },
+  },
+  created() {
+    window.addEventListener("keyup", this.moveHero);
+  },
+  beforeUnmount() {
+    window.removeEventListener("keyup", this.moveHero);
   },
 };
 </script>
