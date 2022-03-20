@@ -1,35 +1,53 @@
 import { COLUMN_LETTERS, BOARD_STEP } from "@/const/board-data.const";
 export class MovementClass {
-  static getHeroMove(position, key) {
+  static checkAvailableField(fieldsList) {
+    const availableFields = fieldsList.filter(
+      ({ type }) =>
+        type === "floor" ||
+        type === "door--top" ||
+        type === "door--right" ||
+        type === "door--bottom" ||
+        type === "door--left"
+    );
+    const availablePositions = availableFields.map((elem) => elem.position);
+    return availablePositions;
+  }
+  static getHeroMove(position, key, structures) {
     // wprowadzić warunek drzwi
+    const availablePositions = this.checkAvailableField(structures);
     const letter = position.charAt(0);
     const letterPosition = COLUMN_LETTERS.indexOf(letter);
     const nmbr = parseInt(position.charAt(1));
+    let newPosition;
     switch (key) {
       case "w":
       case "ArrowUp":
-        if (COLUMN_LETTERS[letterPosition - 1] === COLUMN_LETTERS[0]) {
-          return position;
+        newPosition = COLUMN_LETTERS[letterPosition - 1] + nmbr;
+        if (availablePositions.includes(newPosition)) {
+          return newPosition;
         }
-        return COLUMN_LETTERS[letterPosition - 1] + nmbr;
+        return position;
       case "d":
       case "ArrowRight":
-        if (nmbr + 1 === 8) {
-          return position;
+        newPosition = letter + (nmbr + 1);
+        if (availablePositions.includes(newPosition)) {
+          return newPosition;
         }
-        return letter + (nmbr + 1);
+        return position;
       case "s":
       case "ArrowDown":
-        if (COLUMN_LETTERS[letterPosition + 1] === COLUMN_LETTERS[8]) {
-          return position;
+        newPosition = COLUMN_LETTERS[letterPosition + 1] + nmbr;
+        if (availablePositions.includes(newPosition)) {
+          return newPosition;
         }
-        return COLUMN_LETTERS[letterPosition + 1] + nmbr;
+        return position;
       case "a":
       case "ArrowLeft":
-        if (nmbr - 1 === 0) {
-          return position;
+        newPosition = letter + (nmbr - 1);
+        if (availablePositions.includes(newPosition)) {
+          return newPosition;
         }
-        return letter + (nmbr - 1);
+        return position;
       default:
         return position;
     }

@@ -21,7 +21,7 @@ import { MovementClass } from "@/class/movement.class.js";
 <script>
 export default {
   computed: {
-    ...mapState(useBoardStore, ["isProcessing"]),
+    ...mapState(useBoardStore, ["isProcessing", "getCurrentRoom"]),
     ...mapState(useHeroStore, ["heroPosition"]),
   },
   methods: {
@@ -31,7 +31,11 @@ export default {
       // console.log(this.heroPosition);
       event.stopPropagation();
       this.setHeroPosition(
-        MovementClass.getHeroMove(this.heroPosition, event.key)
+        MovementClass.getHeroMove(
+          this.heroPosition,
+          event.key,
+          this.getCurrentRoom
+        )
       );
     },
   },

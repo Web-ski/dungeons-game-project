@@ -34,6 +34,6 @@ export default {
   height: 50px;
   width: 50px;
   background-color: red;
-  transition: 0.5s;
+  transition: 0.3s;
 }
 </style>
