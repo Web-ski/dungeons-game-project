@@ -20,6 +20,23 @@
           "type": "door--left",
           "position": "E0",
           "destination": 1
+        },
+        {
+          "type": "door--right",
+          "position": "E8",
+          "destination": 3
+        }
+      ],
+      "structures": []
+    },
+    {
+      "id": 3,
+      "type": "cellar",
+      "entries": [
+        {
+          "type": "door--left",
+          "position": "E0",
+          "destination": 2
         }
       ],
       "structures": []

@@ -1,5 +1,5 @@
 <script setup>
-import { mapState } from "pinia";
+import { mapActions, mapState } from "pinia";
 import BoardElem from "./BoardElem.vue";
 import HeroElem from "../Hero/HeroElem.vue";
 import { useBoardStore } from "@/stores/board.js";
@@ -22,9 +22,13 @@ export default {
     ...mapState(useBoardStore, ["getCurrentRoom"]),
   },
   methods: {
+    ...mapActions(useBoardStore, ["setBoardSwitching"]),
     getRoomElems() {
       return this.getCurrentRoom;
     },
+  },
+  created() {
+    this.setBoardSwitching(false);
   },
 };
 </script>

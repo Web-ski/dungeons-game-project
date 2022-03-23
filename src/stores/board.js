@@ -6,6 +6,7 @@ export const useBoardStore = defineStore("board", {
   state: () => {
     return {
       isProcessing: false,
+      isBoardSwitching: true,
       currentRoom: 1,
       rooms: [],
     };
@@ -27,7 +28,10 @@ export const useBoardStore = defineStore("board", {
     },
     setCurrentRoom(number) {
       this.currentRoom = number;
-      console.log(this.currentRoom);
+      setTimeout(() => this.setBoardSwitching(false), 200);
+    },
+    setBoardSwitching(value) {
+      this.isBoardSwitching = value;
     },
   },
   getters: {

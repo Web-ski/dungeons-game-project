@@ -8,6 +8,7 @@ import { MovementClass } from "@/class/movement.class.js";
 
 <template>
   <div
+    v-if="!isBoardSwitching"
     id="hero"
     :style="'left: ' + getHeroPositionX() + '; ' + 'top: ' + getHeroPositionY()"
   ></div>
@@ -16,7 +17,8 @@ import { MovementClass } from "@/class/movement.class.js";
 <script>
 export default {
   methods: {
-    ...mapActions(useBoardStore, ["setCurrentRoom"]),
+    ...mapActions(useBoardStore, ["setCurrentRoom", "setBoardSwitching"]),
+    ...mapActions(useHeroStore, ["setHeroPosition"]),
     getHeroPositionX() {
       return MovementClass.setHeroMove(this.heroPosition, "horizontal");
     },
@@ -28,13 +30,21 @@ export default {
         (entry) => heroPosition === entry.position
       );
       if (crossedEntry?.destination) {
+        this.setBoardSwitching(true);
         this.setCurrentRoom(crossedEntry.destination);
+        //dać tu klasę!!!! bo są jeszcze inne możliwości przejścia do innego pomieszczenia
+        if (crossedEntry.position === "E8") {
+          this.setHeroPosition("E1");
+        }
+        if (crossedEntry.position === "E0") {
+          this.setHeroPosition("E7");
+        }
       }
     },
   },
   computed: {
     ...mapState(useHeroStore, ["heroPosition"]),
-    ...mapState(useBoardStore, ["getRoomEntries"]),
+    ...mapState(useBoardStore, ["getRoomEntries", "isBoardSwitching"]),
   },
   updated() {
     this.switchBoard(this.heroPosition, this.getRoomEntries);
@@ -45,9 +55,13 @@ export default {
 <style scoped>
 #hero {
   position: absolute;
-  height: 50px;
-  width: 50px;
-  background-color: red;
+  height: 54px;
+  width: 54px;
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("/images/game/heros/hero-dev2.png");
   transition: 0.3s;
 }
 </style>
