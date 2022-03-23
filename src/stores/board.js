@@ -25,6 +25,10 @@ export const useBoardStore = defineStore("board", {
       });
       this.isProcessing = false;
     },
+    setCurrentRoom(number) {
+      this.currentRoom = number;
+      console.log(this.currentRoom);
+    },
   },
   getters: {
     getCurrentRoom: (state) => {
@@ -35,6 +39,15 @@ export const useBoardStore = defineStore("board", {
         (room) => room.id === state.currentRoom
       );
       return ToolsClass.makeProxyToObject(choosenRoom).structures;
+    },
+    getRoomEntries: (state) => {
+      if (!state.rooms.length > 0) {
+        return;
+      }
+      const [choosenRoom] = state.rooms.filter(
+        (room) => room.id === state.currentRoom
+      );
+      return ToolsClass.makeProxyToObject(choosenRoom).entries;
     },
   },
 });

@@ -8,7 +8,7 @@ import { useBoardStore } from "@/stores/board.js";
 <template>
   <div class="gameboard-main">
     <BoardElem
-      v-for="elem in boardElems"
+      v-for="elem in getRoomElems()"
       :key="elem.id"
       :elem="elem"
     ></BoardElem>
@@ -18,21 +18,13 @@ import { useBoardStore } from "@/stores/board.js";
 
 <script>
 export default {
-  data() {
-    return {
-      boardElems: [],
-    };
-  },
   computed: {
     ...mapState(useBoardStore, ["getCurrentRoom"]),
   },
   methods: {
     getRoomElems() {
-      this.boardElems = this.getCurrentRoom;
+      return this.getCurrentRoom;
     },
-  },
-  created() {
-    this.getRoomElems();
   },
 };
 </script>
@@ -43,8 +35,7 @@ export default {
   width: 450px;
   height: 450px;
   margin: 0 auto;
-  background-color: var(--dungeon-dark);
-  background-color: black;
+  background-color: var(--dungeon-dark-cellar);
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

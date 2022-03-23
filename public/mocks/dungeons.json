@@ -17,7 +17,7 @@
       "type": "cellar",
       "entries": [
         {
-          "type": "door--right",
+          "type": "door--left",
           "position": "E0",
           "destination": 1
         }
