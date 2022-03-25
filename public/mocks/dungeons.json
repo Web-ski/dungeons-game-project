@@ -52,15 +52,18 @@
       "materials": [
         {
           "id": 1,
-          "type": "coin"
+          "type": "coin",
+          "position": "C2"
         },
         {
           "id": 2,
-          "type": "coin"
+          "type": "coin",
+          "position": "C6"
         },
         {
           "id": 3,
-          "type": "coin"
+          "type": "coin",
+          "position": "E6"
         }
       ],
       "structures": []
