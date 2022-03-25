@@ -6,7 +6,7 @@ import { MaterialClass } from "@/class/material.class.js";
 
 <template>
   <div
-    class="material"
+    :class="'material ' + this.material.type"
     v-if="!isBoardSwitching"
     :style="
       'background-image: url(/images/game/materials/' +
@@ -28,7 +28,6 @@ export default {
   },
   methods: {
     setType() {
-      console.log(this.material);
       return this.material.type;
     },
     setPositionX() {
@@ -57,5 +56,20 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
   transition: 0.3s;
+}
+
+.coin {
+  height: 45px;
+  width: 45px;
+  animation: levitation 1s alternate infinite;
+}
+
+@keyframes levitation {
+  from {
+    transform: translateY(-4%);
+  }
+  to {
+    transform: translateY(+4%);
+  }
 }
 </style>

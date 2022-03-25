@@ -53,17 +53,17 @@
         {
           "id": 1,
           "type": "coin",
-          "position": "C2"
+          "position": "C6"
         },
         {
           "id": 2,
           "type": "coin",
-          "position": "C6"
+          "position": "E6"
         },
         {
           "id": 3,
           "type": "coin",
-          "position": "E6"
+          "position": "G6"
         }
       ],
       "structures": []

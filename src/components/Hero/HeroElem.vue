@@ -60,5 +60,6 @@ export default {
   background-size: cover;
   background-image: url("/images/game/heros/hero-dev2.png");
   transition: 0.3s;
+  z-index: 100;
 }
 </style>
