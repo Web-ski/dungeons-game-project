@@ -56,12 +56,12 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
   transition: 0.3s;
+  animation: levitation 1s alternate infinite;
 }
 
 .coin {
   height: 45px;
   width: 45px;
-  animation: levitation 1s alternate infinite;
 }
 
 @keyframes levitation {

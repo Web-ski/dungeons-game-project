@@ -7,7 +7,7 @@ export const useBoardStore = defineStore("board", {
     return {
       isProcessing: false,
       isBoardSwitching: true,
-      currentRoom: 1,
+      currentRoom: {}, // dodać akcję i zmienić gettery
       rooms: [],
     };
   },
@@ -24,43 +24,58 @@ export const useBoardStore = defineStore("board", {
         item.structures = buildStructure;
         return item;
       });
+      this.setCurrentRoom(1);
       this.isProcessing = false;
     },
-    setCurrentRoom(number) {
-      this.currentRoom = number;
+    setCurrentRoom(roomNumber) {
+      const [choosenRoom] = this.rooms.filter((room) => room.id === roomNumber);
+      this.currentRoom = choosenRoom;
       setTimeout(() => this.setBoardSwitching(false), 200);
     },
     setBoardSwitching(value) {
       this.isBoardSwitching = value;
     },
+    removeMaterialFromRoom(material) {
+      const materials = ToolsClass.makeProxyToObject(
+        this.currentRoom
+      ).materials;
+      let materialIndex;
+      materials.map((item, index) => {
+        if (item.id === material.id) {
+          materialIndex = index;
+        }
+      });
+      materials.splice(materialIndex, 1);
+      this.currentRoom.materials = materials;
+    },
   },
   getters: {
     getCurrentRoom: (state) => {
-      if (!state.rooms.length > 0) {
-        return;
-      }
-      const [choosenRoom] = state.rooms.filter(
-        (room) => room.id === state.currentRoom
-      );
-      return ToolsClass.makeProxyToObject(choosenRoom).structures;
+      // if (!state.rooms.length > 0) {
+      //   return;
+      // }
+      // const [choosenRoom] = state.rooms.filter(
+      //   (room) => room.id === state.currentRoom
+      // );
+      return ToolsClass.makeProxyToObject(state.currentRoom).structures;
     },
     getRoomEntries: (state) => {
-      if (!state.rooms.length > 0) {
-        return;
-      }
-      const [choosenRoom] = state.rooms.filter(
-        (room) => room.id === state.currentRoom
-      );
-      return ToolsClass.makeProxyToObject(choosenRoom).entries;
+      // if (!state.rooms.length > 0) {
+      //   return;
+      // }
+      // const [choosenRoom] = state.rooms.filter(
+      //   (room) => room.id === state.currentRoom
+      // );
+      return ToolsClass.makeProxyToObject(state.currentRoom).entries;
     },
     getRoomMaterials: (state) => {
-      if (!state.rooms.length > 0) {
-        return;
-      }
-      const [choosenRoom] = state.rooms.filter(
-        (room) => room.id === state.currentRoom
-      );
-      return ToolsClass.makeProxyToObject(choosenRoom).materials;
+      // if (!state.rooms.length > 0) {
+      //   return;
+      // }
+      // const [choosenRoom] = state.rooms.filter(
+      //   (room) => room.id === state.currentRoom
+      // );
+      return ToolsClass.makeProxyToObject(state.currentRoom).materials;
     },
   },
 });

@@ -17,7 +17,11 @@ import { MovementClass } from "@/class/movement.class.js";
 <script>
 export default {
   methods: {
-    ...mapActions(useBoardStore, ["setCurrentRoom", "setBoardSwitching"]),
+    ...mapActions(useBoardStore, [
+      "setCurrentRoom",
+      "removeMaterialFromRoom",
+      "setBoardSwitching",
+    ]),
     ...mapActions(useHeroStore, ["setHeroPosition"]),
     getHeroPositionX() {
       return MovementClass.setHeroMove(this.heroPosition, "horizontal");
@@ -38,12 +42,25 @@ export default {
         );
       }
     },
+    takeMaterial(heroPosition, materials) {
+      // materials && console.log(heroPosition, " ", materials);
+      const [takenMaterial] = materials.filter(
+        (material) => heroPosition === material.position
+      );
+      takenMaterial && this.removeMaterialFromRoom(takenMaterial);
+      // takenMaterial && this.addMaterialToHero(takenMaterial)
+    },
   },
   computed: {
     ...mapState(useHeroStore, ["heroPosition"]),
-    ...mapState(useBoardStore, ["getRoomEntries", "isBoardSwitching"]),
+    ...mapState(useBoardStore, [
+      "getRoomEntries",
+      "getRoomMaterials",
+      "isBoardSwitching",
+    ]),
   },
   updated() {
+    this.takeMaterial(this.heroPosition, this.getRoomMaterials);
     this.switchBoard(this.heroPosition, this.getRoomEntries);
   },
 };
