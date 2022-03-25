@@ -1,4 +1,6 @@
 <script setup>
+import { mapState } from "pinia";
+import { useHeroStore } from "@/stores/hero.js";
 </script>
 
 <template>
@@ -6,15 +8,31 @@
     <div class="hero-data">
       <div>
         <div class="icon heart"></div>
-        <p class="text">3</p>
+        <p class="text">{{ getHeroLive() }}</p>
       </div>
       <div>
         <div class="icon coin"></div>
-        <p class="text">0</p>
+        <p class="text">{{ getHeroCoins() }}</p>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  computed: {
+    ...mapState(useHeroStore, ["hero"]),
+  },
+  methods: {
+    getHeroLive() {
+      return this.hero.live;
+    },
+    getHeroCoins() {
+      return this.hero.coins;
+    },
+  },
+};
+</script>
 
 <style scoped>
 .gameboard-header {

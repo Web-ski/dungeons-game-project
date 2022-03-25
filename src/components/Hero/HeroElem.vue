@@ -22,7 +22,7 @@ export default {
       "removeMaterialFromRoom",
       "setBoardSwitching",
     ]),
-    ...mapActions(useHeroStore, ["setHeroPosition"]),
+    ...mapActions(useHeroStore, ["setHeroPosition", "setMaterialToHero"]),
     getHeroPositionX() {
       return MovementClass.setHeroMove(this.heroPosition, "horizontal");
     },
@@ -43,12 +43,11 @@ export default {
       }
     },
     takeMaterial(heroPosition, materials) {
-      // materials && console.log(heroPosition, " ", materials);
       const [takenMaterial] = materials.filter(
         (material) => heroPosition === material.position
       );
       takenMaterial && this.removeMaterialFromRoom(takenMaterial);
-      // takenMaterial && this.addMaterialToHero(takenMaterial)
+      takenMaterial && this.setMaterialToHero(takenMaterial);
     },
   },
   computed: {

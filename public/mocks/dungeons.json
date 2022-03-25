@@ -108,7 +108,23 @@
           "destination": 5
         }
       ],
-      "materials": [],
+      "materials": [
+        {
+          "id": 1,
+          "type": "coin",
+          "position": "C2"
+        },
+        {
+          "id": 2,
+          "type": "coin",
+          "position": "E2"
+        },
+        {
+          "id": 3,
+          "type": "coin",
+          "position": "G2"
+        }
+      ],
       "structures": []
     },
     {
