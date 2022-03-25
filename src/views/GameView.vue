@@ -25,6 +25,7 @@ export default {
     ...mapState(useHeroStore, ["heroPosition"]),
   },
   methods: {
+    ...mapActions(useBoardStore, ["getBoardFromApi"]),
     ...mapActions(useHeroStore, ["setHeroPosition"]),
     moveHero(event) {
       //dodać keyup globalnie dla document
@@ -40,6 +41,7 @@ export default {
     },
   },
   created() {
+    this.getBoardFromApi();
     window.addEventListener("keyup", this.moveHero);
   },
   beforeUnmount() {

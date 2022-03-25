@@ -3,6 +3,7 @@
     {
       "id": 1,
       "type": "cellar",
+      "model": "normal",
       "entries": [
         {
           "type": "door--right",
@@ -10,11 +11,13 @@
           "destination": 2
         }
       ],
+      "materials": [],
       "structures": []
     },
     {
       "id": 2,
       "type": "cellar",
+      "model": "normal",
       "entries": [
         {
           "type": "door--left",
@@ -25,13 +28,20 @@
           "type": "door--right",
           "position": "E8",
           "destination": 3
+        },
+        {
+          "type": "door--bottom",
+          "position": "I4",
+          "destination": 5
         }
       ],
+      "materials": [],
       "structures": []
     },
     {
       "id": 3,
       "type": "cellar",
+      "model": "normal",
       "entries": [
         {
           "type": "door--left",
@@ -39,6 +49,91 @@
           "destination": 2
         }
       ],
+      "materials": [
+        {
+          "id": 1,
+          "type": "coin"
+        },
+        {
+          "id": 2,
+          "type": "coin"
+        },
+        {
+          "id": 3,
+          "type": "coin"
+        }
+      ],
+      "structures": []
+    },
+    {
+      "id": 5,
+      "type": "cellar",
+      "model": "cross",
+      "entries": [
+        {
+          "type": "door--top",
+          "position": "A4",
+          "destination": 2
+        },
+        {
+          "type": "door--right",
+          "position": "E8",
+          "destination": 6
+        },
+        {
+          "type": "door--bottom",
+          "position": "I4",
+          "destination": 8
+        },
+        {
+          "type": "door--left",
+          "position": "E0",
+          "destination": 4
+        }
+      ],
+      "materials": [],
+      "structures": []
+    },
+    {
+      "id": 4,
+      "type": "cellar",
+      "model": "normal",
+      "entries": [
+        {
+          "type": "door--right",
+          "position": "E8",
+          "destination": 5
+        }
+      ],
+      "materials": [],
+      "structures": []
+    },
+    {
+      "id": 6,
+      "type": "cellar",
+      "model": "normal",
+      "entries": [
+        {
+          "type": "door--left",
+          "position": "E0",
+          "destination": 5
+        }
+      ],
+      "materials": [],
+      "structures": []
+    },
+    {
+      "id": 8,
+      "type": "cellar",
+      "model": "normal",
+      "entries": [
+        {
+          "type": "door--top",
+          "position": "A4",
+          "destination": 5
+        }
+      ],
+      "materials": [],
       "structures": []
     }
   ]

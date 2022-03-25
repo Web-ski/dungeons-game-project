@@ -65,4 +65,18 @@ export class MovementClass {
       return value + "px";
     }
   }
+  static setHeroLeaveBoard(crossedEntryPosition) {
+    switch (crossedEntryPosition) {
+      case "E8":
+        return "E1";
+      case "E0":
+        return "E7";
+      case "I4":
+        return "B4";
+      case "A4":
+        return "H4";
+      default:
+        return crossedEntryPosition;
+    }
+  }
 }

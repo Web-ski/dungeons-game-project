@@ -53,5 +53,14 @@ export const useBoardStore = defineStore("board", {
       );
       return ToolsClass.makeProxyToObject(choosenRoom).entries;
     },
+    getRoomMaterials: (state) => {
+      if (!state.rooms.length > 0) {
+        return;
+      }
+      const [choosenRoom] = state.rooms.filter(
+        (room) => room.id === state.currentRoom
+      );
+      return ToolsClass.makeProxyToObject(choosenRoom).materials;
+    },
   },
 });
