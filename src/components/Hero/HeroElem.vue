@@ -33,18 +33,9 @@ export default {
         this.setBoardSwitching(true);
         this.setCurrentRoom(crossedEntry.destination);
         //dać tu klasę!!!! bo są jeszcze inne możliwości przejścia do innego pomieszczenia
-<<<<<<< HEAD
         this.setHeroPosition(
           MovementClass.setHeroLeaveBoard(crossedEntry.position)
         );
-=======
-        if (crossedEntry.position === "E8") {
-          this.setHeroPosition("E1");
-        }
-        if (crossedEntry.position === "E0") {
-          this.setHeroPosition("E7");
-        }
->>>>>>> origin/master
       }
     },
   },

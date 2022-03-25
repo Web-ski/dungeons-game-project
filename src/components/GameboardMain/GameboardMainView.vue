@@ -1,20 +1,13 @@
 <script setup>
 import { mapActions, mapState } from "pinia";
-<<<<<<< HEAD
 import HeroElem from "../Hero/HeroElem.vue";
 import { useBoardStore } from "@/stores/board.js";
 import MaterialElem from "../Materials/MaterialElem.vue";
 import BoardElem from "./BoardElem.vue";
-=======
-import BoardElem from "./BoardElem.vue";
-import HeroElem from "../Hero/HeroElem.vue";
-import { useBoardStore } from "@/stores/board.js";
->>>>>>> origin/master
 </script>
 
 <template>
   <div class="gameboard-main">
-<<<<<<< HEAD
     <board-elem
       v-for="elem in getRoomElems()"
       :key="elem.id"
@@ -26,39 +19,23 @@ import { useBoardStore } from "@/stores/board.js";
       :key="material.id"
       :material="material"
     />
-=======
-    <BoardElem
-      v-for="elem in getRoomElems()"
-      :key="elem.id"
-      :elem="elem"
-    ></BoardElem>
-    <HeroElem />
->>>>>>> origin/master
   </div>
 </template>
 
 <script>
 export default {
-<<<<<<< HEAD
   components: { MaterialElem, BoardElem },
   computed: {
     ...mapState(useBoardStore, ["getCurrentRoom", "getRoomMaterials"]),
-=======
-  computed: {
-    ...mapState(useBoardStore, ["getCurrentRoom"]),
->>>>>>> origin/master
   },
   methods: {
     ...mapActions(useBoardStore, ["setBoardSwitching"]),
     getRoomElems() {
       return this.getCurrentRoom;
     },
-<<<<<<< HEAD
     getMaterials() {
       return this.getRoomMaterials;
     },
-=======
->>>>>>> origin/master
   },
   created() {
     this.setBoardSwitching(false);
