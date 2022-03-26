@@ -24,7 +24,7 @@ export const useBoardStore = defineStore("board", {
         item.structures = buildStructure;
         return item;
       });
-      this.setCurrentRoom(1);
+      this.setCurrentRoom("b1");
       this.isProcessing = false;
     },
     setCurrentRoom(roomNumber) {
