@@ -4,18 +4,30 @@ import { useHeroStore } from "@/stores/hero.js";
 </script>
 
 <template>
-  <div class="gameboard-header">
-    <div class="hero-data">
-      <div>
-        <div class="icon heart"></div>
-        <p class="text">{{ getHeroLive() }}</p>
+  <section class="gameboard-header">
+    <div class="header-row">
+      <div class="hero-data">
+        <div>
+          <div class="icon heart"></div>
+          <p class="text">{{ getHeroLive() }}</p>
+        </div>
+        <div>
+          <div class="icon coin"></div>
+          <p class="text">{{ getHeroCoins() }}</p>
+        </div>
       </div>
-      <div>
-        <div class="icon coin"></div>
-        <p class="text">{{ getHeroCoins() }}</p>
+      <div class="hero-data">
+        <div>
+          <div
+            :class="'icon ' + key"
+            v-for="key in getHerokeys()"
+            :key="key"
+          ></div>
+        </div>
       </div>
     </div>
-  </div>
+    <div class="header-row"></div>
+  </section>
 </template>
 
 <script>
@@ -30,6 +42,9 @@ export default {
     getHeroCoins() {
       return this.hero.coins;
     },
+    getHerokeys() {
+      return this.hero.keys;
+    },
   },
 };
 </script>
@@ -37,7 +52,14 @@ export default {
 <style scoped>
 .gameboard-header {
   width: 450px;
-  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+}
+
+.header-row {
+  width: 450px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -68,6 +90,14 @@ export default {
 }
 .coin {
   background-image: url("../icons/coin-green.png");
+}
+
+.gold-key {
+  background-image: url("/images/game/materials/gold-key.png");
+}
+
+.blue-key {
+  background-image: url("/images/game/materials/blue-key.png");
 }
 
 .text {

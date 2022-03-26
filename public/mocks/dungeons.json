@@ -313,7 +313,13 @@
           "destination": "d2"
         }
       ],
-      "materials": [],
+      "materials": [
+        {
+          "id": 1,
+          "type": "gold-key",
+          "position": "E4"
+        }
+      ],
       "structures": []
     },
     {
@@ -386,7 +392,13 @@
           "destination": "c4"
         }
       ],
-      "materials": [],
+      "materials": [
+        {
+          "id": 1,
+          "type": "blue-key",
+          "position": "E4"
+        }
+      ],
       "structures": []
     }
   ]

@@ -8,6 +8,7 @@ export const useHeroStore = defineStore("hero", {
         name: "Janusz",
         live: 3,
         coins: 0,
+        keys: [],
       },
     };
   },
@@ -17,6 +18,7 @@ export const useHeroStore = defineStore("hero", {
     },
     setMaterialToHero(material) {
       material.type === "coin" && this.hero.coins++;
+      material.type.includes("key") && this.hero.keys.push(material.type);
     },
   },
 });
