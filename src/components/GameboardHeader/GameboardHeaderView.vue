@@ -9,7 +9,7 @@ import { useHeroStore } from "@/stores/hero.js";
       <div class="hero-data">
         <div>
           <div class="icon heart"></div>
-          <p class="text">{{ getHeroLive() }}</p>
+          <p class="text">{{ getHeroLives() }}</p>
         </div>
         <div>
           <div class="icon coin"></div>
@@ -26,7 +26,14 @@ import { useHeroStore } from "@/stores/hero.js";
         </div>
       </div>
     </div>
-    <div class="header-row"></div>
+    <div class="header-row">
+      <label for="livebar"></label>
+      <progress
+        id="livebar"
+        :max="getHeroMaxLive()"
+        :value="getHeroLive()"
+      ></progress>
+    </div>
   </section>
 </template>
 
@@ -36,8 +43,8 @@ export default {
     ...mapState(useHeroStore, ["hero"]),
   },
   methods: {
-    getHeroLive() {
-      return this.hero.live;
+    getHeroLives() {
+      return this.hero.lives;
     },
     getHeroCoins() {
       return this.hero.coins;
@@ -45,11 +52,43 @@ export default {
     getHerokeys() {
       return this.hero.keys;
     },
+    getHeroLive() {
+      return this.hero.live;
+    },
+    getHeroMaxLive() {
+      return this.hero.maxLive;
+    },
   },
 };
 </script>
 
 <style scoped>
+progress {
+  width: 100%;
+  border-radius: var(--button-radius);
+  height: 10px;
+  margin: 5px;
+}
+
+progress[value] {
+  /* Reset the default appearance */
+  -webkit-appearance: none;
+  appearance: none;
+  transition: 0.5s;
+}
+
+progress[value]::-webkit-progress-bar {
+  background-color: var(--dungeon-gray);
+  border-radius: 2px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+}
+
+progress[value]::-webkit-progress-value {
+  box-shadow: 0 2px 5px rgba(255, 255, 255, 0.3) inset;
+  background-color: var(--dungeon-blood);
+  border-radius: 2px 0 0 2px;
+}
+
 .gameboard-header {
   width: 450px;
   display: flex;
@@ -59,10 +98,11 @@ export default {
 }
 
 .header-row {
-  width: 450px;
+  width: 440px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 5px;
 }
 
 .hero-data {

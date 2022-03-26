@@ -232,7 +232,14 @@
           "destination": "c2"
         }
       ],
-      "materials": [],
+      "materials": [
+        {
+          "id": 1,
+          "type": "bread",
+          "position": "B1",
+          "live": 5
+        }
+      ],
       "structures": []
     },
     {
@@ -299,7 +306,14 @@
           "destination": "d4"
         }
       ],
-      "materials": [],
+      "materials": [
+        {
+          "id": 1,
+          "type": "life-potion",
+          "position": "B1",
+          "live": "10"
+        }
+      ],
       "structures": []
     },
     {

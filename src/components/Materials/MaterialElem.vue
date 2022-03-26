@@ -64,6 +64,11 @@ export default {
   width: 45px;
 }
 
+.life-potion {
+  height: 45px;
+  width: 45px;
+}
+
 @keyframes levitation {
   from {
     transform: translateY(-4%);

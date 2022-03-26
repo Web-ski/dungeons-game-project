@@ -6,7 +6,9 @@ export const useHeroStore = defineStore("hero", {
       heroPosition: "E4",
       hero: {
         name: "Janusz",
-        live: 3,
+        lives: 3,
+        live: 10,
+        maxLive: 20,
         coins: 0,
         keys: [],
       },
@@ -19,6 +21,10 @@ export const useHeroStore = defineStore("hero", {
     setMaterialToHero(material) {
       material.type === "coin" && this.hero.coins++;
       material.type.includes("key") && this.hero.keys.push(material.type);
+      material.type === "bread" &&
+        (this.hero.live = this.hero.live + material.live); // jeśli nie jest większy niż hero.live
+      material.type === "life-potion" &&
+        (this.hero.live = this.hero.live + material.live);
     },
   },
 });
