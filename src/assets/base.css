@@ -4,7 +4,7 @@
   --dungeon-active: #00ffaa;
   --dungeon-active-dark: rgba(var(--dungeon-active), 0.1);
   --dungeon-dark-cellar: #06241A;
-  --dungeon-blood: darkred;
+  --dungeon-blood: rgb(220, 20, 20);
   --dungeon-gray: gray;
   --button-radius: 6px;
 }

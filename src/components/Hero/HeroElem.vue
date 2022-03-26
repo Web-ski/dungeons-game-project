@@ -46,8 +46,13 @@ export default {
       const [takenMaterial] = materials.filter(
         (material) => heroPosition === material.position
       );
+      takenMaterial?.type && this.playSound(takenMaterial.type);
       takenMaterial && this.removeMaterialFromRoom(takenMaterial);
       takenMaterial && this.setMaterialToHero(takenMaterial);
+    },
+    playSound(soundName) {
+      const audio = new Audio("/audio/game/materials/" + soundName + ".wav");
+      audio.play();
     },
   },
   computed: {
