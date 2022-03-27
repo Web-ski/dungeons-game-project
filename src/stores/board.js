@@ -1,6 +1,8 @@
 import { defineStore } from "pinia";
 import { BoardgameClass } from "../class/board.class";
 import { ToolsClass } from "../class/tools.class";
+import { InteractionClass } from "@/class/interaction.class.js";
+import { MovementClass } from "@/class/movement.class.js";
 
 export const useBoardStore = defineStore("board", {
   state: () => {
@@ -48,34 +50,27 @@ export const useBoardStore = defineStore("board", {
       materials.splice(materialIndex, 1);
       this.currentRoom.materials = materials;
     },
+    openDoor(position) {
+      console.log(position);
+    },
   },
   getters: {
     getCurrentRoom: (state) => {
-      // if (!state.rooms.length > 0) {
-      //   return;
-      // }
-      // const [choosenRoom] = state.rooms.filter(
-      //   (room) => room.id === state.currentRoom
-      // );
       return ToolsClass.makeProxyToObject(state.currentRoom).structures;
     },
     getRoomEntries: (state) => {
-      // if (!state.rooms.length > 0) {
-      //   return;
-      // }
-      // const [choosenRoom] = state.rooms.filter(
-      //   (room) => room.id === state.currentRoom
-      // );
       return ToolsClass.makeProxyToObject(state.currentRoom).entries;
     },
     getRoomMaterials: (state) => {
-      // if (!state.rooms.length > 0) {
-      //   return;
-      // }
-      // const [choosenRoom] = state.rooms.filter(
-      //   (room) => room.id === state.currentRoom
-      // );
       return ToolsClass.makeProxyToObject(state.currentRoom).materials;
+    },
+    getClosedDoorsPostitons: (state) => {
+      const doors = ToolsClass.makeProxyToObject(state.currentRoom).entries;
+      return InteractionClass.getClosedDoors(doors);
+    },
+    getBoardAvailablePositions: (state) => {
+      const room = ToolsClass.makeProxyToObject(state.currentRoom).structures;
+      return MovementClass.checkAvailableField(room);
     },
   },
 });
