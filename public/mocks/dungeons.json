@@ -238,6 +238,12 @@
           "type": "bread",
           "position": "B1",
           "live": 5
+        },
+        {
+          "id": 1,
+          "type": "cheese",
+          "position": "H7",
+          "live": 5
         }
       ],
       "structures": []
