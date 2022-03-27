@@ -30,11 +30,29 @@ export default {
       "getClosedDoorsPostitons",
       "getBoardAvailablePositions",
     ]),
-    ...mapState(useHeroStore, ["heroPosition"]),
+    ...mapState(useHeroStore, ["heroPosition", "getHeroKeys"]),
   },
   methods: {
-    ...mapActions(useBoardStore, ["getBoardFromApi", "openopenDoor"]),
-    ...mapActions(useHeroStore, ["setHeroPosition"]),
+    ...mapActions(useBoardStore, ["getBoardFromApi", "openDoor"]),
+    ...mapActions(useHeroStore, ["setHeroPosition", "removeHeroKey"]),
+    checkHeroMove(destination) {
+      if (this.getBoardAvailablePositions.includes(destination)) {
+        this.setHeroPosition(destination);
+      } else {
+        if (this.getClosedDoorsPostitons.includes(destination)) {
+          if (this.getHeroKeys.length > 0) {
+            const [closedDoor] = this.getRoomEntries.filter(
+              (door) => door.position === destination
+            );
+            const isKey = this.getHeroKeys.includes(closedDoor.key);
+            isKey && console.log("Mam klucz!");
+            isKey && this.removeHeroKey(closedDoor.key);
+            isKey && this.openDoor(closedDoor);
+          }
+          // i podmieniasz drzwi na otwarte
+        }
+      }
+    },
     moveHero(event) {
       //dodać keyup globalnie dla document
       // console.log(this.heroPosition);
@@ -47,48 +65,19 @@ export default {
       switch (event.key) {
         case "w":
           destinatedPosition = COLUMN_LETTERS[letterPosition - 1] + nmbr;
-          if (this.getBoardAvailablePositions.includes(destinatedPosition)) {
-            this.setHeroPosition(destinatedPosition);
-          } else {
-            if (this.getClosedDoorsPostitons.includes(destinatedPosition)) {
-              console.log(destinatedPosition);
-            }
-          }
+          this.checkHeroMove(destinatedPosition);
           break;
         case "d":
           destinatedPosition = letter + (nmbr + 1);
-          if (this.getBoardAvailablePositions.includes(destinatedPosition)) {
-            this.setHeroPosition(destinatedPosition);
-          } else {
-            if (this.getClosedDoorsPostitons.includes(destinatedPosition)) {
-              console.log(destinatedPosition);
-            }
-          }
+          this.checkHeroMove(destinatedPosition);
           break;
         case "s":
           destinatedPosition = COLUMN_LETTERS[letterPosition + 1] + nmbr;
-          if (this.getBoardAvailablePositions.includes(destinatedPosition)) {
-            this.setHeroPosition(destinatedPosition);
-          } else {
-            if (this.getClosedDoorsPostitons.includes(destinatedPosition)) {
-              console.log(destinatedPosition);
-            }
-          }
+          this.checkHeroMove(destinatedPosition);
           break;
         case "a":
           destinatedPosition = letter + (nmbr - 1);
-          if (this.getBoardAvailablePositions.includes(destinatedPosition)) {
-            this.setHeroPosition(destinatedPosition);
-          } else {
-            if (this.getClosedDoorsPostitons.includes(destinatedPosition)) {
-              console.log(destinatedPosition);
-
-              // teraz sprawdzenie czy masz klucz?
-              // jeśli tak to czy pasuje do drzwi
-              // jeśli tak to usuwasz klucz z kieszeni
-              // i podmieniasz drzwi na otwarte
-            }
-          }
+          this.checkHeroMove(destinatedPosition);
           break;
         default:
           return false;

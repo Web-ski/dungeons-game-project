@@ -11,7 +11,13 @@
           "destination": "a2"
         }
       ],
-      "materials": [],
+      "materials": [
+        {
+          "id": 1,
+          "type": "diamond",
+          "position": "E4"
+        }
+      ],
       "structures": []
     },
     {
@@ -79,32 +85,77 @@
         {
           "id": 7,
           "type": "coin",
-          "position": "B2"
+          "position": "H1"
         },
         {
           "id": 8,
           "type": "coin",
-          "position": "C2"
+          "position": "B2"
         },
         {
           "id": 9,
           "type": "coin",
-          "position": "D2"
+          "position": "C2"
         },
         {
           "id": 10,
           "type": "coin",
-          "position": "E2"
+          "position": "D2"
         },
         {
           "id": 11,
           "type": "coin",
-          "position": "F2"
+          "position": "E2"
         },
         {
           "id": 12,
           "type": "coin",
+          "position": "F2"
+        },
+        {
+          "id": 13,
+          "type": "coin",
           "position": "G2"
+        },
+        {
+          "id": 14,
+          "type": "coin",
+          "position": "H2"
+        },
+        {
+          "id": 15,
+          "type": "coin",
+          "position": "B3"
+        },
+        {
+          "id": 16,
+          "type": "coin",
+          "position": "C3"
+        },
+        {
+          "id": 17,
+          "type": "coin",
+          "position": "D3"
+        },
+        {
+          "id": 18,
+          "type": "coin",
+          "position": "E3"
+        },
+        {
+          "id": 19,
+          "type": "coin",
+          "position": "F3"
+        },
+        {
+          "id": 20,
+          "type": "coin",
+          "position": "G3"
+        },
+        {
+          "id": 21,
+          "type": "coin",
+          "position": "H3"
         }
       ],
       "structures": []

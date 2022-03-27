@@ -12,6 +12,10 @@ import { useHeroStore } from "@/stores/hero.js";
           <p class="text">{{ getHeroLives() }}</p>
         </div>
         <div>
+          <div class="icon diamond"></div>
+          <p class="text">{{ getDimanonds() }}</p>
+        </div>
+        <div>
           <div class="icon coin"></div>
           <p class="text">{{ getHeroCoins() }}</p>
         </div>
@@ -45,6 +49,9 @@ export default {
   methods: {
     getHeroLives() {
       return this.hero.lives;
+    },
+    getDimanonds() {
+      return this.hero.diamonds;
     },
     getHeroCoins() {
       return this.hero.coins;
@@ -128,6 +135,11 @@ progress[value]::-webkit-progress-value {
 .heart {
   background-image: url("../icons/drawn-heart-pink.svg");
 }
+
+.diamond {
+  background-image: url("/images/game/materials/diamond.png");
+}
+
 .coin {
   background-image: url("../icons/coin-green.png");
 }

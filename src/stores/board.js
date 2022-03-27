@@ -9,7 +9,7 @@ export const useBoardStore = defineStore("board", {
     return {
       isProcessing: false,
       isBoardSwitching: true,
-      currentRoom: {}, // dodać akcję i zmienić gettery
+      currentRoom: {},
       rooms: [],
     };
   },
@@ -50,8 +50,23 @@ export const useBoardStore = defineStore("board", {
       materials.splice(materialIndex, 1);
       this.currentRoom.materials = materials;
     },
-    openDoor(position) {
-      console.log(position);
+    openDoor(door) {
+      console.log(door);
+      // zmianieć door w currentRoom - structures i entries
+      const room = ToolsClass.makeProxyToObject(this.currentRoom);
+      const doorOpenType = door.type.replace("-closed", "");
+      room.entries.map((entry, index) => {
+        if (entry.type === door.type) {
+          console.log(this.currentRoom.entries[index].type);
+          this.currentRoom.entries[index].type = doorOpenType;
+        }
+      });
+      room.structures.map((elem, index) => {
+        if (elem.type === door.type) {
+          console.log(this.currentRoom.structures[index].type);
+          this.currentRoom.structures[index].type = doorOpenType;
+        }
+      });
     },
   },
   getters: {
