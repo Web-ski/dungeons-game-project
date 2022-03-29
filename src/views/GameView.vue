@@ -5,7 +5,9 @@ import GameboardHeaderView from "../components/GameboardHeader/GameboardHeaderVi
 import GameboardMainView from "../components/GameboardMain/GameboardMainView.vue";
 import { useBoardStore } from "@/stores/board.js";
 import { useHeroStore } from "@/stores/hero.js";
-import { MovementClass } from "@/class/movement.class.js";
+// import { MovementClass } from "@/class/movement.class.js";
+// import { InteractionClass } from "@/class/interaction.class.js";
+import { COLUMN_LETTERS } from "@/const/board-data.const";
 </script>
 
 <template>
@@ -21,23 +23,82 @@ import { MovementClass } from "@/class/movement.class.js";
 <script>
 export default {
   computed: {
-    ...mapState(useBoardStore, ["isProcessing", "getCurrentRoom"]),
-    ...mapState(useHeroStore, ["heroPosition"]),
+    ...mapState(useBoardStore, [
+      "isProcessing",
+      "getCurrentRoom",
+      "getRoomEntries",
+      "getClosedDoorsPostitons",
+      "getBoardAvailablePositions",
+    ]),
+    ...mapState(useHeroStore, ["heroPosition", "getHeroKeys"]),
   },
   methods: {
-    ...mapActions(useBoardStore, ["getBoardFromApi"]),
-    ...mapActions(useHeroStore, ["setHeroPosition"]),
+    ...mapActions(useBoardStore, ["getBoardFromApi", "openDoor"]),
+    ...mapActions(useHeroStore, ["setHeroPosition", "removeHeroKey"]),
+    checkHeroMove(destination) {
+      if (this.getBoardAvailablePositions.includes(destination)) {
+        this.setHeroPosition(destination);
+      } else {
+        if (this.getClosedDoorsPostitons.includes(destination)) {
+          if (this.getHeroKeys.length > 0) {
+            const [closedDoor] = this.getRoomEntries.filter(
+              (door) => door.position === destination
+            );
+            const isKey = this.getHeroKeys.includes(closedDoor.key);
+            isKey && console.log("Mam klucz!");
+            isKey && this.removeHeroKey(closedDoor.key);
+            isKey && this.openDoor(closedDoor);
+          }
+          // i podmieniasz drzwi na otwarte
+        }
+      }
+    },
     moveHero(event) {
       //dodać keyup globalnie dla document
       // console.log(this.heroPosition);
       event.stopPropagation();
-      this.setHeroPosition(
-        MovementClass.getHeroMove(
-          this.heroPosition,
-          event.key,
-          this.getCurrentRoom
-        )
-      );
+      const letter = this.heroPosition.charAt(0);
+      const letterPosition = COLUMN_LETTERS.indexOf(letter);
+      const nmbr = parseInt(this.heroPosition.charAt(1));
+      let destinatedPosition;
+
+      switch (event.key) {
+        case "w":
+          destinatedPosition = COLUMN_LETTERS[letterPosition - 1] + nmbr;
+          this.checkHeroMove(destinatedPosition);
+          break;
+        case "d":
+          destinatedPosition = letter + (nmbr + 1);
+          this.checkHeroMove(destinatedPosition);
+          break;
+        case "s":
+          destinatedPosition = COLUMN_LETTERS[letterPosition + 1] + nmbr;
+          this.checkHeroMove(destinatedPosition);
+          break;
+        case "a":
+          destinatedPosition = letter + (nmbr - 1);
+          this.checkHeroMove(destinatedPosition);
+          break;
+        default:
+          return false;
+      }
+      // trzeba z tego zrobić jedną funkcję
+      // roomClosedDoors.length > 0 &&
+      //   this.openDoor(
+      //     InteractionClass.getHeroInteraction(
+      //       this.heroPosition,
+      //       event.key,
+      //       roomClosedDoors
+      //     )
+      //   );
+
+      // this.setHeroPosition(
+      //   MovementClass.getHeroMove(
+      //     this.heroPosition,
+      //     event.key,
+      //     this.getCurrentRoom
+      //   )
+      // );
     },
   },
   created() {

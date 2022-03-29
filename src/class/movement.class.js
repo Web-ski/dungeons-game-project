@@ -1,6 +1,9 @@
 import { COLUMN_LETTERS, BOARD_STEP } from "@/const/board-data.const";
 export class MovementClass {
   static checkAvailableField(fieldsList) {
+    if (!fieldsList) {
+      return;
+    }
     const availableFields = fieldsList.filter(
       ({ type }) =>
         type === "floor" ||
@@ -11,46 +14,6 @@ export class MovementClass {
     );
     const availablePositions = availableFields.map((elem) => elem.position);
     return availablePositions;
-  }
-  static getHeroMove(position, key, structures) {
-    // wprowadzić warunek drzwi
-    const availablePositions = this.checkAvailableField(structures);
-    const letter = position.charAt(0);
-    const letterPosition = COLUMN_LETTERS.indexOf(letter);
-    const nmbr = parseInt(position.charAt(1));
-    let newPosition;
-    switch (key) {
-      case "w":
-      case "ArrowUp":
-        newPosition = COLUMN_LETTERS[letterPosition - 1] + nmbr;
-        if (availablePositions.includes(newPosition)) {
-          return newPosition;
-        }
-        return position;
-      case "d":
-      case "ArrowRight":
-        newPosition = letter + (nmbr + 1);
-        if (availablePositions.includes(newPosition)) {
-          return newPosition;
-        }
-        return position;
-      case "s":
-      case "ArrowDown":
-        newPosition = COLUMN_LETTERS[letterPosition + 1] + nmbr;
-        if (availablePositions.includes(newPosition)) {
-          return newPosition;
-        }
-        return position;
-      case "a":
-      case "ArrowLeft":
-        newPosition = letter + (nmbr - 1);
-        if (availablePositions.includes(newPosition)) {
-          return newPosition;
-        }
-        return position;
-      default:
-        return position;
-    }
   }
   static setHeroMove(position, direction) {
     if (direction === "vertical") {

@@ -1,139 +1,475 @@
 {
   "rooms": [
     {
-      "id": 1,
+      "id": "a1",
       "type": "cellar",
-      "model": "normal",
+      "model": "cell",
       "entries": [
         {
           "type": "door--right",
           "position": "E8",
-          "destination": 2
-        }
-      ],
-      "materials": [],
-      "structures": []
-    },
-    {
-      "id": 2,
-      "type": "cellar",
-      "model": "normal",
-      "entries": [
-        {
-          "type": "door--left",
-          "position": "E0",
-          "destination": 1
-        },
-        {
-          "type": "door--right",
-          "position": "E8",
-          "destination": 3
-        },
-        {
-          "type": "door--bottom",
-          "position": "I4",
-          "destination": 5
-        }
-      ],
-      "materials": [],
-      "structures": []
-    },
-    {
-      "id": 3,
-      "type": "cellar",
-      "model": "normal",
-      "entries": [
-        {
-          "type": "door--left",
-          "position": "E0",
-          "destination": 2
+          "destination": "a2"
         }
       ],
       "materials": [
         {
           "id": 1,
-          "type": "coin"
-        },
-        {
-          "id": 2,
-          "type": "coin"
-        },
-        {
-          "id": 3,
-          "type": "coin"
+          "type": "diamond",
+          "position": "E4"
         }
       ],
       "structures": []
     },
     {
-      "id": 5,
+      "id": "a2",
+      "type": "cellar",
+      "model": "normal",
+      "entries": [
+        {
+          "type": "door--bottom",
+          "position": "I4",
+          "destination": "b2"
+        },
+        {
+          "type": "door-closed--left",
+          "position": "E0",
+          "destination": "a1",
+          "key": "blue-key"
+        }
+      ],
+      "materials": [],
+      "structures": []
+    },
+    {
+      "id": "a3",
+      "type": "cellar",
+      "model": "normal",
+      "entries": [
+        {
+          "type": "door--right",
+          "position": "E8",
+          "destination": "a4"
+        }
+      ],
+      "materials": [
+        {
+          "id": 1,
+          "type": "coin",
+          "position": "B1"
+        },
+        {
+          "id": 2,
+          "type": "coin",
+          "position": "C1"
+        },
+        {
+          "id": 3,
+          "type": "coin",
+          "position": "D1"
+        },
+        {
+          "id": 4,
+          "type": "coin",
+          "position": "E1"
+        },
+        {
+          "id": 5,
+          "type": "coin",
+          "position": "F1"
+        },
+        {
+          "id": 6,
+          "type": "coin",
+          "position": "G1"
+        },
+        {
+          "id": 7,
+          "type": "coin",
+          "position": "H1"
+        },
+        {
+          "id": 8,
+          "type": "coin",
+          "position": "B2"
+        },
+        {
+          "id": 9,
+          "type": "coin",
+          "position": "C2"
+        },
+        {
+          "id": 10,
+          "type": "coin",
+          "position": "D2"
+        },
+        {
+          "id": 11,
+          "type": "coin",
+          "position": "E2"
+        },
+        {
+          "id": 12,
+          "type": "coin",
+          "position": "F2"
+        },
+        {
+          "id": 13,
+          "type": "coin",
+          "position": "G2"
+        },
+        {
+          "id": 14,
+          "type": "coin",
+          "position": "H2"
+        },
+        {
+          "id": 15,
+          "type": "coin",
+          "position": "B3"
+        },
+        {
+          "id": 16,
+          "type": "coin",
+          "position": "C3"
+        },
+        {
+          "id": 17,
+          "type": "coin",
+          "position": "D3"
+        },
+        {
+          "id": 18,
+          "type": "coin",
+          "position": "E3"
+        },
+        {
+          "id": 19,
+          "type": "coin",
+          "position": "F3"
+        },
+        {
+          "id": 20,
+          "type": "coin",
+          "position": "G3"
+        },
+        {
+          "id": 21,
+          "type": "coin",
+          "position": "H3"
+        }
+      ],
+      "structures": []
+    },
+    {
+      "id": "a4",
+      "type": "cellar",
+      "model": "normal",
+      "entries": [
+        {
+          "type": "door--bottom",
+          "position": "I4",
+          "destination": "b4"
+        },
+        {
+          "type": "door-closed--left",
+          "position": "E0",
+          "destination": "a3",
+          "key": "gold-key"
+        }
+      ],
+      "materials": [],
+      "structures": []
+    },
+    {
+      "id": "b1",
+      "type": "cellar",
+      "model": "cell",
+      "entries": [
+        {
+          "type": "door--right",
+          "position": "E8",
+          "destination": "b2"
+        }
+      ],
+      "materials": [],
+      "structures": []
+    },
+    {
+      "id": "b2",
+      "type": "cellar",
+      "model": "normal",
+      "entries": [
+        {
+          "type": "door--top",
+          "position": "A4",
+          "destination": "a2"
+        },
+        {
+          "type": "door--right",
+          "position": "E8",
+          "destination": "b3"
+        },
+        {
+          "type": "door--bottom",
+          "position": "I4",
+          "destination": "c2"
+        },
+        {
+          "type": "door--left",
+          "position": "E0",
+          "destination": "b1"
+        }
+      ],
+      "materials": [],
+      "structures": []
+    },
+    {
+      "id": "b3",
+      "type": "cellar",
+      "model": "normal",
+      "entries": [
+        {
+          "type": "door--left",
+          "position": "E0",
+          "destination": "b2"
+        }
+      ],
+      "materials": [
+        {
+          "id": 1,
+          "type": "coin",
+          "position": "C6"
+        },
+        {
+          "id": 2,
+          "type": "coin",
+          "position": "E6"
+        },
+        {
+          "id": 3,
+          "type": "coin",
+          "position": "G6"
+        }
+      ],
+      "structures": []
+    },
+    {
+      "id": "b4",
       "type": "cellar",
       "model": "cross",
       "entries": [
         {
           "type": "door--top",
           "position": "A4",
-          "destination": 2
-        },
-        {
-          "type": "door--right",
-          "position": "E8",
-          "destination": 6
+          "destination": "a4"
         },
         {
           "type": "door--bottom",
           "position": "I4",
-          "destination": 8
-        },
-        {
-          "type": "door--left",
-          "position": "E0",
-          "destination": 4
+          "destination": "c4"
         }
       ],
       "materials": [],
       "structures": []
     },
     {
-      "id": 4,
+      "id": "c1",
       "type": "cellar",
-      "model": "normal",
+      "model": "cell",
       "entries": [
         {
           "type": "door--right",
           "position": "E8",
-          "destination": 5
+          "destination": "c2"
         }
       ],
-      "materials": [],
-      "structures": []
-    },
-    {
-      "id": 6,
-      "type": "cellar",
-      "model": "normal",
-      "entries": [
+      "materials": [
         {
-          "type": "door--left",
-          "position": "E0",
-          "destination": 5
+          "id": 1,
+          "type": "bread",
+          "position": "B1",
+          "live": 5
+        },
+        {
+          "id": 2,
+          "type": "cheese",
+          "position": "H7",
+          "live": 5
         }
       ],
-      "materials": [],
       "structures": []
     },
     {
-      "id": 8,
+      "id": "c2",
       "type": "cellar",
       "model": "normal",
       "entries": [
         {
           "type": "door--top",
           "position": "A4",
-          "destination": 5
+          "destination": "b2"
+        },
+        {
+          "type": "door--left",
+          "position": "E0",
+          "destination": "c1"
+        },
+        {
+          "type": "door--bottom",
+          "position": "I4",
+          "destination": "d2"
         }
       ],
       "materials": [],
+      "structures": []
+    },
+    {
+      "id": "c3",
+      "type": "cellar",
+      "model": "normal",
+      "entries": [
+        {
+          "type": "door--right",
+          "position": "E8",
+          "destination": "c4"
+        },
+        {
+          "type": "door--bottom",
+          "position": "I4",
+          "destination": "d3"
+        }
+      ],
+      "materials": [],
+      "structures": []
+    },
+    {
+      "id": "c4",
+      "type": "cellar",
+      "model": "normal",
+      "entries": [
+        {
+          "type": "door--top",
+          "position": "A4",
+          "destination": "b4"
+        },
+        {
+          "type": "door--left",
+          "position": "E0",
+          "destination": "c3"
+        },
+        {
+          "type": "door--bottom",
+          "position": "I4",
+          "destination": "d4"
+        }
+      ],
+      "materials": [
+        {
+          "id": 1,
+          "type": "life-potion",
+          "position": "B1",
+          "live": "10"
+        }
+      ],
+      "structures": []
+    },
+    {
+      "id": "d1",
+      "type": "cellar",
+      "model": "normal",
+      "entries": [
+        {
+          "type": "door--right",
+          "position": "E8",
+          "destination": "d2"
+        }
+      ],
+      "materials": [
+        {
+          "id": 1,
+          "type": "gold-key",
+          "position": "E4"
+        }
+      ],
+      "structures": []
+    },
+    {
+      "id": "d2",
+      "type": "cellar",
+      "model": "normal",
+      "entries": [
+        {
+          "type": "door--top",
+          "position": "A4",
+          "destination": "c2"
+        },
+        {
+          "type": "door--right",
+          "position": "E8",
+          "destination": "d3"
+        },
+        {
+          "type": "door--left",
+          "position": "E0",
+          "destination": "d1"
+        }
+      ],
+      "materials": [],
+      "structures": []
+    },
+    {
+      "id": "d3",
+      "type": "cellar",
+      "model": "normal",
+      "entries": [
+        {
+          "type": "door--top",
+          "position": "A4",
+          "destination": "c3"
+        },
+        {
+          "type": "door--left",
+          "position": "E0",
+          "destination": "d2"
+        }
+      ],
+      "materials": [
+        {
+          "id": 1,
+          "type": "coin",
+          "position": "C6"
+        },
+        {
+          "id": 2,
+          "type": "coin",
+          "position": "E6"
+        },
+        {
+          "id": 3,
+          "type": "coin",
+          "position": "G6"
+        }
+      ],
+      "structures": []
+    },
+    {
+      "id": "d4",
+      "type": "cellar",
+      "model": "normal",
+      "entries": [
+        {
+          "type": "door--top",
+          "position": "A4",
+          "destination": "c4"
+        }
+      ],
+      "materials": [
+        {
+          "id": 1,
+          "type": "blue-key",
+          "position": "E4"
+        }
+      ],
       "structures": []
     }
   ]

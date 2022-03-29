@@ -1,13 +1,15 @@
 import { defineStore } from "pinia";
 import { BoardgameClass } from "../class/board.class";
 import { ToolsClass } from "../class/tools.class";
+import { InteractionClass } from "@/class/interaction.class.js";
+import { MovementClass } from "@/class/movement.class.js";
 
 export const useBoardStore = defineStore("board", {
   state: () => {
     return {
       isProcessing: false,
       isBoardSwitching: true,
-      currentRoom: 1,
+      currentRoom: {},
       rooms: [],
     };
   },
@@ -24,43 +26,66 @@ export const useBoardStore = defineStore("board", {
         item.structures = buildStructure;
         return item;
       });
+      this.setCurrentRoom("b1");
       this.isProcessing = false;
     },
-    setCurrentRoom(number) {
-      this.currentRoom = number;
+    setCurrentRoom(roomNumber) {
+      const [choosenRoom] = this.rooms.filter((room) => room.id === roomNumber);
+      this.currentRoom = choosenRoom;
       setTimeout(() => this.setBoardSwitching(false), 200);
     },
     setBoardSwitching(value) {
       this.isBoardSwitching = value;
     },
+    removeMaterialFromRoom(material) {
+      const materials = ToolsClass.makeProxyToObject(
+        this.currentRoom
+      ).materials;
+      let materialIndex;
+      materials.map((item, index) => {
+        if (item.id === material.id) {
+          materialIndex = index;
+        }
+      });
+      materials.splice(materialIndex, 1);
+      this.currentRoom.materials = materials;
+    },
+    openDoor(door) {
+      console.log(door);
+      // zmianieć door w currentRoom - structures i entries
+      const room = ToolsClass.makeProxyToObject(this.currentRoom);
+      const doorOpenType = door.type.replace("-closed", "");
+      room.entries.map((entry, index) => {
+        if (entry.type === door.type) {
+          console.log(this.currentRoom.entries[index].type);
+          this.currentRoom.entries[index].type = doorOpenType;
+        }
+      });
+      room.structures.map((elem, index) => {
+        if (elem.type === door.type) {
+          console.log(this.currentRoom.structures[index].type);
+          this.currentRoom.structures[index].type = doorOpenType;
+        }
+      });
+    },
   },
   getters: {
     getCurrentRoom: (state) => {
-      if (!state.rooms.length > 0) {
-        return;
-      }
-      const [choosenRoom] = state.rooms.filter(
-        (room) => room.id === state.currentRoom
-      );
-      return ToolsClass.makeProxyToObject(choosenRoom).structures;
+      return ToolsClass.makeProxyToObject(state.currentRoom).structures;
     },
     getRoomEntries: (state) => {
-      if (!state.rooms.length > 0) {
-        return;
-      }
-      const [choosenRoom] = state.rooms.filter(
-        (room) => room.id === state.currentRoom
-      );
-      return ToolsClass.makeProxyToObject(choosenRoom).entries;
+      return ToolsClass.makeProxyToObject(state.currentRoom).entries;
     },
     getRoomMaterials: (state) => {
-      if (!state.rooms.length > 0) {
-        return;
-      }
-      const [choosenRoom] = state.rooms.filter(
-        (room) => room.id === state.currentRoom
-      );
-      return ToolsClass.makeProxyToObject(choosenRoom).materials;
+      return ToolsClass.makeProxyToObject(state.currentRoom).materials;
+    },
+    getClosedDoorsPostitons: (state) => {
+      const doors = ToolsClass.makeProxyToObject(state.currentRoom).entries;
+      return InteractionClass.getClosedDoors(doors);
+    },
+    getBoardAvailablePositions: (state) => {
+      const room = ToolsClass.makeProxyToObject(state.currentRoom).structures;
+      return MovementClass.checkAvailableField(room);
     },
   },
 });

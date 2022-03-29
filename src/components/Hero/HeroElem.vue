@@ -17,8 +17,12 @@ import { MovementClass } from "@/class/movement.class.js";
 <script>
 export default {
   methods: {
-    ...mapActions(useBoardStore, ["setCurrentRoom", "setBoardSwitching"]),
-    ...mapActions(useHeroStore, ["setHeroPosition"]),
+    ...mapActions(useBoardStore, [
+      "setCurrentRoom",
+      "removeMaterialFromRoom",
+      "setBoardSwitching",
+    ]),
+    ...mapActions(useHeroStore, ["setHeroPosition", "setMaterialToHero"]),
     getHeroPositionX() {
       return MovementClass.setHeroMove(this.heroPosition, "horizontal");
     },
@@ -38,12 +42,29 @@ export default {
         );
       }
     },
+    takeMaterial(heroPosition, materials) {
+      const [takenMaterial] = materials.filter(
+        (material) => heroPosition === material.position
+      );
+      takenMaterial?.type && this.playSound(takenMaterial.type);
+      takenMaterial && this.removeMaterialFromRoom(takenMaterial);
+      takenMaterial && this.setMaterialToHero(takenMaterial);
+    },
+    playSound(soundName) {
+      const audio = new Audio("/audio/game/materials/" + soundName + ".wav");
+      audio.play();
+    },
   },
   computed: {
     ...mapState(useHeroStore, ["heroPosition"]),
-    ...mapState(useBoardStore, ["getRoomEntries", "isBoardSwitching"]),
+    ...mapState(useBoardStore, [
+      "getRoomEntries",
+      "getRoomMaterials",
+      "isBoardSwitching",
+    ]),
   },
   updated() {
+    this.takeMaterial(this.heroPosition, this.getRoomMaterials);
     this.switchBoard(this.heroPosition, this.getRoomEntries);
   },
 };
@@ -60,5 +81,6 @@ export default {
   background-size: cover;
   background-image: url("/images/game/heros/hero-dev2.png");
   transition: 0.3s;
+  z-index: 100;
 }
 </style>
