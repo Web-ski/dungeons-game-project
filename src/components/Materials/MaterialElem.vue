@@ -6,7 +6,7 @@ import { MaterialClass } from "@/class/material.class.js";
 
 <template>
   <div
-    :class="'material ' + this.material.type"
+    :class="'material ' + material.type"
     v-if="!isBoardSwitching"
     :style="
       'background-image: url(/images/game/materials/' +

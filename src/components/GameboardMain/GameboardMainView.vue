@@ -15,9 +15,9 @@ import BoardElem from "./BoardElem.vue";
     ></board-elem>
     <hero-elem />
     <material-elem
-      v-for="material in getMaterials()"
-      :key="material.id"
-      :material="material"
+      v-for="elem in getMaterials()"
+      :key="elem.id"
+      :material="elem"
     />
   </div>
 </template>
@@ -61,7 +61,7 @@ export default {
     opacity: 0;
   }
   to {
-    opaciyt: 1;
+    opacity: 1;
   }
 }
 </style>

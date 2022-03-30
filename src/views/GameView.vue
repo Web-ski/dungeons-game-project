@@ -49,13 +49,10 @@ export default {
             isKey && this.removeHeroKey(closedDoor.key);
             isKey && this.openDoor(closedDoor);
           }
-          // i podmieniasz drzwi na otwarte
         }
       }
     },
     moveHero(event) {
-      //dodać keyup globalnie dla document
-      // console.log(this.heroPosition);
       event.stopPropagation();
       const letter = this.heroPosition.charAt(0);
       const letterPosition = COLUMN_LETTERS.indexOf(letter);
@@ -82,23 +79,6 @@ export default {
         default:
           return false;
       }
-      // trzeba z tego zrobić jedną funkcję
-      // roomClosedDoors.length > 0 &&
-      //   this.openDoor(
-      //     InteractionClass.getHeroInteraction(
-      //       this.heroPosition,
-      //       event.key,
-      //       roomClosedDoors
-      //     )
-      //   );
-
-      // this.setHeroPosition(
-      //   MovementClass.getHeroMove(
-      //     this.heroPosition,
-      //     event.key,
-      //     this.getCurrentRoom
-      //   )
-      // );
     },
   },
   created() {
