@@ -29,10 +29,17 @@ export const useHeroStore = defineStore("hero", {
       material.type === "coin" && this.hero.coins++;
       material.type === "diamond" && this.hero.diamonds++;
       material.type.includes("key") && this.hero.keys.push(material.type);
-      material.type === "bread" &&
-        (this.hero.live = this.hero.live + material.live); // jeśli nie jest większy niż hero.live
-      material.type === "life-potion" &&
-        (this.hero.live = this.hero.live + material.live);
+      if (
+        material.type === "bread" ||
+        material.type === "life-potion" ||
+        material.type === "cheese"
+      ) {
+        if (this.hero.live + material.live > this.hero.maxLive) {
+          this.hero.live = this.hero.maxLive;
+        } else {
+          this.hero.live = this.hero.live + material.live;
+        }
+      }
     },
   },
   getters: {
