@@ -33,3 +33,15 @@ npm run build
 ```sh
 npm run lint
 ```
+
+### Start Github Pages
+
+```sh
+git checkout gh-pages
+git merge master
+git add dist -f
+git commit -m "Adding dist"
+git push subtree push --prefix dist origin gh-pages
+```
+
+You did it!

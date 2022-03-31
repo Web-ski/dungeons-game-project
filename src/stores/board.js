@@ -3,6 +3,7 @@ import { BoardgameClass } from "../class/board.class";
 import { ToolsClass } from "../class/tools.class";
 import { InteractionClass } from "@/class/interaction.class.js";
 import { MovementClass } from "@/class/movement.class.js";
+const baseUrl = ""; //import.meta.env.VITE_APP_API;
 
 export const useBoardStore = defineStore("board", {
   state: () => {
@@ -16,7 +17,7 @@ export const useBoardStore = defineStore("board", {
   actions: {
     getBoardFromApi() {
       this.isProcessing = true;
-      fetch("/mocks/dungeons.json")
+      fetch(baseUrl + "/mocks/dungeons.json")
         .then((response) => response.json())
         .then((data) => this.setDataToStore(data.rooms));
     },
