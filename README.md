@@ -41,7 +41,7 @@ git checkout gh-pages
 git merge master
 git add dist -f
 git commit -m "Adding dist"
-git push subtree push --prefix dist origin gh-pages
+git subtree push --prefix dist origin gh-pages
 ```
 
 You did it!
