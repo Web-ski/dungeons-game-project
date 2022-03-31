@@ -51,7 +51,7 @@ export default {
       takenMaterial && this.setMaterialToHero(takenMaterial);
     },
     playSound(soundName) {
-      const audio = new Audio("/audio/game/materials/" + soundName + ".wav");
+      const audio = new Audio("audio/game/materials/" + soundName + ".wav");
       audio.play();
     },
   },

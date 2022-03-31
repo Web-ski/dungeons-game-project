@@ -1,3 +1,7 @@
+<script setup>
+// import { BASE_URL } from "@/const/api.const.js";
+</script>
+
 <template>
   <div :id="elem.position" class="board-elem" :style="setUrl()"></div>
 </template>
@@ -7,7 +11,7 @@ export default {
   props: ["elem"],
   methods: {
     setUrl() {
-      return `background-image: url("/images/game/cellar/${this.elem.type}.png")`;
+      return `background-image: url("images/game/cellar/${this.elem.type}.png")`;
       // return "background-image: url('/images/game/cellar/floor.png";
     },
   },

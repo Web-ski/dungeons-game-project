@@ -2,6 +2,7 @@
 import { mapState } from "pinia";
 import { useBoardStore } from "@/stores/board.js";
 import { MaterialClass } from "@/class/material.class.js";
+// import { BASE_URL } from "@/const/api.const.js";
 </script>
 
 <template>
@@ -9,7 +10,7 @@ import { MaterialClass } from "@/class/material.class.js";
     :class="'material ' + material.type"
     v-if="!isBoardSwitching"
     :style="
-      'background-image: url(/images/game/materials/' +
+      'background-image: url(images/game/materials/' +
       setType() +
       '.png); left: ' +
       setPositionX() +
