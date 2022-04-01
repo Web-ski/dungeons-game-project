@@ -48,11 +48,16 @@ export default {
               (door) => door.position === destination
             );
             const isKey = this.getHeroKeys.includes(closedDoor.key);
-            isKey && console.log("Mam klucz!");
+            // isKey && console.log("Mam klucz!");
             isKey && this.removeHeroKey(closedDoor.key);
             isKey && this.openDoor(closedDoor);
             isKey && this.setHeroDialogText("openedDoor");
             isKey && this.setIsHeroDialog(true);
+            !isKey && this.setHeroDialogText("wrongKey");
+            !isKey && this.setIsHeroDialog(true);
+          } else {
+            this.setHeroDialogText("closedDoor");
+            this.setIsHeroDialog(true);
           }
         }
       }
