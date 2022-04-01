@@ -3,6 +3,7 @@ import { mapState, mapActions } from "pinia";
 import { useHeroStore } from "@/stores/hero.js";
 import { useBoardStore } from "@/stores/board.js";
 import { MovementClass } from "@/class/movement.class.js";
+import HeroTooltip from "./HeroTooltip.vue";
 </script>
 
 
@@ -11,11 +12,14 @@ import { MovementClass } from "@/class/movement.class.js";
     v-if="!isBoardSwitching"
     id="hero"
     :style="'left: ' + getHeroPositionX() + '; ' + 'top: ' + getHeroPositionY()"
-  ></div>
+  >
+    <hero-tooltip />
+  </div>
 </template>
 
 <script>
 export default {
+  components: { HeroTooltip },
   methods: {
     ...mapActions(useBoardStore, [
       "setCurrentRoom",
@@ -36,7 +40,6 @@ export default {
       if (crossedEntry?.destination) {
         this.setBoardSwitching(true);
         this.setCurrentRoom(crossedEntry.destination);
-        //dać tu klasę!!!! bo są jeszcze inne możliwości przejścia do innego pomieszczenia
         this.setHeroPosition(
           MovementClass.setHeroLeaveBoard(crossedEntry.position)
         );

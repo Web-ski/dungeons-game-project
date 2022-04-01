@@ -53,7 +53,6 @@ export const useBoardStore = defineStore("board", {
     },
     openDoor(door) {
       console.log(door);
-      // zmianieć door w currentRoom - structures i entries
       const room = ToolsClass.makeProxyToObject(this.currentRoom);
       const doorOpenType = door.type.replace("-closed", "");
       room.entries.map((entry, index) => {

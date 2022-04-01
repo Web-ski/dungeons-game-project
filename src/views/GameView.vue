@@ -5,8 +5,6 @@ import GameboardHeaderView from "../components/GameboardHeader/GameboardHeaderVi
 import GameboardMainView from "../components/GameboardMain/GameboardMainView.vue";
 import { useBoardStore } from "@/stores/board.js";
 import { useHeroStore } from "@/stores/hero.js";
-// import { MovementClass } from "@/class/movement.class.js";
-// import { InteractionClass } from "@/class/interaction.class.js";
 import { COLUMN_LETTERS } from "@/const/board-data.const";
 </script>
 
@@ -14,14 +12,27 @@ import { COLUMN_LETTERS } from "@/const/board-data.const";
   <div v-if="isProcessing">Game loading...</div>
   <PageMain v-if="!isProcessing">
     <section class="game">
-      <GameboardHeaderView />
-      <GameboardMainView />
+      <gameboard-header-view />
+      <gameboard-main-view />
+      <aside id="mobile-move-console">
+        <div>
+          <button class="btn top" @click="this.moveHero('w')">&#8593;</button>
+        </div>
+        <div>
+          <button class="btn left" @click="this.moveHero('a')">&#8592;</button>
+          <button class="btn right" @click="this.moveHero('d')">&#8594;</button>
+        </div>
+        <div>
+          <button class="btn down" @click="this.moveHero('s')">&#8595;</button>
+        </div>
+      </aside>
     </section>
   </PageMain>
 </template>
 
 <script>
 export default {
+  components: { GameboardHeaderView, GameboardMainView },
   computed: {
     ...mapState(useBoardStore, [
       "isProcessing",
@@ -30,11 +41,16 @@ export default {
       "getClosedDoorsPostitons",
       "getBoardAvailablePositions",
     ]),
-    ...mapState(useHeroStore, ["heroPosition", "getHeroKeys"]),
+    ...mapState(useHeroStore, ["heroPosition", "getHeroKeys", "isHeroDialog"]),
   },
   methods: {
     ...mapActions(useBoardStore, ["getBoardFromApi", "openDoor"]),
-    ...mapActions(useHeroStore, ["setHeroPosition", "removeHeroKey"]),
+    ...mapActions(useHeroStore, [
+      "setHeroPosition",
+      "removeHeroKey",
+      "setIsHeroDialog",
+      "setHeroDialogText",
+    ]),
     checkHeroMove(destination) {
       if (this.getBoardAvailablePositions.includes(destination)) {
         this.setHeroPosition(destination);
@@ -45,21 +61,30 @@ export default {
               (door) => door.position === destination
             );
             const isKey = this.getHeroKeys.includes(closedDoor.key);
-            isKey && console.log("Mam klucz!");
+            // isKey && console.log("Mam klucz!");
             isKey && this.removeHeroKey(closedDoor.key);
             isKey && this.openDoor(closedDoor);
+            isKey && this.setHeroDialogText("openedDoor");
+            isKey && this.setIsHeroDialog(true);
+            !isKey && this.setHeroDialogText("wrongKey");
+            !isKey && this.setIsHeroDialog(true);
+          } else {
+            this.setHeroDialogText("closedDoor");
+            this.setIsHeroDialog(true);
           }
         }
       }
     },
     moveHero(event) {
-      event.stopPropagation();
+      const choosenKey = event.key || event;
+      event.key && event.stopPropagation();
       const letter = this.heroPosition.charAt(0);
       const letterPosition = COLUMN_LETTERS.indexOf(letter);
       const nmbr = parseInt(this.heroPosition.charAt(1));
       let destinatedPosition;
+      this.isHeroDialog && this.setIsHeroDialog(false);
 
-      switch (event.key) {
+      switch (choosenKey) {
         case "w":
           destinatedPosition = COLUMN_LETTERS[letterPosition - 1] + nmbr;
           this.checkHeroMove(destinatedPosition);
@@ -84,9 +109,56 @@ export default {
   created() {
     this.getBoardFromApi();
     window.addEventListener("keyup", this.moveHero);
+    this.setIsHeroDialog(true);
   },
   beforeUnmount() {
     window.removeEventListener("keyup", this.moveHero);
   },
 };
 </script>
+
+<style scoped>
+#mobile-move-console {
+  position: absolute;
+  bottom: -150px;
+  margin-left: 25px;
+  height: 160px;
+  width: 160px;
+  display: flex;
+  flex-direction: column;
+}
+
+#mobile-move-console > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#mobile-move-console > div:nth-of-type(2) {
+  justify-content: space-around;
+}
+
+#mobile-move-console > div > .btn {
+  display: block;
+  border: none;
+  color: var(--dungeon-white);
+  background-color: rgba(255, 255, 255, 0.2);
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 100%;
+  transition: 0.2s;
+}
+
+#mobile-move-console > div > .btn:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+@media screen and (min-width: 450px) {
+  #mobile-move-console {
+    display: none;
+  }
+}
+</style>
