@@ -5,8 +5,6 @@ import GameboardHeaderView from "../components/GameboardHeader/GameboardHeaderVi
 import GameboardMainView from "../components/GameboardMain/GameboardMainView.vue";
 import { useBoardStore } from "@/stores/board.js";
 import { useHeroStore } from "@/stores/hero.js";
-// import { MovementClass } from "@/class/movement.class.js";
-// import { InteractionClass } from "@/class/interaction.class.js";
 import { COLUMN_LETTERS } from "@/const/board-data.const";
 </script>
 
@@ -30,11 +28,16 @@ export default {
       "getClosedDoorsPostitons",
       "getBoardAvailablePositions",
     ]),
-    ...mapState(useHeroStore, ["heroPosition", "getHeroKeys"]),
+    ...mapState(useHeroStore, ["heroPosition", "getHeroKeys", "isHeroDialog"]),
   },
   methods: {
     ...mapActions(useBoardStore, ["getBoardFromApi", "openDoor"]),
-    ...mapActions(useHeroStore, ["setHeroPosition", "removeHeroKey"]),
+    ...mapActions(useHeroStore, [
+      "setHeroPosition",
+      "removeHeroKey",
+      "setIsHeroDialog",
+      "setHeroDialogText",
+    ]),
     checkHeroMove(destination) {
       if (this.getBoardAvailablePositions.includes(destination)) {
         this.setHeroPosition(destination);
@@ -48,6 +51,8 @@ export default {
             isKey && console.log("Mam klucz!");
             isKey && this.removeHeroKey(closedDoor.key);
             isKey && this.openDoor(closedDoor);
+            isKey && this.setHeroDialogText("openedDoor");
+            isKey && this.setIsHeroDialog(true);
           }
         }
       }
@@ -58,6 +63,7 @@ export default {
       const letterPosition = COLUMN_LETTERS.indexOf(letter);
       const nmbr = parseInt(this.heroPosition.charAt(1));
       let destinatedPosition;
+      this.isHeroDialog && this.setIsHeroDialog(false);
 
       switch (event.key) {
         case "w":
@@ -84,6 +90,7 @@ export default {
   created() {
     this.getBoardFromApi();
     window.addEventListener("keyup", this.moveHero);
+    this.setIsHeroDialog(true);
   },
   beforeUnmount() {
     window.removeEventListener("keyup", this.moveHero);

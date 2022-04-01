@@ -14,9 +14,17 @@ export const useHeroStore = defineStore("hero", {
         diamonds: 0,
         keys: [],
       },
+      isHeroDialog: false,
+      heroDialogText: "initial",
     };
   },
   actions: {
+    setIsHeroDialog(value) {
+      this.isHeroDialog = value;
+    },
+    setHeroDialogText(text) {
+      this.heroDialogText = text;
+    },
     setHeroPosition(newPosition) {
       this.heroPosition = newPosition;
     },
