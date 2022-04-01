@@ -16,14 +16,22 @@ import { COLUMN_LETTERS } from "@/const/board-data.const";
       <gameboard-main-view />
       <aside id="mobile-move-console">
         <div>
-          <button class="btn top" @click="this.moveHero('w')">&#8593;</button>
+          <button class="btn top" @click="moveHeroByConsole('w')">
+            &#8593;
+          </button>
         </div>
         <div>
-          <button class="btn left" @click="this.moveHero('a')">&#8592;</button>
-          <button class="btn right" @click="this.moveHero('d')">&#8594;</button>
+          <button class="btn left" @click="moveHeroByConsole('a')">
+            &#8592;
+          </button>
+          <button class="btn right" @click="moveHeroByConsole('d')">
+            &#8594;
+          </button>
         </div>
         <div>
-          <button class="btn down" @click="this.moveHero('s')">&#8595;</button>
+          <button class="btn down" @click="moveHeroByConsole('s')">
+            &#8595;
+          </button>
         </div>
       </aside>
     </section>
@@ -75,9 +83,14 @@ export default {
         }
       }
     },
-    moveHero(event) {
-      const choosenKey = event.key || event;
-      event.key && event.stopPropagation();
+    moveHeroByConsole(clickedLetter) {
+      this.moveHero(clickedLetter);
+    },
+    moveHeroByKeyboard(event) {
+      event.stopPropagation();
+      this.moveHero(event.key);
+    },
+    moveHero(choosenKey) {
       const letter = this.heroPosition.charAt(0);
       const letterPosition = COLUMN_LETTERS.indexOf(letter);
       const nmbr = parseInt(this.heroPosition.charAt(1));
@@ -108,11 +121,11 @@ export default {
   },
   created() {
     this.getBoardFromApi();
-    window.addEventListener("keyup", this.moveHero);
+    window.addEventListener("keyup", this.moveHeroByKeyboard);
     this.setIsHeroDialog(true);
   },
   beforeUnmount() {
-    window.removeEventListener("keyup", this.moveHero);
+    window.removeEventListener("keyup", this.moveHeroByKeyboard);
   },
 };
 </script>
