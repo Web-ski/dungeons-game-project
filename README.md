@@ -44,4 +44,10 @@ git commit -m "Adding dist"
 git subtree push --prefix dist origin gh-pages
 ```
 
+or shorter
+
+```sh
+bash deploy.sh
+```
+
 You did it!
