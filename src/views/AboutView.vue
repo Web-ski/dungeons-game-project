@@ -10,9 +10,8 @@ import { GAME_INFO } from "@/const/game-data.const";
       <p>
         The <strong>{{ GAME_INFO.title }}</strong> is a project of browser
         adventure game. The project was born in Dec 2020 and was initially
-        created using vanilla javascript. The project was born in Dec 2020 and
-        was initially created using vanilla javascript. In 2022, the project was
-        transferred to Vue3.
+        created using vanilla javascript. In 2022, it was transferred to Vue3
+        with Pinia and Vite,js.
       </p>
       <p>
         The author of the game is <strong>Paweł Nieczuja-Ostrowski</strong>,
