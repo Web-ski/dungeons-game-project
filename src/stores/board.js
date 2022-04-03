@@ -52,7 +52,6 @@ export const useBoardStore = defineStore("board", {
       this.currentRoom.materials = materials;
     },
     openDoor(door) {
-      console.log(door);
       const room = ToolsClass.makeProxyToObject(this.currentRoom);
       const doorOpenType = door.type.replace("-closed", "");
       room.entries.map((entry, index) => {
