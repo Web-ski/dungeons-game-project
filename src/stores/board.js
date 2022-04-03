@@ -23,6 +23,7 @@ export const useBoardStore = defineStore("board", {
     },
     setDataToStore(data) {
       this.rooms = data.map((item) => {
+        console.log(item);
         const buildStructure = BoardgameClass.makeBoard(item);
         item.structures = buildStructure;
         return item;

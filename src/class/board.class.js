@@ -5,6 +5,7 @@ export class BoardgameClass {
   static makeBoard(board) {
     const boardObj = ToolsClass.makeProxyToObject(board);
     console.log(board);
+    console.log(boardObj);
     const structure = [];
     const column = 9;
     const row = 9;
@@ -12,7 +13,7 @@ export class BoardgameClass {
       let letter = COLUMN_LETTERS[i];
       for (let i = 0; i < row; i++) {
         let specify;
-        specify = this.setTiel(
+        specify = this.setTile(
           boardObj.type,
           boardObj.model,
           boardObj.orientation,
@@ -29,10 +30,13 @@ export class BoardgameClass {
   static boardTile(type, position, destination) {
     return { type: type, position: position, destination: destination };
   }
-  static setTiel(type, model, orientation, position) {
+  static setTile(type, model, orientation, position) {
+    console.log(type, model, orientation, position);
     const modelName = orientation
-      ? CELLAR_MODEL[model][orientation][position.charAt(0)][position.charAt(1)]
-      : CELLAR_MODEL[model][position.charAt(0)][position.charAt(1)];
+      ? CELLAR_MODEL[model][orientation][position.charAt(0)][
+          parseInt(position.charAt(1))
+        ]
+      : CELLAR_MODEL[model][position.charAt(0)][parseInt(position.charAt(1))];
     return (
       this.boardTile(modelName, position, null) ||
       this.boardTile("dark-board", position, null)
