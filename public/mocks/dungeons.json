@@ -4,6 +4,7 @@
       "id": "a1",
       "type": "cellar",
       "model": "cell",
+      "orientation": "right",
       "entries": [
         {
           "type": "door--right",
@@ -184,6 +185,7 @@
       "id": "b1",
       "type": "cellar",
       "model": "cell",
+      "orientation": "right",
       "entries": [
         {
           "type": "door--right",
@@ -256,7 +258,8 @@
     {
       "id": "b4",
       "type": "cellar",
-      "model": "cross",
+      "model": "corridor",
+      "orientation": "vertical",
       "entries": [
         {
           "type": "door--top",
@@ -276,6 +279,7 @@
       "id": "c1",
       "type": "cellar",
       "model": "cell",
+      "orientation": "right",
       "entries": [
         {
           "type": "door--right",
@@ -287,13 +291,13 @@
         {
           "id": 1,
           "type": "bread",
-          "position": "B1",
+          "position": "C2",
           "live": 5
         },
         {
           "id": 2,
           "type": "cheese",
-          "position": "H7",
+          "position": "G6",
           "live": 5
         }
       ],
@@ -376,7 +380,8 @@
     {
       "id": "d1",
       "type": "cellar",
-      "model": "normal",
+      "model": "cell",
+      "orientation": "right",
       "entries": [
         {
           "type": "door--right",
