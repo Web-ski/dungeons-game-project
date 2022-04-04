@@ -17,13 +17,13 @@ export const useBoardStore = defineStore("board", {
   actions: {
     getBoardFromApi() {
       this.isProcessing = true;
-      fetch(BASE_URL + "/mocks/dungeons.json")
+      fetch(BASE_URL + "mocks/dungeons.json")
         .then((response) => response.json())
         .then((data) => this.setDataToStore(data.rooms));
     },
     setDataToStore(data) {
+      console.log(data);
       this.rooms = data.map((item) => {
-        console.log(item);
         const buildStructure = BoardgameClass.makeBoard(item);
         item.structures = buildStructure;
         return item;
