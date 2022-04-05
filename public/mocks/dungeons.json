@@ -19,6 +19,7 @@
           "position": "E4"
         }
       ],
+      "threats": [],
       "structures": []
     },
     {
@@ -39,6 +40,7 @@
         }
       ],
       "materials": [],
+      "threats": [],
       "structures": []
     },
     {
@@ -159,6 +161,7 @@
           "position": "H3"
         }
       ],
+      "threats": [],
       "structures": []
     },
     {
@@ -179,6 +182,7 @@
         }
       ],
       "materials": [],
+      "threats": [],
       "structures": []
     },
     {
@@ -194,6 +198,7 @@
         }
       ],
       "materials": [],
+      "threats": [],
       "structures": []
     },
     {
@@ -223,6 +228,15 @@
         }
       ],
       "materials": [],
+      "threats": [
+        {
+          "id": 1,
+          "type": "poison",
+          "position": "C5",
+          "injury": 2,
+          "time": 10
+        }
+      ],
       "structures": []
     },
     {
@@ -253,6 +267,36 @@
           "position": "G6"
         }
       ],
+      "threats": [
+        {
+          "id": 1,
+          "type": "poison",
+          "position": "D5",
+          "injury": 2,
+          "time": 10
+        },
+        {
+          "id": 2,
+          "type": "poison",
+          "position": "E4",
+          "injury": 2,
+          "time": 10
+        },
+        {
+          "id": 3,
+          "type": "poison",
+          "position": "G3",
+          "injury": 2,
+          "time": 10
+        },
+        {
+          "id": 4,
+          "type": "poison",
+          "position": "C2",
+          "injury": 2,
+          "time": 10
+        }
+      ],
       "structures": []
     },
     {
@@ -273,6 +317,7 @@
         }
       ],
       "materials": [],
+      "threats": [],
       "structures": []
     },
     {
@@ -301,6 +346,7 @@
           "live": 5
         }
       ],
+      "threats": [],
       "structures": []
     },
     {
@@ -325,6 +371,7 @@
         }
       ],
       "materials": [],
+      "threats": [],
       "structures": []
     },
     {
@@ -344,6 +391,7 @@
         }
       ],
       "materials": [],
+      "threats": [],
       "structures": []
     },
     {
@@ -375,6 +423,7 @@
           "live": "10"
         }
       ],
+      "threats": [],
       "structures": []
     },
     {
@@ -396,6 +445,7 @@
           "position": "E4"
         }
       ],
+      "threats": [],
       "structures": []
     },
     {
@@ -420,6 +470,7 @@
         }
       ],
       "materials": [],
+      "threats": [],
       "structures": []
     },
     {
@@ -455,6 +506,7 @@
           "position": "G6"
         }
       ],
+      "threats": [],
       "structures": []
     },
     {
@@ -475,6 +527,7 @@
           "position": "E4"
         }
       ],
+      "threats": [],
       "structures": []
     }
   ]

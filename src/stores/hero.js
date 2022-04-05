@@ -49,6 +49,16 @@ export const useHeroStore = defineStore("hero", {
         }
       }
     },
+    setThreatAffectHero(threat) {
+      if (threat.type === "poison") {
+        if (this.hero.live - threat.injury <= 0) {
+          this.hero.live = 0;
+          this.hero.lives === 0 ? 0 : this.hero.lives--;
+        } else {
+          this.hero.live = this.hero.live - threat.injury;
+        }
+      }
+    },
   },
   getters: {
     getHeroKeys: (state) => {

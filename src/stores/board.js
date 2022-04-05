@@ -22,7 +22,6 @@ export const useBoardStore = defineStore("board", {
         .then((data) => this.setDataToStore(data.rooms));
     },
     setDataToStore(data) {
-      console.log(data);
       this.rooms = data.map((item) => {
         const buildStructure = BoardgameClass.makeBoard(item);
         item.structures = buildStructure;
@@ -78,6 +77,10 @@ export const useBoardStore = defineStore("board", {
     },
     getRoomMaterials: (state) => {
       return ToolsClass.makeProxyToObject(state.currentRoom).materials;
+    },
+    getRoomThreats: (state) => {
+      console.log("threat");
+      return ToolsClass.makeProxyToObject(state.currentRoom).threats;
     },
     getClosedDoorsPostitons: (state) => {
       const doors = ToolsClass.makeProxyToObject(state.currentRoom).entries;

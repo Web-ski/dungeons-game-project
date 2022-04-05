@@ -26,7 +26,11 @@ export default {
       "removeMaterialFromRoom",
       "setBoardSwitching",
     ]),
-    ...mapActions(useHeroStore, ["setHeroPosition", "setMaterialToHero"]),
+    ...mapActions(useHeroStore, [
+      "setHeroPosition",
+      "setMaterialToHero",
+      "setThreatAffectHero",
+    ]),
     getHeroPositionX() {
       return MovementClass.setHeroMove(this.heroPosition, "horizontal");
     },
@@ -53,6 +57,17 @@ export default {
       takenMaterial && this.removeMaterialFromRoom(takenMaterial);
       takenMaterial && this.setMaterialToHero(takenMaterial);
     },
+    getThreat(heroPosition, threats) {
+      const [gotThreat] = threats.filter(
+        (threat) => heroPosition === threat.position
+      );
+      gotThreat && this.setThreatAffectHero(gotThreat);
+      gotThreat &&
+        setTimeout(
+          () => this.getThreat(this.heroPosition, this.getRoomThreats),
+          gotThreat.time * 100
+        );
+    },
     playSound(soundName) {
       const audio = new Audio("audio/game/materials/" + soundName + ".wav");
       audio.play();
@@ -63,11 +78,13 @@ export default {
     ...mapState(useBoardStore, [
       "getRoomEntries",
       "getRoomMaterials",
+      "getRoomThreats",
       "isBoardSwitching",
     ]),
   },
   updated() {
     this.takeMaterial(this.heroPosition, this.getRoomMaterials);
+    this.getThreat(this.heroPosition, this.getRoomThreats);
     this.switchBoard(this.heroPosition, this.getRoomEntries);
   },
 };
@@ -85,5 +102,9 @@ export default {
   background-image: url("/images/game/heros/hero-dev2.png");
   transition: 0.3s;
   z-index: 100;
+}
+
+.hurt {
+  border: solid 2px red;
 }
 </style>
