@@ -11,6 +11,7 @@ import HeroTooltip from "./HeroTooltip.vue";
   <div
     v-if="!isBoardSwitching"
     id="hero"
+    :class="{ hurting: isHurting }"
     :style="'left: ' + getHeroPositionX() + '; ' + 'top: ' + getHeroPositionY()"
   >
     <hero-tooltip />
@@ -20,6 +21,26 @@ import HeroTooltip from "./HeroTooltip.vue";
 <script>
 export default {
   components: { HeroTooltip },
+  data() {
+    return {
+      isMoving: false,
+      isHurting: false,
+    };
+  },
+  computed: {
+    ...mapState(useHeroStore, ["heroPosition"]),
+    ...mapState(useBoardStore, [
+      "getRoomEntries",
+      "getRoomMaterials",
+      "getRoomThreats",
+      "isBoardSwitching",
+    ]),
+    getHeroDestination() {
+      // `this` points to the component instance
+      console.log("getHeroMove!!!!");
+      return this.heroMove();
+    },
+  },
   methods: {
     ...mapActions(useBoardStore, [
       "setCurrentRoom",
@@ -31,6 +52,12 @@ export default {
       "setMaterialToHero",
       "setThreatAffectHero",
     ]),
+    heroMove() {
+      console.log("heroMove");
+      this.takeMaterial(this.heroPosition, this.getRoomMaterials);
+      this.getThreat(this.heroPosition, this.getRoomThreats);
+      this.switchBoard(this.heroPosition, this.getRoomEntries);
+    },
     getHeroPositionX() {
       return MovementClass.setHeroMove(this.heroPosition, "horizontal");
     },
@@ -50,42 +77,65 @@ export default {
       }
     },
     takeMaterial(heroPosition, materials) {
+      const audioCoin = new Audio("audio/game/materials/coin.wav");
+      const audioKey = new Audio("audio/game/materials/key.wav");
+      const audioFood = new Audio("audio/game/materials/food.wav");
+      const audioDrink = new Audio("audio/game/materials/drink.wav");
+      const audioTreasure = new Audio("audio/game/materials/diamond.wav");
       const [takenMaterial] = materials.filter(
         (material) => heroPosition === material.position
       );
-      takenMaterial?.type && this.playSound(takenMaterial.type);
-      takenMaterial && this.removeMaterialFromRoom(takenMaterial);
-      takenMaterial && this.setMaterialToHero(takenMaterial);
+      if (takenMaterial) {
+        switch (takenMaterial?.type) {
+          case "coin":
+            audioCoin.play();
+            break;
+          case "blue-key":
+          case "gold-key":
+            audioKey.play();
+            break;
+          case "cheese":
+          case "bread":
+            audioFood.play();
+            break;
+          case "life-potion":
+            audioDrink.play();
+            break;
+          case "diamond":
+            audioTreasure.play();
+            break;
+          default:
+            audioCoin.play();
+        }
+        this.removeMaterialFromRoom(takenMaterial);
+        this.setMaterialToHero(takenMaterial);
+      }
     },
     getThreat(heroPosition, threats) {
+      console.log("getThreat");
+      const audioHurt = new Audio("audio/game/hero/hurt.wav");
+      this.isHurting && (this.isHurting = false);
       const [gotThreat] = threats.filter(
         (threat) => heroPosition === threat.position
       );
-      gotThreat && this.setThreatAffectHero(gotThreat);
-      gotThreat &&
+      if (gotThreat) {
+        this.setThreatAffectHero(gotThreat);
+        audioHurt.play();
+        this.isHurting = true;
         setTimeout(
           () => this.getThreat(this.heroPosition, this.getRoomThreats),
-          gotThreat.time * 100
+          gotThreat.time * 100 //dlaczego odpala to po dwa razy?????
         );
+      }
     },
-    playSound(soundName) {
-      const audio = new Audio("audio/game/materials/" + soundName + ".wav");
-      audio.play();
-    },
-  },
-  computed: {
-    ...mapState(useHeroStore, ["heroPosition"]),
-    ...mapState(useBoardStore, [
-      "getRoomEntries",
-      "getRoomMaterials",
-      "getRoomThreats",
-      "isBoardSwitching",
-    ]),
   },
   updated() {
-    this.takeMaterial(this.heroPosition, this.getRoomMaterials);
-    this.getThreat(this.heroPosition, this.getRoomThreats);
-    this.switchBoard(this.heroPosition, this.getRoomEntries);
+    // this.isHurting && (this.isHurting = false);
+    console.log("----updated");
+    !this.isHurting && this.getHeroDestination;
+  },
+  created() {
+    console.time();
   },
 };
 </script>
@@ -104,7 +154,16 @@ export default {
   z-index: 100;
 }
 
-.hurt {
-  border: solid 2px red;
+.hurting {
+  animation: setHurting 1s infinite;
+}
+
+@keyframes setHurting {
+  from {
+    filter: hue-rotate(90deg);
+  }
+  to {
+    filter: none;
+  }
 }
 </style>

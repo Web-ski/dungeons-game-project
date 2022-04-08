@@ -50,6 +50,8 @@ export const useHeroStore = defineStore("hero", {
       }
     },
     setThreatAffectHero(threat) {
+      console.log(this.hero.live);
+      console.timeLog();
       if (threat.type === "poison") {
         if (this.hero.live - threat.injury <= 0) {
           this.hero.live = 0;
