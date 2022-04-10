@@ -5,6 +5,7 @@ import HeroElem from "../Hero/HeroElem.vue";
 import MaterialElem from "../Materials/MaterialElem.vue";
 import ThreatElem from "../Threats/ThreatElem.vue";
 import BoardElem from "./BoardElem.vue";
+import HeroKilledView from "../Hero/HeroKilledView.vue";
 </script>
 
 <template>
@@ -21,12 +22,13 @@ import BoardElem from "./BoardElem.vue";
       :material="elem"
     />
     <threat-elem v-for="elem in getThreats()" :key="elem.id" :threat="elem" />
+    <hero-killed-view />
   </div>
 </template>
 
 <script>
 export default {
-  components: { MaterialElem, ThreatElem, BoardElem, HeroElem },
+  components: { MaterialElem, ThreatElem, BoardElem, HeroElem, HeroKilledView },
   computed: {
     ...mapState(useBoardStore, [
       "getCurrentRoom",

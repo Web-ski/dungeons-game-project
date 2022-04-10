@@ -28,7 +28,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(useHeroStore, ["heroPosition"]),
+    ...mapState(useHeroStore, ["heroPosition", "isHeroKilled"]),
     ...mapState(useBoardStore, [
       "getRoomEntries",
       "getRoomMaterials",
@@ -36,8 +36,6 @@ export default {
       "isBoardSwitching",
     ]),
     getHeroDestination() {
-      // `this` points to the component instance
-      console.log("getHeroMove!!!!");
       return this.heroMove();
     },
   },
@@ -53,7 +51,6 @@ export default {
       "setThreatAffectHero",
     ]),
     heroMove() {
-      console.log("heroMove");
       this.takeMaterial(this.heroPosition, this.getRoomMaterials);
       this.getThreat(this.heroPosition, this.getRoomThreats);
       this.switchBoard(this.heroPosition, this.getRoomEntries);
@@ -112,30 +109,28 @@ export default {
       }
     },
     getThreat(heroPosition, threats) {
-      console.log("getThreat");
       const audioHurt = new Audio("audio/game/hero/hurt.wav");
-      this.isHurting && (this.isHurting = false);
-      const [gotThreat] = threats.filter(
-        (threat) => heroPosition === threat.position
-      );
-      if (gotThreat) {
-        this.setThreatAffectHero(gotThreat);
-        audioHurt.play();
-        this.isHurting = true;
-        setTimeout(
-          () => this.getThreat(this.heroPosition, this.getRoomThreats),
-          gotThreat.time * 100 //dlaczego odpala to po dwa razy?????
+      if (!this.isHeroKilled) {
+        this.isHurting && (this.isHurting = false);
+        const [gotThreat] = threats.filter(
+          (threat) => heroPosition === threat.position
         );
+        if (gotThreat) {
+          this.setThreatAffectHero(gotThreat);
+          audioHurt.play();
+          this.isHurting = true;
+          setTimeout(
+            () => this.getThreat(this.heroPosition, this.getRoomThreats),
+            gotThreat.time * 100 //dlaczego odpala to po dwa razy?????
+          );
+        }
+      } else {
+        this.isHurting = false;
       }
     },
   },
   updated() {
-    // this.isHurting && (this.isHurting = false);
-    console.log("----updated");
-    !this.isHurting && this.getHeroDestination;
-  },
-  created() {
-    console.time();
+    !this.isHeroKilled && !this.isHurting && this.getHeroDestination;
   },
 };
 </script>

@@ -1,24 +1,29 @@
 import { defineStore } from "pinia";
 import { ToolsClass } from "../class/tools.class";
+import { BASE_URL } from "@/const/api.const.js";
+import { useBoardStore } from "@/stores/board.js";
 
 export const useHeroStore = defineStore("hero", {
   state: () => {
     return {
+      heroes: [],
+      hero: null,
       heroPosition: "E4",
-      hero: {
-        name: "Janusz",
-        lives: 3,
-        live: 10,
-        maxLive: 20,
-        coins: 0,
-        diamonds: 0,
-        keys: [],
-      },
       isHeroDialog: false,
       heroDialogText: "initial",
+      isHeroKilled: false,
     };
   },
   actions: {
+    getHeroFromApi() {
+      fetch(BASE_URL + "mocks/heroes.json")
+        .then((response) => response.json())
+        .then((data) => this.setDataToStore(data.heroes));
+    },
+    setDataToStore(heroes) {
+      this.heroes = heroes;
+      this.hero = this.heroes[0];
+    },
     setIsHeroDialog(value) {
       this.isHeroDialog = value;
     },
@@ -50,16 +55,29 @@ export const useHeroStore = defineStore("hero", {
       }
     },
     setThreatAffectHero(threat) {
-      console.log(this.hero.live);
-      console.timeLog();
-      if (threat.type === "poison") {
-        if (this.hero.live - threat.injury <= 0) {
-          this.hero.live = 0;
-          this.hero.lives === 0 ? 0 : this.hero.lives--;
-        } else {
-          this.hero.live = this.hero.live - threat.injury;
+      if (!this.isHeroKilled) {
+        if (threat.type === "poison") {
+          if (this.hero.live - threat.injury <= 0) {
+            this.hero.live = 0;
+            this.hero.lives === 0 ? 0 : this.hero.lives--;
+            this.setHeroKilled();
+          } else {
+            this.hero.live = this.hero.live - threat.injury;
+          }
         }
       }
+    },
+    setHeroKilled() {
+      this.isHeroKilled = true;
+      setTimeout(() => this.setHeroRespawn(), 2000);
+    },
+    setHeroRespawn() {
+      const board = useBoardStore();
+      board.setBoardSwitching(false);
+      board.setCurrentRoom("b1");
+      this.setHeroPosition("E4");
+      this.hero.live = this.hero.maxLive;
+      this.isHeroKilled = false;
     },
   },
   getters: {
