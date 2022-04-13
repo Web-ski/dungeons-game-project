@@ -391,7 +391,36 @@
         }
       ],
       "materials": [],
-      "threats": [],
+      "threats": [
+        {
+          "id": 1,
+          "type": "firefloor",
+          "position": "C5",
+          "injury": 2,
+          "time": 8
+        },
+        {
+          "id": 2,
+          "type": "firefloor",
+          "position": "E6",
+          "injury": 2,
+          "time": 8
+        },
+        {
+          "id": 3,
+          "type": "firefloor",
+          "position": "G6",
+          "injury": 2,
+          "time": 8
+        },
+        {
+          "id": 4,
+          "type": "firefloor",
+          "position": "F4",
+          "injury": 2,
+          "time": 8
+        }
+      ],
       "structures": []
     },
     {
