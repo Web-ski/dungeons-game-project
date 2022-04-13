@@ -1,0 +1,14 @@
+{
+  "heroes": [
+    {
+      "id": 1,
+      "name": "Janusz",
+      "lives": 3,
+      "live": 10,
+      "maxLive": 20,
+      "coins": 0,
+      "diamonds": 0,
+      "keys": []
+    }
+  ]
+}

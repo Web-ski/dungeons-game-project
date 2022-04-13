@@ -49,36 +49,44 @@ export default {
       "getClosedDoorsPostitons",
       "getBoardAvailablePositions",
     ]),
-    ...mapState(useHeroStore, ["heroPosition", "getHeroKeys", "isHeroDialog"]),
+    ...mapState(useHeroStore, [
+      "heroPosition",
+      "getHeroKeys",
+      "isHeroDialog",
+      "isHeroKilled",
+    ]),
   },
   methods: {
     ...mapActions(useBoardStore, ["getBoardFromApi", "openDoor"]),
     ...mapActions(useHeroStore, [
+      "getHeroFromApi",
       "setHeroPosition",
       "removeHeroKey",
       "setIsHeroDialog",
       "setHeroDialogText",
     ]),
     checkHeroMove(destination) {
-      if (this.getBoardAvailablePositions.includes(destination)) {
-        this.setHeroPosition(destination);
-      } else {
-        if (this.getClosedDoorsPostitons.includes(destination)) {
-          if (this.getHeroKeys.length > 0) {
-            const [closedDoor] = this.getRoomEntries.filter(
-              (door) => door.position === destination
-            );
-            const isKey = this.getHeroKeys.includes(closedDoor.key);
-            // isKey && console.log("Mam klucz!");
-            isKey && this.removeHeroKey(closedDoor.key);
-            isKey && this.openDoor(closedDoor);
-            isKey && this.setHeroDialogText("openedDoor");
-            isKey && this.setIsHeroDialog(true);
-            !isKey && this.setHeroDialogText("wrongKey");
-            !isKey && this.setIsHeroDialog(true);
-          } else {
-            this.setHeroDialogText("closedDoor");
-            this.setIsHeroDialog(true);
+      if (!this.isHeroKilled) {
+        if (this.getBoardAvailablePositions.includes(destination)) {
+          this.setHeroPosition(destination);
+        } else {
+          if (this.getClosedDoorsPostitons.includes(destination)) {
+            if (this.getHeroKeys.length > 0) {
+              const [closedDoor] = this.getRoomEntries.filter(
+                (door) => door.position === destination
+              );
+              const isKey = this.getHeroKeys.includes(closedDoor.key);
+              // isKey && console.log("Mam klucz!");
+              isKey && this.removeHeroKey(closedDoor.key);
+              isKey && this.openDoor(closedDoor);
+              isKey && this.setHeroDialogText("openedDoor");
+              isKey && this.setIsHeroDialog(true);
+              !isKey && this.setHeroDialogText("wrongKey");
+              !isKey && this.setIsHeroDialog(true);
+            } else {
+              this.setHeroDialogText("closedDoor");
+              this.setIsHeroDialog(true);
+            }
           }
         }
       }
@@ -121,6 +129,7 @@ export default {
   },
   created() {
     this.getBoardFromApi();
+    this.getHeroFromApi();
     window.addEventListener("keyup", this.moveHeroByKeyboard);
     this.setIsHeroDialog(true);
   },

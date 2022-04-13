@@ -4,7 +4,7 @@ import { useHeroStore } from "@/stores/hero.js";
 </script>
 
 <template>
-  <section class="gameboard-header">
+  <section v-if="hero" class="gameboard-header">
     <div class="header-row">
       <div class="hero-data">
         <div>

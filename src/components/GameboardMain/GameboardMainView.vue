@@ -1,9 +1,11 @@
 <script setup>
 import { mapActions, mapState } from "pinia";
-import HeroElem from "../Hero/HeroElem.vue";
 import { useBoardStore } from "@/stores/board.js";
+import HeroElem from "../Hero/HeroElem.vue";
 import MaterialElem from "../Materials/MaterialElem.vue";
+import ThreatElem from "../Threats/ThreatElem.vue";
 import BoardElem from "./BoardElem.vue";
+import HeroKilledView from "../Hero/HeroKilledView.vue";
 </script>
 
 <template>
@@ -19,14 +21,20 @@ import BoardElem from "./BoardElem.vue";
       :key="elem.id"
       :material="elem"
     />
+    <threat-elem v-for="elem in getThreats()" :key="elem.id" :threat="elem" />
+    <hero-killed-view />
   </div>
 </template>
 
 <script>
 export default {
-  components: { MaterialElem, BoardElem },
+  components: { MaterialElem, ThreatElem, BoardElem, HeroElem, HeroKilledView },
   computed: {
-    ...mapState(useBoardStore, ["getCurrentRoom", "getRoomMaterials"]),
+    ...mapState(useBoardStore, [
+      "getCurrentRoom",
+      "getRoomMaterials",
+      "getRoomThreats",
+    ]),
   },
   methods: {
     ...mapActions(useBoardStore, ["setBoardSwitching"]),
@@ -35,6 +43,9 @@ export default {
     },
     getMaterials() {
       return this.getRoomMaterials;
+    },
+    getThreats() {
+      return this.getRoomThreats;
     },
   },
   created() {

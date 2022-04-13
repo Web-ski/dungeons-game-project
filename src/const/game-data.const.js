@@ -1,3 +1,3 @@
 export const GAME_INFO = {
-  title: "Dungeons & Monsters",
+  title: "Dungeons, Monsters & Developers",
 };

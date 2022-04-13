@@ -4,8 +4,6 @@ import { CELLAR_MODEL } from "@/const/models/cellar.const.js";
 export class BoardgameClass {
   static makeBoard(board) {
     const boardObj = ToolsClass.makeProxyToObject(board);
-    console.log(board);
-    console.log(boardObj);
     const structure = [];
     const column = 9;
     const row = 9;
@@ -31,7 +29,6 @@ export class BoardgameClass {
     return { type: type, position: position, destination: destination };
   }
   static setTile(type, model, orientation, position) {
-    console.log(type, model, orientation, position);
     const modelName = orientation
       ? CELLAR_MODEL[model][orientation][position.charAt(0)][
           parseInt(position.charAt(1))
