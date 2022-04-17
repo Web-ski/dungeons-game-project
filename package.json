@@ -1,5 +1,6 @@
 {
   "name": "dungeons-game-project",
+  "homepage": "https://web-ski.github.io/dungeons-game-project",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
