@@ -4,14 +4,13 @@ import vue from "@vitejs/plugin-vue";
 import vueJsx from "@vitejs/plugin-vue-jsx";
 
 // https://vitejs.dev/config/
-export default ({ mode }) =>
-  defineConfig({
-    base: mode === "production" ? "/dungeons-game-project/" : "/",
-    // base: loadEnv(mode, process.cwd()).PROD ? "/dungeons-game-project/" : "/",
-    plugins: [vue(), vueJsx()],
-    resolve: {
-      alias: {
-        "@": fileURLToPath(new URL("./src", import.meta.url)),
-      },
+export default defineConfig({
+  base: "/dungeons-game-project/",
+  // base: loadEnv(mode, process.cwd()).PROD ? "/dungeons-game-project/" : "/",
+  plugins: [vue(), vueJsx()],
+  resolve: {
+    alias: {
+      "@": fileURLToPath(new URL("./src", import.meta.url)),
     },
-  });
+  },
+});
