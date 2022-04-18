@@ -37,6 +37,7 @@ export default {
   line-height: 160%;
   margin-bottom: 1rem;
   animation: showTitle 2s;
+  text-align: center;
 }
 
 h2,
